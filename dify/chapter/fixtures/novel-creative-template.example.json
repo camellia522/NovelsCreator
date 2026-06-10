@@ -1,0 +1,172 @@
+{
+  "templateId": "default-longform-v1",
+  "version": "1.0",
+  "displayName": "长篇默认模板（三要素可配置）",
+  "locale": "zh-CN",
+  "generationPromptVersion": "1.0",
+  "world": {
+    "useProjectWorldRules": true,
+    "knowledgeMapsTo": "knowledge_snapshot.world",
+    "fields": [
+      {
+        "key": "era",
+        "label": "时代背景",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "environment.era",
+        "options": ["古代", "近代", "现代", "近未来", "架空"],
+        "allowCustom": true
+      },
+      {
+        "key": "scene",
+        "label": "主要场景",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "environment.scene",
+        "options": ["都市", "宗门", "校园", "废土", "宫廷"],
+        "allowCustom": true
+      },
+      {
+        "key": "atmosphere",
+        "label": "氛围基调",
+        "type": "multi_enum",
+        "required": true,
+        "maxSelections": 3,
+        "mapsTo": "environment.atmosphere",
+        "options": ["热血", "悬疑", "治愈", "黑暗", "轻松", "史诗"]
+      },
+      {
+        "key": "customNote",
+        "label": "环境补充",
+        "type": "text",
+        "required": false,
+        "maxLength": 500,
+        "mapsTo": "environment.customNote"
+      }
+    ]
+  },
+  "character": {
+    "minCharacters": 1,
+    "maxCharacters": 8,
+    "fields": [
+      {
+        "key": "appearanceTags",
+        "label": "样貌标签",
+        "type": "tags",
+        "required": true,
+        "mapsTo": "characters[].appearance.tags",
+        "options": ["清秀", "英武", "冷峻", "平凡", "妖异"]
+      },
+      {
+        "key": "appearanceDesc",
+        "label": "外貌描写",
+        "type": "text",
+        "required": true,
+        "maxLength": 200,
+        "mapsTo": "characters[].appearance.description"
+      },
+      {
+        "key": "personalityPrimary",
+        "label": "主性格",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "characters[].personality.primary",
+        "options": ["冷静", "热血", "腹黑", "傲娇", "温润", "偏执"]
+      },
+      {
+        "key": "worldview",
+        "label": "人生观",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "characters[].worldview",
+        "options": ["守护", "复仇", "求道", "生存", "理想"]
+      },
+      {
+        "key": "values",
+        "label": "价值观",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "characters[].values",
+        "options": ["正义", "利益", "情义", "秩序", "自由"]
+      },
+      {
+        "key": "speechStyle",
+        "label": "说话方式",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "characters[].speechStyle",
+        "options": ["简短", "文绉", "粗犷", "活泼", "毒舌"]
+      },
+      {
+        "key": "chapterGoal",
+        "label": "本章角色目标",
+        "type": "text",
+        "required": false,
+        "maxLength": 200,
+        "mapsTo": "characters[].chapterGoal"
+      }
+    ],
+    "traitHints": {
+      "worldview": {
+        "守护": "以他人/信念安危为决策第一权重，拒绝无代价的冷漠旁观"
+      },
+      "speechStyle": {
+        "简短": "单句宜短，少修辞；连续长句视为 OOC 风险"
+      }
+    }
+  },
+  "plot": {
+    "outlineMapsTo": "outline_beats",
+    "defaultTargetWordCount": 3000,
+    "beatField": {
+      "orderKey": "order",
+      "textKey": "text",
+      "minBeats": 2,
+      "maxBeats": 16
+    },
+    "fields": [
+      {
+        "key": "chapterGoal",
+        "label": "本章戏剧目标",
+        "type": "text",
+        "required": true,
+        "mapsTo": "plot.chapterGoal"
+      },
+      {
+        "key": "conflict",
+        "label": "核心冲突",
+        "type": "enum",
+        "required": true,
+        "mapsTo": "plot.conflict",
+        "options": ["人 vs 人", "人 vs 自然", "人 vs 社会", "人 vs 自我", "人 vs 命运"]
+      },
+      {
+        "key": "tone",
+        "label": "叙事基调",
+        "type": "multi_enum",
+        "required": true,
+        "maxSelections": 2,
+        "mapsTo": "plot.tone",
+        "options": ["紧张", "反转", "压抑", "诙谐", "浪漫"]
+      },
+      {
+        "key": "pacing",
+        "label": "节奏（0–1）",
+        "type": "number",
+        "required": false,
+        "mapsTo": "plot.pacing"
+      },
+      {
+        "key": "targetWordCount",
+        "label": "目标字数",
+        "type": "integer",
+        "required": false,
+        "mapsTo": "plot.targetWordCount"
+      }
+    ]
+  },
+  "globalRules": [
+    "人物三观与说话方式须在全章保持一致",
+    "不得违背 world.json 中已声明的硬规则"
+  ]
+}

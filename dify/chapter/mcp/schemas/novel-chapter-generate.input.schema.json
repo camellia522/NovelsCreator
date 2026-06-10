@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator://dify/schemas/novel-chapter-generate.input/v1.1",
+  "title": "NovelChapterGenerateInput",
+  "description": "NovelsCreator 单章生成工作流输入。复杂对象以 JSON 字符串传入 Dify Code 节点解析。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "format": "uuid",
+      "description": "项目 UUID"
+    },
+    "chapter_id": {
+      "type": "string",
+      "pattern": "^ch-[0-9]{3,}$",
+      "description": "章节 ID，如 ch-001"
+    },
+    "chapter_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "章节标题"
+    },
+    "outline_beats": {
+      "type": "string",
+      "description": "JSON 字符串：节拍数组 [{ order, text }]"
+    },
+    "knowledge_snapshot": {
+      "type": "string",
+      "description": "JSON 字符串：world / characters / factions / items 摘要"
+    },
+    "plot_memory": {
+      "type": "string",
+      "description": "JSON 字符串：plot-memory 全文或摘要"
+    },
+    "previous_chapter_summary": {
+      "type": "string",
+      "default": "",
+      "description": "上一章摘要，首章可为空"
+    },
+    "video_platform_template": {
+      "type": "string",
+      "enum": ["generic-v1", "platform-x-v1", "configurable-v1"],
+      "default": "generic-v1",
+      "description": "N4b 视频脚本模板 ID；configurable-v1 时须配合 video_template_config"
+    },
+    "video_template_config": {
+      "type": "string",
+      "default": "",
+      "description": "JSON 字符串：VideoTemplateConfig（见 video-template-config.schema.json）；video_platform_template=configurable-v1 时必填"
+    },
+    "estimated_duration_sec": {
+      "type": "integer",
+      "minimum": 30,
+      "maximum": 3600,
+      "default": 180,
+      "description": "N4b 全章目标总时长（秒）；N4b-G / N4b-X USER 绑定；configurable-v1 用 video_template_config.estimatedDurationSec"
+    },
+    "max_retry": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 3,
+      "description": "校验失败最大重试次数"
+    },
+    "generation_prompt": {
+      "type": "string",
+      "default": "",
+      "description": "三要素向导 JSON v1.0 字符串；快速生成传空"
+    },
+    "generation_prompt_text": {
+      "type": "string",
+      "default": "",
+      "description": "三要素自然语言 Brief；快速生成由客户端渲染 Fallback"
+    },
+    "retry_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 0,
+      "description": "客户端重试轮次；首轮 0，收到 status=retry 后传入 AGG 返回的 retry_count"
+    },
+    "retry_issues": {
+      "type": "string",
+      "default": "[]",
+      "description": "JSON 数组字符串；与 AGG.retry_issues 一致；首轮传 []"
+    },
+    "retry_issues_formatted": {
+      "type": "string",
+      "default": "",
+      "description": "上轮校验驳回 Markdown 列表；供 N1 User Prompt 注入，首轮为空"
+    }
+  },
+  "required": [
+    "project_id",
+    "chapter_id",
+    "chapter_title",
+    "outline_beats",
+    "knowledge_snapshot",
+    "plot_memory",
+    "video_platform_template",
+    "max_retry"
+  ]
+}

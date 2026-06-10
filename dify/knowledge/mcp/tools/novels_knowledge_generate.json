@@ -1,0 +1,45 @@
+{
+  "name": "novels_knowledge_generate",
+  "title": "AI 生成知识库",
+  "description": "调用 Dify 工作流 novel-knowledge-generation-v1：根据 brief 生成/扩充 world、characters、factions、items（不含 map/locations/nations）。",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "project_id": { "type": "string", "format": "uuid" },
+      "knowledge_brief": { "type": "string" },
+      "existing_knowledge_snapshot": { "type": "string", "default": "{}" },
+      "genre": { "type": "string", "default": "" },
+      "tone": { "type": "string", "default": "" },
+      "era": { "type": "string", "default": "" },
+      "scene": { "type": "string", "default": "" },
+      "generation_mode": {
+        "type": "string",
+        "enum": ["bootstrap", "expand"],
+        "default": "expand"
+      },
+      "max_retry": { "type": "string", "default": "3" },
+      "retry_count": { "type": "string", "default": "0" },
+      "retry_issues_formatted": { "type": "string", "default": "" }
+    },
+    "required": ["project_id", "knowledge_brief", "existing_knowledge_snapshot", "generation_mode"]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "status": { "type": "string", "enum": ["success", "retry", "circuit_break", "error"] },
+      "circuit_break": { "type": "boolean" },
+      "human_action_required": { "type": "boolean" },
+      "retry_count": { "type": "integer" },
+      "knowledge_summary": { "type": "string" },
+      "knowledge_json": { "type": "string" },
+      "validation_report": { "type": "string" },
+      "retry_issues_formatted": { "type": "string" },
+      "workflow_version": { "type": "string" }
+    },
+    "required": ["status"]
+  },
+  "annotations": { "openWorldHint": true }
+}

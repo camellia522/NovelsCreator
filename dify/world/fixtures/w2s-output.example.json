@@ -1,0 +1,52 @@
+{
+  "description": "W2S 结构化输出示例（LLM 直接产出；W2SX 会打包为 society_json 字符串）",
+  "w2s_root": {
+    "world_rules": "【测试世界·架空·史诗】作者以六边形框选划定两国。青王国据温带平原与季风农业区，以议会共和与重商文化联结诸行省；北境公国控寒带山地边陲，军事寡头与尚武传统使其与南邻在边境河网一带既贸又防。都城与各省会、府县治所形成层级聚落网，河流与海岸塑造各城职能分工。",
+    "nations": [
+      {
+        "id": "nation-001",
+        "name": "青王国",
+        "government": "议会共和",
+        "culture": "重商",
+        "description": "温带湿润、成长级政区，平原与海岸并重，行省格局由东青行省等核心省域拱卫都城。",
+        "authorSettings": "环境：北半球温带；发展：成长\n外交：与北境公国边境河网频繁接触"
+      },
+      {
+        "id": "nation-002",
+        "name": "北境公国",
+        "government": "军事寡头",
+        "culture": "尚武",
+        "description": "亚寒带山地边陲，停滞级发展，边关城镇密集，依赖有限河谷与商路。",
+        "authorSettings": "环境：北半球亚寒带\n边关：与青王国 sharedBorder 较多"
+      }
+    ],
+    "locations": [
+      {
+        "id": "loc-001",
+        "name": "临宁京",
+        "type": "capital",
+        "x": 38.2,
+        "y": 44.1,
+        "nationId": "nation-001",
+        "terrain": "plain",
+        "climate": "温带",
+        "description": "青王国都城，控扼诸行省漕运与平原粮道，位于东青行省腹地。",
+        "population": "35–60万",
+        "regionId": "prov-nation-001-1"
+      },
+      {
+        "id": "loc-002",
+        "name": "东城",
+        "type": "city",
+        "x": 42.0,
+        "y": 40.5,
+        "nationId": "nation-001",
+        "terrain": "plain",
+        "climate": "温带",
+        "description": "东青行省省会，平原中心聚落，为南方诸府供给枢纽。",
+        "population": "25–45万",
+        "regionId": "prov-nation-001-1"
+      }
+    ]
+  }
+}

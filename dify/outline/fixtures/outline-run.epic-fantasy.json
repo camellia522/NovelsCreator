@@ -1,0 +1,20 @@
+{
+  "description": "四帝国史诗背景 · 单章 ch-001 · 与截图项目设定一致",
+  "inputs": {
+    "project_id": "550e8400-e29b-41d4-a716-446655440002",
+    "knowledge_snapshot": "{\"world\":{\"title\":\"四帝国大陆\",\"rules\":\"虚构史诗大陆背景，四帝国并立（青木、玄朔等）；禁止现代都市、都市修仙、地球穿越；无超自然魔法，仅冷兵器与谋略战争\",\"era\":\"史诗奇幻\",\"atmosphere\":\"厚重史诗\",\"scene\":\"大陆\",\"scenePlace\":\"赤城一带\"},\"nations\":[{\"id\":\"nation-001\",\"name\":\"青木帝国\",\"government\":\"帝制\",\"culture\":\"礼法武并重\",\"description\":\"东方大国\"},{\"id\":\"nation-002\",\"name\":\"玄朔帝国\",\"government\":\"帝制\",\"culture\":\"尚武扩张\",\"description\":\"北方强邻\"}],\"locations\":[{\"id\":\"loc-001\",\"name\":\"赤城\",\"type\":\"city\",\"x\":40,\"y\":55,\"terrain\":\"plain\",\"climate\":\"temperate\",\"description\":\"青木帝国边关重镇\"}],\"regions\":[],\"characters\":[{\"id\":\"char-001\",\"name\":\"周衍\",\"traits\":[\"冷静\",\"善谋\"],\"relationships\":[],\"bio\":\"青木帝国边关校尉\"},{\"id\":\"char-002\",\"name\":\"温静\",\"traits\":[\"果断\"],\"relationships\":[],\"bio\":\"青木帝国信使\"}],\"factions\":[],\"items\":[]}",
+    "plot_memory": "{\"version\":1,\"globalSummary\":\"\",\"chapterSummaries\":[],\"foreshadowing\":[]}",
+    "outline_brief": "【设定锚点 · 硬性】\\n- 世界标题：四帝国大陆\\n- world.rules（不得违背）：虚构史诗大陆，四帝国并立；禁止现代都市/都市修仙\\n- 须优先使用已登记实体：青木帝国、玄朔帝国、赤城、周衍、温静\\n\\n第一卷从赤城边关写起：周衍发现敌国密使，温静传急报，留章末悬念。",
+    "target_volumes": "1",
+    "target_chapters": "1",
+    "genre": "史诗奇幻",
+    "tone": "厚重",
+    "volume_id": "vol-01",
+    "next_chapter_id": "ch-001",
+    "generation_mode": "single_chapter",
+    "existing_volume_outline": "{\"id\":\"vol-01\",\"title\":\"第一卷\",\"chapters\":[]}",
+    "max_retry": "3",
+    "retry_count": "0",
+    "retry_issues_formatted": ""
+  }
+}

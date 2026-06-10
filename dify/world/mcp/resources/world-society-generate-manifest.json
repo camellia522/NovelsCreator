@@ -1,0 +1,27 @@
+{
+  "uri": "novelscreator://dify/workflow/world-society-v1/manifest",
+  "name": "Novel World Society v1",
+  "workflow_id": "novel-world-society-v1",
+  "mcp_tool": "novels_world_society_generate",
+  "description": "领土已绘：国家政体/文化/聚落 JSON，配合 WorldEngine 地图",
+  "prompts": [
+    "dify/world/prompts/w2-territory-society.md",
+    "dify/world/prompts/w2s-user.jinja.md"
+  ],
+  "code_nodes": [
+    "world_s2_extract.py",
+    "world_society_end_success.py",
+    "world_society_parse_end_outputs.py"
+  ],
+  "schemas": {
+    "input": "dify/world/mcp/schemas/world-society-generate.input.json",
+    "output": "dify/world/mcp/schemas/world-society-generate.output.json"
+  },
+  "docs": [
+    "docs/world/w2-society/README.md",
+    "docs/world/w2-society/DIFY-WORKFLOW-DESIGN.md",
+    "docs/world/w2-society/DIFY-WORKFLOW-IMPLEMENTATION.md",
+    "docs/world/w2-society/DIFY-WORKFLOW-NODES-AND-FLOW.md",
+    "docs/world/w2-society/PROMPT-DESIGN.md"
+  ]
+}

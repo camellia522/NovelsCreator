@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.outline-generate.output",
+  "type": "object",
+  "required": ["status"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "retry", "circuit_break", "error"] },
+    "outline_summary": { "type": "string" },
+    "outline_json": { "type": "string" },
+    "validation_report": { "type": "string" },
+    "retry_count": { "type": "integer" },
+    "retry_issues_formatted": { "type": "string" },
+    "circuit_break": { "type": "boolean" },
+    "workflow_version": { "type": "string" }
+  },
+  "additionalProperties": true
+}

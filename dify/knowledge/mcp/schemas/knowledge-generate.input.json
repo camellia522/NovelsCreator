@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.knowledge.generate.input",
+  "type": "object",
+  "required": [
+    "project_id",
+    "knowledge_brief",
+    "existing_knowledge_snapshot",
+    "generation_mode",
+    "max_retry"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "project_id": { "type": "string", "minLength": 1 },
+    "knowledge_brief": { "type": "string" },
+    "existing_knowledge_snapshot": { "type": "string" },
+    "genre": { "type": "string" },
+    "tone": { "type": "string" },
+    "era": { "type": "string" },
+    "scene": { "type": "string" },
+    "generation_mode": {
+      "type": "string",
+      "enum": ["bootstrap", "expand"]
+    },
+    "max_retry": { "type": "string" },
+    "retry_count": { "type": "string" },
+    "retry_issues_formatted": { "type": "string" }
+  }
+}

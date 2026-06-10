@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator://dify/schemas/video-template-config/v1.0",
+  "title": "VideoTemplateConfig",
+  "description": "N4b 可配置列 / JSON 视频脚本模板。由 NovelsCreator 项目设置或导入软件字段映射生成，经 Start.video_template_config 传入 Dify。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "模板逻辑 ID，如 my-video-app-v1"
+    },
+    "version": {
+      "type": "string",
+      "default": "1.0"
+    },
+    "outputFormat": {
+      "type": "string",
+      "enum": ["json", "delimited"],
+      "default": "json",
+      "description": "json=单个 JSON 对象；delimited=表头+分隔符数据行（便于 CSV/管道导入）"
+    },
+    "delimiter": {
+      "type": "string",
+      "default": "|",
+      "minLength": 1,
+      "maxLength": 3,
+      "description": "outputFormat=delimited 时的列分隔符"
+    },
+    "includeHeader": {
+      "type": "boolean",
+      "default": true,
+      "description": "delimited 模式是否输出表头行（列 key）"
+    },
+    "estimatedDurationSec": {
+      "type": "integer",
+      "minimum": 30,
+      "maximum": 3600,
+      "default": 180,
+      "description": "全章目标总时长（秒），各镜头 duration 之和应接近 ±20%"
+    },
+    "shotCount": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "min": { "type": "integer", "minimum": 1, "default": 8 },
+        "max": { "type": "integer", "minimum": 1, "default": 28 }
+      }
+    },
+    "columns": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "key": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]{0,63}$",
+            "description": "机器字段名，输出 JSON/delimited 的键"
+          },
+          "label": {
+            "type": "string",
+            "description": "人类可读列名（UI / 文档用，模型按 description 理解）"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["string", "text", "integer", "number", "boolean", "enum"],
+            "default": "string"
+          },
+          "required": { "type": "boolean", "default": true },
+          "description": {
+            "type": "string",
+            "description": "写入 Prompt：该字段内容规范"
+          },
+          "options": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "type=enum 时的合法取值"
+          },
+          "minLength": { "type": "integer", "minimum": 0 },
+          "maxLength": { "type": "integer", "minimum": 1 },
+          "minimum": { "type": "number" },
+          "maximum": { "type": "number" },
+          "default": {},
+          "emptyValue": {
+            "type": "string",
+            "default": "NONE",
+            "description": "无内容时的占位（delimited 常用 NONE）"
+          }
+        },
+        "required": ["key", "label", "type"]
+      }
+    },
+    "globalRules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "追加全局约束，会注入 Prompt"
+    }
+  },
+  "required": ["templateId", "outputFormat", "columns"]
+}

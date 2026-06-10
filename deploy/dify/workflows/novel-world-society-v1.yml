@@ -1,0 +1,844 @@
+app:
+  description: ''
+  icon: japanese_castle
+  icon_background: '#FBE8FF'
+  icon_type: emoji
+  mode: workflow
+  name: Novel World Society v1
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: llm
+      id: 1780543649398-source-1780545622526-target
+      source: '1780543649398'
+      sourceHandle: source
+      target: '1780545622526'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780545622526-source-1780546143463-target
+      source: '1780545622526'
+      sourceHandle: source
+      target: '1780546143463'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1780546143463-source-1780546226887-target
+      source: '1780546143463'
+      sourceHandle: source
+      target: '1780546226887'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1780546226887-source-1780546321947-target
+      source: '1780546226887'
+      sourceHandle: source
+      target: '1780546321947'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1780546321947-source-1780546397036-target
+      source: '1780546321947'
+      sourceHandle: source
+      target: '1780546397036'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: project_id
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: project_id
+        - default: territory_society
+          hint: ''
+          label: generation_mode
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: generation_mode
+        - default: ''
+          hint: ''
+          label: world_name
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: world_name
+        - default: ''
+          hint: ''
+          label: era
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: era
+        - default: ''
+          hint: ''
+          label: atmosphere
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: atmosphere
+        - default: ''
+          hint: ''
+          label: scale
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: scale
+        - default: ''
+          hint: ''
+          label: climate
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: climate
+        - default: ''
+          hint: ''
+          label: city_count
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: city_count
+        - default: ''
+          hint: ''
+          label: include_landmarks
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: include_landmarks
+        - default: ''
+          hint: ''
+          label: seed
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: seed
+        - default: ''
+          hint: ''
+          label: geological_years_ma
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: geological_years_ma
+        - default: ''
+          hint: ''
+          label: territory_json
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: territory_json
+        - default: ''
+          hint: ''
+          label: nations_outline_json
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: nations_outline_json
+        - default: ''
+          hint: ''
+          label: creative_brief
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: creative_brief
+        - default: ''
+          hint: ''
+          label: workflow_version
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: workflow_version
+        - default: ''
+          hint: ''
+          label: cells_per_province_target
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: cells_per_province_target
+        - default: ''
+          hint: ''
+          label: local_location_count
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: local_location_count
+      height: 524
+      id: '1780543649398'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_config:
+          jinja2_variables:
+          - value_selector:
+            - '1780543649398'
+            - creative_brief
+            variable: creative_brief
+          - value_selector:
+            - '1780543649398'
+            - generation_mode
+            variable: generation_mode
+          - value_selector:
+            - '1780543649398'
+            - world_name
+            variable: world_name
+          - value_selector:
+            - '1780543649398'
+            - era
+            variable: era
+          - value_selector:
+            - '1780543649398'
+            - atmosphere
+            variable: atmosphere
+          - value_selector:
+            - '1780543649398'
+            - scale
+            variable: scale
+          - value_selector:
+            - '1780543649398'
+            - climate
+            variable: climate
+          - value_selector:
+            - '1780543649398'
+            - city_count
+            variable: city_count
+          - value_selector:
+            - '1780543649398'
+            - include_landmarks
+            variable: include_landmarks
+          - value_selector:
+            - '1780543649398'
+            - seed
+            variable: seed
+          - value_selector:
+            - '1780543649398'
+            - geological_years_ma
+            variable: geological_years_ma
+          - value_selector:
+            - '1780543649398'
+            - cells_per_province_target
+            variable: cells_per_province_target
+          - value_selector:
+            - '1780543649398'
+            - local_location_count
+            variable: local_location_count
+          - value_selector:
+            - '1780543649398'
+            - nations_outline_json
+            variable: nations_outline_json
+          - value_selector:
+            - '1780543649398'
+            - territory_json
+            variable: territory_json
+        prompt_template:
+        - id: be7b7b2a-325a-48ac-a5c4-5e49b534af54
+          role: system
+          text: "角色\n你是架空世界设定师。作者已在客户端完成：领土涂抹 → 行省/府/县划分 → 本地城市选址。\n你只输出社会层 JSON 文案，不生成\
+            \ map、不修改地形、不改任何坐标。\n约束\n根对象仅含：world_rules、nations、locations。\n阅读 territory_json（schemaVersion=3）：\n\
+            projectConfig：era、atmosphere、scale、climate、placeNamingStyle、namingStyleHint、cityCount、cellsPerProvinceTarget、adminDivisionMode\n\
+            authorCreativeBrief：作者向导所选词条与创作方向（world_rules 须据此写背景，勿输出工程参数）\nplacementSummary：选址/区划事实摘要，仅供理解地图，不得写入\
+            \ world_rules\nnations[]：环境统计、traits、spatial.adminProvinces（省名/省域格数/治所\
+            \ seats）、spatial.localDraftLocations\nnations[].id 必须与 nations_outline_json\
+            \ 完全一致，不得增删国家；必须润色 nations[].name（国名），遵循 placeNamingStyle / 各国 nationNamingStyle；polishNationName=true\
+            \ 时勿保留「国家1」或机械占位名。\n命名风格：阅读 projectConfig.namingStyleHint；聚落专名宜 2–5 个汉字（含后缀如城/镇/堡），国名≤8\
+            \ 字；禁止长串音译堆砌。多数城市名不必含方位字；若含东/西/南/北（或 North/South 等），须与 compassHint、x/y\
+            \ 一致。中式/西式/日式/奇幻/混合（各国 nationNamingStyle）语种须与同国城市一致，禁止一国混用中英日三套体系。\nlocations（核心\
+            \ — 对接本地区划选址）：\n若 spatial.localDraftLocations 非空（通常与 adminProvinces[].seats\
+            \ 一致）：\n必须保留每条 id、x、y、type、terrain、nationId（及 regionId 语义）\n仅润色 name、description；可选微调\
+            \ population/climate 文案但勿与寒带/荒漠矛盾\n尊重 adminRole：都城 / 省会 / 府治 / 县治 / 镇\
+            \ / 地标 — 名称与描述须体现层级与辖区\n禁止新增或删除 locations；禁止把 capital 降级；禁止把城市写到 ice/极寒格\n\
+            总数以 localDraftLocations 条数为准（等于 local_location_count / city_count，由行省区划算法自动计算，禁止增删条数）\n\
+            nations 的 government/culture/description 须依据各国 environmentalProfile、developmentTier、traits、borderNeighbors\
+            \ 差异化，禁止千篇一律。\nworld_rules：300–600 字中文架空世界背景（不是技术说明）。须依据 authorCreativeBrief\
+            \ 中的 era、atmosphere、scale、climate 与 namingStyleHint 创作叙事基调；结合各国 environmentalProfile、developmentTier、borderNeighbors\
+            \ 写地理与政治格局。禁止写入分辨率、板块数、海平面、schemaVersion、生成器流程、placementSummary 原文或统计\
+            \ bullet。分批时仅第 1 批输出 world_rules，后续批次留 \"\"。\n只输出 JSON，无 Markdown 包裹，无思考过程。\n\
+            输出 JSON 示例结构\n\n{\n\n  \"world_rules\": \"……\",\n\n  \"nations\": [\n\n\
+            \    {\n\n      \"id\": \"nation-001\",\n\n      \"government\": \"君主立宪\"\
+            ,\n\n      \"culture\": \"重商\",\n\n      \"description\": \"……\",\n\n\
+            \      \"authorSettings\": \"……\"\n\n    }\n\n  ],\n\n  \"locations\"\
+            : [\n\n    {\n\n      \"id\": \"loc-001\",\n\n      \"name\": \"青云城\"\
+            ,\n\n      \"type\": \"capital\",\n\n      \"x\": 45.2,\n\n      \"y\"\
+            : 38.1,\n\n      \"nationId\": \"nation-001\",\n\n      \"terrain\": \"\
+            plain\",\n\n      \"climate\": \"温带\",\n\n      \"description\": \"……\"\
+            \n\n    }\n\n  ]\n\n}\n"
+        - edition_type: jinja2
+          id: d80df6bf-7414-4a73-911f-d3716740012e
+          jinja2_text: "{% if not territory_json or (territory_json | trim) == ''\
+            \ %}\r\n【严重】territory_json 为空：不得输出空 locations。请在工作流「开始」节点填写 territory_json、nations_outline_json、creative_brief，并确认\
+            \ W2S 的 User 提示词中每个 {{ 变量 }} 已绑定「开始」同名输入（Markdown 导入失败时需用手动粘贴附录单行 JSON）。\r\
+            \n{% endif %}\r\n\r\n{{ creative_brief }}\r\n\r\n\r\n\r\n---\r\n\r\ngeneration_mode={{\
+            \ generation_mode }}\r\n\r\nworld_name={{ world_name }}\r\n\r\nera={{\
+            \ era }}\r\n\r\natmosphere={{ atmosphere }}\r\n\r\nscale={{ scale }}\r\
+            \n\r\nclimate={{ climate }}\r\n\r\ncity_count={{ city_count }}\r\n\r\n\
+            include_landmarks={{ include_landmarks }}\r\n\r\nseed={{ seed }}\r\n\r\
+            \ngeological_years_ma={{ geological_years_ma }}\r\n\r\ncells_per_province_target={{\
+            \ cells_per_province_target }}\r\n\r\nplace_naming_style={{ place_naming_style\
+            \ }}\r\n\r\nnaming_style_hint={{ naming_style_hint }}\r\n\r\nlocal_location_count={{\
+            \ local_location_count }}\r\n\r\n（city_count 与 local_location_count 相同，均为客户端行省区划算法结果，勿自行增减城市条数）\r\
+            \n\r\n\r\n\r\n【国家轮廓 nations_outline_json】\r\n\r\n{{ nations_outline_json\
+            \ }}\r\n\r\n\r\n\r\n【领土、行省区划与环境 territory_json — schemaVersion=3】\r\n\r\
+            \n{{ territory_json }}\r\n\r\n\r\n\r\n【再次强调】\r\n\r\n- 输出 locations 数组长度必须\
+            \ **等于** local_location_count（{{ local_location_count }}），与 territory_json.localDraftLocations\
+            \ 一一对应\r\n\r\n- **禁止**只输出 6 条示例城就结束；分批时本批条数 = local_location_count（见 projectConfig.societyBatch）\r\
+            \n\r\n- localDraftLocations / adminProvinces.seats 中每条 id/x/y/type/terrain/nationId\
+            \ 必须原样出现在输出 locations 中\r\n\r\n- 润色 nations[].name、locations[].name/description，以及\
+            \ nations 政体/文化/简介与 **world_rules（世界背景，非技术参数）**\r\n\r\n- **world_rules**：根据\
+            \ era / atmosphere / scale / climate 与 authorCreativeBrief 写 300–600 字世界背景；勿写分辨率、板块、海平面、算法流程；placementSummary\
+            \ 勿照抄\r\n\r\n- **分批**：第 1 批必须输出 world_rules；第 2 批及以后 world_rules 为 \"\"\
+            \r\n\r\n- **国名**：必须润色 `nations[].name`；遵循 `place_naming_style` / `naming_style_hint`\
+            \ 与各国 `nationNamingStyle`；`polishNationName=true` 勿留占位国名\r\n\r\n- **地名风格**：与\
+            \ `place_naming_style` 一致；混合模式同国城市语种一致\r\n\r\n- **方位**：多数城名不必含东/西/南/北；若使用方位字，须与\
+            \ `compassHint`、`x/y` 一致（西境不得用「东」）"
+          role: user
+          text: ''
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              locations:
+                items:
+                  additionalProperties: false
+                  properties:
+                    authorSettings:
+                      type: string
+                    climate:
+                      type: string
+                    description:
+                      type: string
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    nationId:
+                      type: string
+                    population:
+                      type: string
+                    regionId:
+                      type: string
+                    terrain:
+                      enum:
+                      - ocean
+                      - coast
+                      - plain
+                      - hill
+                      - mountain
+                      - forest
+                      - desert
+                      - wetland
+                      type: string
+                    type:
+                      enum:
+                      - capital
+                      - city
+                      - town
+                      - village
+                      - fortress
+                      - landmark
+                      type: string
+                    x:
+                      maximum: 100
+                      minimum: 0
+                      type: number
+                    y:
+                      maximum: 100
+                      minimum: 0
+                      type: number
+                  required:
+                  - id
+                  - name
+                  - type
+                  - x
+                  - y
+                  - nationId
+                  - terrain
+                  - climate
+                  - description
+                  type: object
+                type: array
+              nations:
+                items:
+                  additionalProperties: false
+                  properties:
+                    authorSettings:
+                      type: string
+                    culture:
+                      type: string
+                    description:
+                      type: string
+                    government:
+                      type: string
+                    id:
+                      type: string
+                    name:
+                      type: string
+                  required:
+                  - id
+                  - government
+                  - culture
+                  - description
+                  type: object
+                type: array
+              world_rules:
+                description: 300-600字中文世界规则
+                type: string
+            required:
+            - world_rules
+            - nations
+            - locations
+            type: object
+        structured_output_enabled: true
+        title: W2S
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780545622526'
+      position:
+        x: 446.6666717529297
+        y: 408
+      positionAbsolute:
+        x: 446.6666717529297
+        y: 408
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# W2SX · Extract society JSON from W2S LLM output\n# 解析 world_rules\
+          \ / nations / locations，并输出 society_json 供 END 节点\n#\n# Dify「输出变量」须与 main()\
+          \ return 键名、类型完全一致（均 String），共 4 个：\n# society_json, world_rules, nations_json,\
+          \ locations_json\n\nimport json\nfrom typing import Any, Union\n\n\ndef\
+          \ _strip_thinking(text: str) -> str:\n    low = text.lower()\n    end_tags\
+          \ = (\n        \"</\" + \"think\" + \">\",\n        \"</\" + \"redacted_thinking\"\
+          \ + \">\",\n    )\n    for end_tag in end_tags:\n        pos = low.find(end_tag)\n\
+          \        if pos >= 0:\n            text = text[pos + len(end_tag) :]\n \
+          \           low = text.lower()\n    return text.strip()\n\n\ndef parse_json(raw:\
+          \ Union[str, dict, None], fallback):\n    if raw is None:\n        return\
+          \ fallback\n    if isinstance(raw, (dict, list)):\n        return raw\n\
+          \    text = _strip_thinking(str(raw).strip())\n    if not text or text in\
+          \ (\"{}\", \"[]\", \"null\", \"None\"):\n        return fallback\n    if\
+          \ text.startswith(\"```\"):\n        lines = text.split(\"\\n\")\n     \
+          \   text = \"\\n\".join(lines[1:-1] if len(lines) > 2 else lines)\n    try:\n\
+          \        return json.loads(text)\n    except json.JSONDecodeError:\n   \
+          \     start, end = text.find(\"{\"), text.rfind(\"}\")\n        if start\
+          \ >= 0 and end > start:\n            try:\n                return json.loads(text[start\
+          \ : end + 1])\n            except json.JSONDecodeError:\n              \
+          \  pass\n        return fallback\n\n\ndef _normalize_root(parsed: Any) ->\
+          \ dict:\n    if isinstance(parsed, list):\n        for item in parsed:\n\
+          \            if isinstance(item, dict):\n                parsed = item\n\
+          \                break\n        else:\n            return {}\n    if not\
+          \ isinstance(parsed, dict):\n        return {}\n    for key in (\"output\"\
+          , \"result\", \"data\", \"society\"):\n        inner = parsed.get(key)\n\
+          \        if isinstance(inner, dict) and (\n            \"nations\" in inner\
+          \ or \"locations\" in inner or \"world_rules\" in inner\n        ):\n  \
+          \          return inner\n    return parsed\n\n\ndef main(w2s_json: str =\
+          \ \"\") -> dict:\n    root = _normalize_root(parse_json(w2s_json, {}))\n\
+          \    world_rules = str(root.get(\"world_rules\") or \"\").strip()\n    nations\
+          \ = root.get(\"nations\") or []\n    locations = root.get(\"locations\"\
+          ) or []\n    if not isinstance(nations, list):\n        nations = []\n \
+          \   if not isinstance(locations, list):\n        locations = []\n\n    society\
+          \ = {\n        \"world_rules\": world_rules,\n        \"nations\": nations,\n\
+          \        \"locations\": locations,\n    }\n    return {\n        \"society_json\"\
+          : json.dumps(society, ensure_ascii=False),\n        \"world_rules\": world_rules,\n\
+          \        \"nations_json\": json.dumps(nations, ensure_ascii=False),\n  \
+          \      \"locations_json\": json.dumps(locations, ensure_ascii=False),\n\
+          \    }\n"
+        code_language: python3
+        outputs:
+          locations_json:
+            children: null
+            type: string
+          nations_json:
+            children: null
+            type: string
+          society_json:
+            children: null
+            type: string
+          world_rules:
+            children: null
+            type: string
+        selected: false
+        title: 'W2SX '
+        type: code
+        variables:
+        - value_selector:
+          - '1780545622526'
+          - text
+          value_type: string
+          variable: w2s_json
+      height: 51
+      id: '1780546143463'
+      position:
+        x: 868.1295372286353
+        y: 394.37695480295497
+      positionAbsolute:
+        x: 868.1295372286353
+        y: 394.37695480295497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# END_OK · World Society Success Assembler (Dify 代码节点)\n#\n# 【输入变量】类型均为\
+          \ String（JSON 内容也是字符串），建议全部绑定 W2SX：\n#   society_json, world_rules, nations_json,\
+          \ locations_json, workflow_version\n# 可选：w2sx_bundle — 若 Dify 将 W2SX 四字段合成一个\
+          \ JSON 字符串再传入\n#\n# 【输出变量】只登记 2 个，类型 String：\n#   end_outputs, end_outputs_（内容相同，兼容不同画布命名）\n\
+          #\n# 勿将 society_json / locations_json 登记为 END_OK 的「输出」，否则会报\n# Not all output\
+          \ parameters are validated\n\nimport json\nfrom typing import Any, Union\n\
+          \nWORKFLOW_VERSION_DEFAULT = \"world-society-v1\"\n\n\ndef _is_empty(raw:\
+          \ Any) -> bool:\n    if raw is None:\n        return True\n    if isinstance(raw,\
+          \ str):\n        t = raw.strip()\n        return not t or t.lower() in (\"\
+          null\", \"none\", \"{}\")\n    return False\n\n\ndef parse_json_str(raw:\
+          \ Union[str, dict, list, None], fallback: Any) -> Any:\n    if raw is None:\n\
+          \        return fallback\n    if isinstance(raw, (dict, list)):\n      \
+          \  return raw\n    text = str(raw).strip()\n    if not text or text.lower()\
+          \ in (\"null\", \"none\"):\n        return fallback\n    if text.startswith(\"\
+          ```\"):\n        lines = text.split(\"\\n\")\n        text = \"\\n\".join(lines[1:-1]\
+          \ if len(lines) > 2 else lines)\n    try:\n        return json.loads(text)\n\
+          \    except json.JSONDecodeError:\n        start, end = text.find(\"{\"\
+          ), text.rfind(\"}\")\n        if start >= 0 and end > start:\n         \
+          \   try:\n                return json.loads(text[start : end + 1])\n   \
+          \         except json.JSONDecodeError:\n                pass\n        start,\
+          \ end = text.find(\"[\"), text.rfind(\"]\")\n        if start >= 0 and end\
+          \ > start:\n            try:\n                return json.loads(text[start\
+          \ : end + 1])\n            except json.JSONDecodeError:\n              \
+          \  pass\n        return fallback\n\n\ndef _as_list(raw: Any) -> list:\n\
+          \    if isinstance(raw, list):\n        return raw\n    parsed = parse_json_str(raw,\
+          \ [])\n    return parsed if isinstance(parsed, list) else []\n\n\ndef _merge_w2sx_bundle(bundle:\
+          \ Any) -> dict[str, Any]:\n    \"\"\"从 w2sx_bundle 或已是 dict 的上游对象读取字段。\"\
+          \"\"\n    if isinstance(bundle, dict):\n        data = bundle\n    else:\n\
+          \        data = parse_json_str(bundle, {})\n    if not isinstance(data,\
+          \ dict):\n        return {}\n    out: dict[str, Any] = {}\n    for key in\
+          \ (\"society_json\", \"world_rules\", \"nations_json\", \"locations_json\"\
+          ):\n        if key in data and not _is_empty(data.get(key)):\n         \
+          \   out[key] = data[key]\n    return out\n\n\ndef _pick_list(society_val:\
+          \ Any, separate_json: Any) -> list:\n    sep = _as_list(separate_json)\n\
+          \    if len(sep) > 0:\n        return sep\n    if isinstance(society_val,\
+          \ list) and len(society_val) > 0:\n        return society_val\n    return\
+          \ []\n\n\ndef _build_packed(\n    society_json: Any = \"\",\n    world_rules:\
+          \ Any = \"\",\n    nations_json: Any = \"[]\",\n    locations_json: Any\
+          \ = \"[]\",\n    workflow_version: Any = \"\",\n    w2sx_bundle: Any = \"\
+          \",\n) -> tuple[dict[str, Any], dict[str, Any]]:\n    merged = _merge_w2sx_bundle(w2sx_bundle)\n\
+          \n    sj = merged.get(\"society_json\", society_json)\n    wr_in = merged.get(\"\
+          world_rules\", world_rules)\n    nj_in = merged.get(\"nations_json\", nations_json)\n\
+          \    lj_in = merged.get(\"locations_json\", locations_json)\n\n    society\
+          \ = parse_json_str(sj, {})\n    if isinstance(society, str):\n        society\
+          \ = parse_json_str(society, {})\n    if not isinstance(society, dict):\n\
+          \        society = {}\n\n    wr = str(wr_in or society.get(\"world_rules\"\
+          ) or \"\").strip()\n    nations = _pick_list(society.get(\"nations\"), nj_in)\n\
+          \    locations = _pick_list(society.get(\"locations\"), lj_in)\n\n    packed\
+          \ = {\n        \"world_rules\": wr,\n        \"nations\": nations,\n   \
+          \     \"locations\": locations,\n    }\n\n    has_data = bool(wr) or len(nations)\
+          \ > 0 or len(locations) > 0\n    status = \"success\" if has_data else \"\
+          error\"\n    error_message = \"\"\n    if not has_data:\n        error_message\
+          \ = (\n            \"END_OK 未收到 W2SX 数据：请检查 society_json/world_rules/nations_json/\"\
+          \n            \"locations_json 是否绑定到 W2SX 对应输出，且勿单独运行 END_OK（输入为 null）。\"\
+          \n        )\n\n    wv = str(workflow_version or WORKFLOW_VERSION_DEFAULT).strip()\
+          \ or WORKFLOW_VERSION_DEFAULT\n\n    end_outputs = {\n        \"status\"\
+          : status,\n        \"society_json\": json.dumps(packed, ensure_ascii=False),\n\
+          \        \"world_rules\": wr,\n        \"nations_json\": json.dumps(nations,\
+          \ ensure_ascii=False),\n        \"locations_json\": json.dumps(locations,\
+          \ ensure_ascii=False),\n        \"workflow_version\": wv,\n        \"error_message\"\
+          : error_message,\n    }\n    return packed, end_outputs\n\n\ndef _pack_return(end_outputs:\
+          \ dict[str, Any]) -> dict[str, str]:\n    packed_str = json.dumps(end_outputs,\
+          \ ensure_ascii=False)\n    return {\n        \"end_outputs\": packed_str,\n\
+          \        \"end_outputs_\": packed_str,\n    }\n\n\ndef main(\n    society_json:\
+          \ Any = \"\",\n    world_rules: Any = \"\",\n    nations_json: Any = \"\
+          []\",\n    locations_json: Any = \"[]\",\n    workflow_version: Any = WORKFLOW_VERSION_DEFAULT,\n\
+          \    w2sx_bundle: Any = \"\",\n) -> dict[str, str]:\n    try:\n        _,\
+          \ end_outputs = _build_packed(\n            society_json=society_json,\n\
+          \            world_rules=world_rules,\n            nations_json=nations_json,\n\
+          \            locations_json=locations_json,\n            workflow_version=workflow_version,\n\
+          \            w2sx_bundle=w2sx_bundle,\n        )\n        return _pack_return(end_outputs)\n\
+          \    except Exception as exc:\n        err = {\n            \"status\":\
+          \ \"error\",\n            \"society_json\": json.dumps(\n              \
+          \  {\"world_rules\": \"\", \"nations\": [], \"locations\": []},\n      \
+          \          ensure_ascii=False,\n            ),\n            \"world_rules\"\
+          : \"\",\n            \"nations_json\": \"[]\",\n            \"locations_json\"\
+          : \"[]\",\n            \"workflow_version\": WORKFLOW_VERSION_DEFAULT,\n\
+          \            \"error_message\": f\"END_OK 异常: {exc}\",\n        }\n    \
+          \    return _pack_return(err)\n"
+        code_language: python3
+        outputs:
+          end_outputs:
+            children: null
+            type: string
+          end_outputs_:
+            children: null
+            type: string
+        selected: false
+        title: 'END_OK '
+        type: code
+        variables:
+        - value_selector:
+          - '1780546143463'
+          - society_json
+          value_type: string
+          variable: society_json
+        - value_selector:
+          - '1780546143463'
+          - world_rules
+          value_type: string
+          variable: world_rules
+        - value_selector:
+          - '1780546143463'
+          - nations_json
+          value_type: string
+          variable: nations_json
+        - value_selector:
+          - '1780546143463'
+          - locations_json
+          value_type: string
+          variable: locations_json
+        - value_selector:
+          - '1780543649398'
+          - workflow_version
+          value_type: string
+          variable: workflow_version
+      height: 51
+      id: '1780546226887'
+      position:
+        x: 1171.1295372286354
+        y: 394.37695480295497
+      positionAbsolute:
+        x: 1171.1295372286354
+        y: 394.37695480295497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# PARSE · World Society End Outputs Flattener\n\nimport json\nfrom\
+          \ typing import Any\n\n\ndef _pick_raw(*candidates: Any) -> str:\n    for\
+          \ c in candidates:\n        if c is None:\n            continue\n      \
+          \  if isinstance(c, dict):\n            return json.dumps(c, ensure_ascii=False)\n\
+          \        text = str(c).strip()\n        if text and text not in (\"None\"\
+          , \"null\"):\n            return text\n    return \"\"\n\n\ndef main(\n\
+          \    end_outputs: Any = \"\",\n    end_outputs_: Any = \"\",\n    ok_end_outputs:\
+          \ Any = \"\",\n) -> dict:\n    raw = _pick_raw(end_outputs, end_outputs_,\
+          \ ok_end_outputs)\n    o = json.loads(raw) if raw else {}\n    return {\n\
+          \        \"status\": o.get(\"status\", \"error\"),\n        \"society_json\"\
+          : o.get(\"society_json\") or \"\",\n        \"world_rules\": o.get(\"world_rules\"\
+          ) or \"\",\n        \"nations_json\": o.get(\"nations_json\") or \"\",\n\
+          \        \"locations_json\": o.get(\"locations_json\") or \"\",\n      \
+          \  \"workflow_version\": o.get(\"workflow_version\") or \"world-society-v1\"\
+          ,\n        \"error_message\": o.get(\"error_message\") or \"\",\n    }\n"
+        code_language: python3
+        outputs:
+          error_message:
+            children: null
+            type: string
+          locations_json:
+            children: null
+            type: string
+          nations_json:
+            children: null
+            type: string
+          society_json:
+            children: null
+            type: string
+          status:
+            children: null
+            type: string
+          workflow_version:
+            children: null
+            type: string
+          world_rules:
+            children: null
+            type: string
+        selected: false
+        title: 'PARSE '
+        type: code
+        variables:
+        - value_selector:
+          - '1780546226887'
+          - end_outputs
+          value_type: string
+          variable: end_outputs
+      height: 51
+      id: '1780546321947'
+      position:
+        x: 1470.1295372286354
+        y: 394.37695480295497
+      positionAbsolute:
+        x: 1470.1295372286354
+        y: 394.37695480295497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1780546321947'
+          - society_json
+          value_type: string
+          variable: society_json
+        - value_selector:
+          - '1780546321947'
+          - nations_json
+          value_type: string
+          variable: nations_json
+        - value_selector:
+          - '1780546321947'
+          - locations_json
+          value_type: string
+          variable: locations_json
+        - value_selector:
+          - '1780546321947'
+          - world_rules
+          value_type: string
+          variable: world_rules
+        - value_selector:
+          - '1780546321947'
+          - status
+          value_type: string
+          variable: status
+        selected: false
+        title: 输出
+        type: end
+      height: 191
+      id: '1780546397036'
+      position:
+        x: 1771.1295372286354
+        y: 394.37695480295497
+      positionAbsolute:
+        x: 1771.1295372286354
+        y: 394.37695480295497
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: 278.4195225960043
+      y: 21.861507892989493
+      zoom: 0.37892914162760005
+  rag_pipeline_variables: []

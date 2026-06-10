@@ -1,0 +1,149 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator://schemas/novel-creative-template/v1.0",
+  "title": "NovelCreativeTemplate",
+  "description": "NovelsCreator 项目级创作模板：定义人物/世界观/大纲向导的可配置字段、预设标签与校验规则。UI 按此渲染；输出仍组装为 generation_prompt v1.0 + knowledge_snapshot + outline_beats。",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "templateId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "description": "如 xianxia-v1、urban-mystery-v1"
+    },
+    "version": { "type": "string", "default": "1.0" },
+    "displayName": { "type": "string", "description": "UI 显示名，如「玄幻长篇模板」" },
+    "locale": { "type": "string", "default": "zh-CN" },
+    "generationPromptVersion": {
+      "type": "string",
+      "const": "1.0",
+      "description": "组装目标 generation_prompt 版本"
+    },
+    "world": {
+      "$ref": "#/$defs/WorldSection"
+    },
+    "character": {
+      "$ref": "#/$defs/CharacterSection"
+    },
+    "plot": {
+      "$ref": "#/$defs/PlotSection"
+    },
+    "defaults": {
+      "type": "object",
+      "description": "新建章节/向导时的默认值",
+      "additionalProperties": true
+    },
+    "globalRules": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "写入 generation_prompt_text 的全局约束"
+    }
+  },
+  "required": ["templateId", "world", "character", "plot"],
+  "$defs": {
+    "FieldDef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "key": {
+          "type": "string",
+          "pattern": "^[a-z][a-zA-Z0-9_]{0,63}$",
+          "description": "对应 generation_prompt / knowledge 路径键"
+        },
+        "label": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["string", "text", "integer", "number", "boolean", "enum", "multi_enum", "tags"],
+          "default": "string"
+        },
+        "required": { "type": "boolean", "default": false },
+        "description": { "type": "string" },
+        "options": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "enum / multi_enum / tags 预设"
+        },
+        "allowCustom": { "type": "boolean", "default": true },
+        "maxSelections": { "type": "integer", "minimum": 1 },
+        "minLength": { "type": "integer" },
+        "maxLength": { "type": "integer" },
+        "mapsTo": {
+          "type": "string",
+          "description": "组装路径，如 environment.era、characters[].personality.primary"
+        }
+      },
+      "required": ["key", "label", "type", "mapsTo"]
+    },
+    "WorldSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FieldDef" }
+        },
+        "useProjectWorldRules": {
+          "type": "boolean",
+          "default": true,
+          "description": "是否默认引用 world.json 硬规则"
+        },
+        "knowledgeMapsTo": {
+          "type": "string",
+          "default": "knowledge_snapshot.world",
+          "description": "静态知识库世界段落来源"
+        }
+      },
+      "required": ["fields"]
+    },
+    "CharacterSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FieldDef" }
+        },
+        "traitHints": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { "type": "string" },
+            "description": "标签 → 专业 hint，供 generation_prompt_text 渲染"
+          },
+          "description": "可覆盖 PROMPT-DESIGN 默认语义词典"
+        },
+        "minCharacters": { "type": "integer", "minimum": 1, "default": 1 },
+        "maxCharacters": { "type": "integer", "minimum": 1, "default": 12 }
+      },
+      "required": ["fields"]
+    },
+    "PlotSection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fields": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FieldDef" }
+        },
+        "beatField": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "orderKey": { "type": "string", "default": "order" },
+            "textKey": { "type": "string", "default": "text" },
+            "minBeats": { "type": "integer", "default": 1 },
+            "maxBeats": { "type": "integer", "default": 24 }
+          }
+        },
+        "outlineMapsTo": {
+          "type": "string",
+          "default": "outline_beats",
+          "description": "与 outline.json 本章 beats 同步"
+        },
+        "defaultTargetWordCount": { "type": "integer", "default": 3000 }
+      },
+      "required": ["fields"]
+    }
+  }
+}

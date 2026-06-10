@@ -1,0 +1,58 @@
+{
+  "resources": [
+    {
+      "uri": "novelscreator://dify/workflow/v1.1/manifest",
+      "name": "Workflow Manifest",
+      "description": "novel-chapter-generation-v1.1 节点图、变量与版本元数据",
+      "mimeType": "application/json"
+    },
+    {
+      "uri": "novelscreator://dify/schemas/novel-chapter-generate.input/v1.1",
+      "name": "Input JSON Schema",
+      "description": "工作流 / MCP Tool 输入 Schema",
+      "mimeType": "application/schema+json"
+    },
+    {
+      "uri": "novelscreator://dify/schemas/novel-chapter-generate.output/v1.1",
+      "name": "Output JSON Schema",
+      "description": "工作流 / MCP Tool 输出 Schema",
+      "mimeType": "application/schema+json"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n1-draft",
+      "name": "Prompt N1 Draft",
+      "description": "Stage-1 章节初稿 LLM Prompt 模板",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n2a-outline-validate",
+      "name": "Prompt N2a Outline Validate",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n2b-lore-validate",
+      "name": "Prompt N2b Lore Validate",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n3-polish",
+      "name": "Prompt N3 Polish",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n4a-novel-body",
+      "name": "Prompt N4a Novel Body",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n4b-video-generic-v1",
+      "name": "Prompt N4b Video Generic",
+      "mimeType": "text/markdown"
+    },
+    {
+      "uri": "novelscreator://dify/chapter/prompts/n5-memory-patch",
+      "name": "Prompt N5 Memory Patch",
+      "mimeType": "text/markdown"
+    }
+  ]
+}

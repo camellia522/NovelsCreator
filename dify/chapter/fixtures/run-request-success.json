@@ -1,0 +1,21 @@
+{
+  "inputs": {
+    "project_id": "550e8400-e29b-41d4-a716-446655440000",
+    "chapter_id": "ch-001",
+    "chapter_title": "第一章",
+    "outline_beats": "[{\"order\":1,\"text\":\"主角抵达破庙避雨\"},{\"order\":2,\"text\":\"遭遇神秘剑客\"}]",
+    "knowledge_snapshot": "{\"world\":{\"title\":\"测试世界\",\"rules\":\"灵气复苏，妖隐匿于市\"},\"characters\":[{\"id\":\"char-001\",\"name\":\"张三\",\"traits\":[\"冷静\"],\"relationships\":[]}],\"factions\":[],\"items\":[]}",
+    "plot_memory": "{\"version\":1,\"globalSummary\":\"\",\"chapterSummaries\":[],\"foreshadowing\":[]}",
+    "previous_chapter_summary": "",
+    "video_platform_template": "generic-v1",
+    "max_retry": 3,
+    "generation_prompt": "",
+    "generation_prompt_text": "",
+    "retry_count": 0,
+    "retry_issues": "[]",
+    "retry_issues_formatted": "",
+    "estimated_duration_sec": 180
+  },
+  "response_mode": "blocking",
+  "user": "test-novelscreator-ch-001"
+}

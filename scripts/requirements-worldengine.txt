@@ -1,0 +1,4 @@
+# 安装：在 Anaconda Prompt 中运行 scripts/setup-worldengine.ps1
+# （自动创建 scripts/.conda-env 并从 conda-forge 安装预编译 noise）
+worldengine>=0.20.0
+Pillow>=10.0.0

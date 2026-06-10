@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.world-society-generate.output",
+  "type": "object",
+  "required": ["status"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "error"] },
+    "society_json": {
+      "type": "string",
+      "description": "推荐：合并 world_rules + nations + locations 的 JSON 字符串"
+    },
+    "world_rules": { "type": "string" },
+    "nations_json": { "type": "string" },
+    "locations_json": { "type": "string" },
+    "workflow_version": { "type": "string" },
+    "error_message": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,21 @@
+{
+  "description": "已对齐 batch8：8 城 territory。勿用旧版仅 2 城的 territory。推荐试运行用 society-run-batch8.sample.md",
+  "inputs": {
+    "project_id": "demo-project",
+    "generation_mode": "territory_society",
+    "world_name": "测试世界",
+    "era": "架空",
+    "atmosphere": "史诗",
+    "scale": "continent",
+    "climate": "mixed",
+    "city_count": "8",
+    "include_landmarks": "true",
+    "seed": "42",
+    "geological_years_ma": "80",
+    "cells_per_province_target": "30",
+    "local_location_count": "8",
+    "nations_outline_json": "[{\"id\":\"nation-001\",\"name\":\"青王国\"},{\"id\":\"nation-002\",\"name\":\"北境公国\"}]",
+    "territory_json": "{\"schemaVersion\":3,\"projectConfig\":{\"worldName\":\"测试世界\",\"era\":\"架空\",\"atmosphere\":[\"史诗\"],\"scale\":\"continent\",\"climate\":\"mixed\",\"cityCount\":8,\"includeLandmarks\":true,\"seed\":42,\"cellsPerProvinceTarget\":30,\"adminDivisionMode\":\"province_prefecture_county\",\"localLocationCount\":8,\"societyBatch\":{\"batchIndex\":0,\"batchCount\":1,\"totalCount\":8}},\"nations\":[{\"nationId\":\"nation-001\",\"name\":\"青王国\",\"landHexCount\":70,\"developmentTier\":\"成长\",\"latBand\":\"北半球温带\",\"spatial\":{\"localDraftLocations\":[{\"id\":\"loc-001\",\"type\":\"capital\",\"x\":45,\"y\":38,\"terrain\":\"plain\",\"name\":\"青京\",\"adminRole\":\"都城\",\"nationId\":\"nation-001\"},{\"id\":\"loc-002\",\"type\":\"city\",\"x\":42,\"y\":40,\"terrain\":\"plain\",\"name\":\"东城\",\"adminRole\":\"省会\",\"nationId\":\"nation-001\"},{\"id\":\"loc-003\",\"type\":\"city\",\"x\":44,\"y\":42,\"terrain\":\"hill\",\"name\":\"南关\",\"adminRole\":\"府治\",\"nationId\":\"nation-001\"},{\"id\":\"loc-004\",\"type\":\"town\",\"x\":40,\"y\":41,\"terrain\":\"plain\",\"name\":\"石桥镇\",\"adminRole\":\"县治\",\"nationId\":\"nation-001\"}],\"adminProvinces\":[]}},{\"nationId\":\"nation-002\",\"name\":\"北境公国\",\"landHexCount\":55,\"developmentTier\":\"成长\",\"latBand\":\"北半球亚寒带\",\"spatial\":{\"localDraftLocations\":[{\"id\":\"loc-005\",\"type\":\"capital\",\"x\":62,\"y\":28,\"terrain\":\"plain\",\"name\":\"雪堡\",\"adminRole\":\"都城\",\"nationId\":\"nation-002\"},{\"id\":\"loc-006\",\"type\":\"city\",\"x\":58,\"y\":30,\"terrain\":\"hill\",\"name\":\"铁炉城\",\"adminRole\":\"府治\",\"nationId\":\"nation-002\"},{\"id\":\"loc-007\",\"type\":\"town\",\"x\":60,\"y\":32,\"terrain\":\"forest\",\"name\":\"松岭镇\",\"adminRole\":\"县治\",\"nationId\":\"nation-002\"},{\"id\":\"loc-008\",\"type\":\"landmark\",\"x\":65,\"y\":26,\"terrain\":\"mountain\",\"name\":\"观星峰\",\"adminRole\":\"地标\",\"nationId\":\"nation-002\"}],\"adminProvinces\":[]}}]}",
+    "creative_brief": "【任务】仅润色文案。本批共 8 座城，输出 locations 必须恰好 8 条。须保留 localDraftLocations 全部 id/x/y/type/terrain/nationId，禁止增删城市或改坐标。"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.world-society-generate.input",
+  "type": "object",
+  "required": [
+    "project_id",
+    "generation_mode",
+    "world_name",
+    "era",
+    "atmosphere",
+    "scale",
+    "climate",
+    "city_count",
+    "include_landmarks",
+    "seed",
+    "geological_years_ma",
+    "cells_per_province_target",
+    "local_location_count",
+    "territory_json",
+    "nations_outline_json",
+    "creative_brief"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "NovelsCreator 项目 id"
+    },
+    "generation_mode": {
+      "type": "string",
+      "const": "territory_society",
+      "description": "客户端固定值，用于与地图工作流区分"
+    },
+    "world_name": { "type": "string" },
+    "era": { "type": "string" },
+    "atmosphere": { "type": "string", "description": "氛围标签，顿号或逗号分隔" },
+    "scale": {
+      "type": "string",
+      "enum": ["kingdom", "archipelago", "continent", "world", "planet"]
+    },
+    "climate": {
+      "type": "string",
+      "enum": ["temperate", "cold", "tropical", "mixed"]
+    },
+    "city_count": { "type": "string" },
+    "include_landmarks": { "type": "string", "enum": ["true", "false"] },
+    "seed": { "type": "string" },
+    "geological_years_ma": { "type": "string" },
+    "cells_per_province_target": {
+      "type": "string",
+      "description": "行省目标格/省，默认 30（与 map.cellsPerProvinceTarget 一致）"
+    },
+    "local_location_count": {
+      "type": "string",
+      "description": "本地 generateLocalSociety 已生成城市数；LLM 输出 locations 应与此条数一致"
+    },
+    "territory_json": {
+      "type": "string",
+      "description": "schemaVersion=3；含 adminProvinces + localDraftLocations"
+    },
+    "nations_outline_json": {
+      "type": "string",
+      "description": "国家 id/name 列表 JSON 字符串"
+    },
+    "creative_brief": { "type": "string" }
+  },
+  "additionalProperties": false
+}

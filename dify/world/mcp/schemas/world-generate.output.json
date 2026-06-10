@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.world-generate.output",
+  "type": "object",
+  "required": ["status", "map_json", "locations_json", "nations_json", "world_rules"],
+  "properties": {
+    "status": { "type": "string", "enum": ["success", "error"] },
+    "world_rules": { "type": "string" },
+    "map_json": { "type": "string" },
+    "locations_json": { "type": "string" },
+    "nations_json": { "type": "string" },
+    "map_image_base64": { "type": "string" },
+    "map_image_url": { "type": "string" },
+    "workflow_version": { "type": "string" },
+    "error_message": { "type": "string" }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,122 @@
+{
+  "version": "1.1.0",
+  "workflow_id": "novel-outline-generation-v1",
+  "workflow_name": "Novel Outline Generation v1",
+  "description": "O1 全书大纲 + O1X 解析 + O2 结构校验 + AGG → (RE|CB|END_OK) → PARSE → END",
+  "mcp_tool": "novels_outline_generate",
+  "retry_strategy": "plan_b_client_loop",
+  "nodes": [
+    { "id": "START", "type": "start", "title": "Workflow Inputs" },
+    { "id": "O1", "type": "llm", "title": "Outline Generate", "jinja": true, "structured_output": "o1-outline.output.json" },
+    { "id": "O1X", "type": "code", "title": "O1 Extract", "source": "outline_o1_extract.py" },
+    { "id": "O2", "type": "llm", "title": "Outline Validate", "structured_output": "o2-outline-validate.output.json" },
+    { "id": "AGG", "type": "code", "title": "Validation Aggregate", "source": "outline_agg_validation.py" },
+    { "id": "IF-ROUTE", "type": "if-else", "branches": ["retry", "circuit_break", "continue"] },
+    { "id": "RE", "type": "code", "title": "Retry Handoff", "source": "outline_retry_end.py" },
+    { "id": "CB", "type": "code", "title": "Circuit Break", "source": "outline_cb_circuit_break.py" },
+    { "id": "END_OK", "type": "code", "title": "Success Output", "source": "outline_end_success.py" },
+    { "id": "PARSE", "type": "code", "title": "Parse End Outputs", "source": "outline_parse_end_outputs.py" },
+    { "id": "END", "type": "end", "title": "Workflow Outputs" }
+  ],
+  "edges": [
+    ["START", "O1"],
+    ["O1", "O1X"],
+    ["O1X", "O2"],
+    ["O2", "AGG"],
+    ["AGG", "IF-ROUTE"],
+    ["IF-ROUTE", "RE", "retry"],
+    ["IF-ROUTE", "CB", "circuit_break"],
+    ["IF-ROUTE", "END_OK", "continue"],
+    ["RE", "PARSE"],
+    ["CB", "PARSE"],
+    ["END_OK", "PARSE"],
+    ["PARSE", "END"]
+  ],
+  "code_bindings": {
+    "O1X": {
+      "inputs": {
+        "o1_result": "O1.text",
+        "structured_output": "O1.structured_output"
+      },
+      "outputs": ["outline_summary", "outline_json"]
+    },
+    "O2": {
+      "inputs": {
+        "outline_json": "O1X.outline_json",
+        "knowledge_snapshot": "START.knowledge_snapshot",
+        "plot_memory": "START.plot_memory",
+        "target_volumes": "START.target_volumes",
+        "target_chapters": "START.target_chapters",
+        "generation_mode": "START.generation_mode",
+        "volume_id": "START.volume_id",
+        "next_chapter_id": "START.next_chapter_id",
+        "existing_volume_outline": "START.existing_volume_outline"
+      }
+    },
+    "AGG": {
+      "inputs": {
+        "validate_result": "O2.text",
+        "retry_count": "START.retry_count",
+        "max_retry": "START.max_retry",
+        "outline_json": "O1X.outline_json"
+      },
+      "outputs": ["route", "retry_count", "retry_issues_formatted", "outline_valid", "validation_report", "outline_json"]
+    },
+    "IF-ROUTE": {
+      "conditions": [
+        { "field": "AGG.route", "op": "equals", "value": "retry", "target": "RE" },
+        { "field": "AGG.route", "op": "equals", "value": "circuit_break", "target": "CB" },
+        { "field": "AGG.route", "op": "equals", "value": "continue", "target": "END_OK" }
+      ]
+    },
+    "RE": {
+      "inputs": {
+        "outline_json": "O1X.outline_json",
+        "outline_summary": "O1X.outline_summary",
+        "retry_count": "AGG.retry_count",
+        "retry_issues_formatted": "AGG.retry_issues_formatted",
+        "validation_report": "AGG.validation_report"
+      }
+    },
+    "CB": {
+      "inputs": {
+        "outline_json": "O1X.outline_json",
+        "outline_summary": "O1X.outline_summary",
+        "retry_count": "AGG.retry_count",
+        "validation_report": "AGG.validation_report"
+      }
+    },
+    "END_OK": {
+      "inputs": {
+        "outline_summary": "O1X.outline_summary",
+        "outline_json": "O1X.outline_json",
+        "validation_report": "AGG.validation_report",
+        "retry_count": "START.retry_count"
+      }
+    },
+    "PARSE": {
+      "inputs": {
+        "re_end_outputs": "RE.end_outputs",
+        "cb_end_outputs": "CB.end_outputs",
+        "ok_end_outputs": "END_OK.end_outputs"
+      }
+    }
+  },
+  "end_output_bindings": {
+    "status": "PARSE.status",
+    "circuit_break": "PARSE.circuit_break",
+    "human_action_required": "PARSE.human_action_required",
+    "retry_count": "PARSE.retry_count",
+    "outline_summary": "PARSE.outline_summary",
+    "outline_json": "PARSE.outline_json",
+    "validation_report": "PARSE.validation_report",
+    "retry_issues_formatted": "PARSE.retry_issues_formatted",
+    "workflow_version": "PARSE.workflow_version"
+  },
+  "schema_refs": {
+    "input": "dify/outline/mcp/schemas/outline-generate.input.json",
+    "output": "dify/outline/mcp/schemas/outline-generate.output.json",
+    "o1_output": "dify/outline/mcp/schemas/o1-outline.output.json",
+    "o2_output": "dify/outline/mcp/schemas/o2-outline-validate.output.json"
+  }
+}

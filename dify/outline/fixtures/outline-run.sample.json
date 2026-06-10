@@ -1,0 +1,20 @@
+{
+  "description": "Dify 大纲工作流试运行 fixture · novel-outline-generation-v1",
+  "inputs": {
+    "project_id": "550e8400-e29b-41d4-a716-446655440001",
+    "knowledge_snapshot": "{\"world\":{\"title\":\"平京异闻\",\"rules\":\"灵气复苏后妖物隐匿都市；主角不可飞行；皇室与宗门有旧盟约\",\"era\":\"现代都市\",\"atmosphere\":\"悬疑紧张\",\"scene\":\"都市\",\"scenePlace\":\"平京\"},\"nations\":[{\"id\":\"nation-001\",\"name\":\"大周\",\"government\":\"君主立宪\",\"culture\":\"礼法并重\",\"description\":\"都城平京\"}],\"locations\":[{\"id\":\"loc-001\",\"name\":\"平京\",\"type\":\"capital\",\"x\":50,\"y\":48,\"terrain\":\"plain\",\"climate\":\"temperate\",\"description\":\"故事主舞台\"}],\"regions\":[],\"characters\":[{\"id\":\"char-001\",\"name\":\"林渊\",\"traits\":[\"冷静\",\"观察力强\"],\"relationships\":[],\"bio\":\"档案员，偶然接触密信\"}],\"factions\":[{\"id\":\"fac-001\",\"name\":\"天机阁\",\"description\":\"掌握古卷的组织\"}],\"items\":[]}",
+    "plot_memory": "{\"version\":1,\"globalSummary\":\"\",\"chapterSummaries\":[],\"foreshadowing\":[]}",
+    "outline_brief": "第一卷聚焦林渊调查密信，逐步揭开皇室与宗门旧盟；每章留一个小悬念。",
+    "target_volumes": "1",
+    "target_chapters": "1",
+    "genre": "都市悬疑",
+    "tone": "紧张",
+    "volume_id": "vol-01",
+    "next_chapter_id": "ch-001",
+    "generation_mode": "single_chapter",
+    "existing_volume_outline": "{\"id\":\"vol-01\",\"title\":\"第一卷\",\"chapters\":[]}",
+    "max_retry": "3",
+    "retry_count": "0",
+    "retry_issues_formatted": ""
+  }
+}

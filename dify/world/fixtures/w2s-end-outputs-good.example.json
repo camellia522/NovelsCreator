@@ -1,0 +1,23 @@
+{
+  "description": "PARSE/END 有效输出样例（6 城 · 2 国）。客户端可解析；真实项目须用运行结果替换，勿写死在 END 节点。",
+  "workflow_run_outputs": {
+    "status": "success",
+    "society_json": "{\"world_rules\": \"世界名为埃瑟拉……\", \"nations\": [{\"id\": \"nation-001\", \"government\": \"君主立宪\", \"culture\": \"重商\", \"description\": \"奥兰多王国……\", \"authorSettings\": \"\"}, {\"id\": \"nation-002\", \"government\": \"封建帝国\", \"culture\": \"武勋农耕\", \"description\": \"达贡帝国……\", \"authorSettings\": \"\"}], \"locations\": [{\"id\": \"loc-001\", \"name\": \"碧波堡\", \"type\": \"capital\", \"x\": 25.5, \"y\": 45.3, \"nationId\": \"nation-001\", \"terrain\": \"coast\", \"climate\": \"温带海洋性\", \"description\": \"奥兰多王国首都……\", \"population\": \"约15万\"}]}",
+    "nations_json": "[{\"id\": \"nation-001\", \"government\": \"君主立宪\", \"culture\": \"重商\", \"description\": \"奥兰多王国……\"}]",
+    "locations_json": "[{\"id\": \"loc-001\", \"name\": \"碧波堡\", \"type\": \"capital\", \"x\": 25.5, \"y\": 45.3, \"nationId\": \"nation-001\", \"terrain\": \"coast\", \"climate\": \"温带海洋性\", \"description\": \"……\", \"population\": \"约15万\"}]",
+    "world_rules": "世界名为埃瑟拉，处于铁器时代与魔法余晖交织的纪元……"
+  },
+  "workflow_run_outputs_string_suffix": {
+    "statusString": "success",
+    "society_jsonString": "（同 society_json，String 类型）",
+    "nations_jsonString": "（同 nations_json）",
+    "locations_jsonString": "（同 locations_json）",
+    "world_rulesString": "（同 world_rules）"
+  },
+  "checklist": [
+    "locations 条数 = local_location_count（本样例演示 6 城；真实运行每批须满 local_location_count，客户端每批≤8 座）",
+    "每条 locations.id 与 territory_json.localDraftLocations.id 完全一致",
+    "x/y/type/terrain/nationId 与 localDraft 相同，只改 name/description",
+    "nations[].id 与 nations_outline_json 一致"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "name": "novels_world_generate",
+  "title": "生成世界观地图",
+  "description": "调用 Dify 工作流 novel-world-generate-v1：LLM 生成世界 JSON + 图像模型生成等距圆柱地图。",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "project_id": { "type": "string" },
+      "world_name": { "type": "string" },
+      "era": { "type": "string" },
+      "atmosphere": { "type": "string" },
+      "scale": { "type": "string", "enum": ["kingdom", "archipelago", "continent", "world", "planet"] },
+      "climate": { "type": "string", "enum": ["temperate", "cold", "tropical", "mixed"] },
+      "city_count": { "type": "string" },
+      "include_landmarks": { "type": "string", "enum": ["true", "false"] },
+      "seed": { "type": "string" },
+      "geological_years_ma": { "type": "string" },
+      "creative_brief": { "type": "string" }
+    },
+    "required": ["project_id", "world_name", "era", "atmosphere", "scale", "climate", "city_count", "include_landmarks", "seed", "creative_brief"]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "properties": {
+      "status": { "type": "string", "enum": ["success", "error"] },
+      "world_rules": { "type": "string" },
+      "map_json": { "type": "string" },
+      "locations_json": { "type": "string" },
+      "nations_json": { "type": "string" },
+      "map_image_base64": { "type": "string" },
+      "map_image_url": { "type": "string" },
+      "workflow_version": { "type": "string" }
+    },
+    "required": ["status"]
+  },
+  "annotations": { "openWorldHint": true }
+}

@@ -1,0 +1,34 @@
+{
+  "uri": "novelscreator://dify/workflow/outline-generation-v1/manifest",
+  "name": "Novel Outline Generation v1",
+  "workflow_id": "novel-outline-generation-v1",
+  "mcp_tool": "novels_outline_generate",
+  "description": "O1 + O1X + O2 + AGG → (RE|CB|END_OK) → PARSE → END · 方案 B 客户端重试",
+  "canvas_manifest": "dify/outline/mcp/resources/outline-generation-v1-manifest.json",
+  "prompts": [
+    "dify/outline/prompts/o1-outline-generate.md",
+    "dify/outline/prompts/o1-outline-user.jinja.md",
+    "dify/outline/prompts/o2-outline-validate.md",
+    "dify/outline/prompts/o2-outline-user.jinja.md",
+    "dify/outline/prompts/_outline-global-system.md"
+  ],
+  "code_nodes": [
+    "outline_o1_extract.py",
+    "outline_agg_validation.py",
+    "outline_end_success.py",
+    "outline_parse_end_outputs.py",
+    "outline_retry_end.py",
+    "outline_cb_circuit_break.py"
+  ],
+  "schemas": {
+    "input": "dify/outline/mcp/schemas/outline-generate.input.json",
+    "output": "dify/outline/mcp/schemas/outline-generate.output.json",
+    "o1_output": "dify/outline/mcp/schemas/o1-outline.output.json",
+    "o2_output": "dify/outline/mcp/schemas/o2-outline-validate.output.json"
+  },
+  "fixtures": ["dify/outline/fixtures/outline-run.sample.json"],
+  "docs": [
+    "docs/outline/DIFY-OUTLINE-WORKFLOW-NODES-AND-FLOW.md",
+    "docs/outline/DIFY-OUTLINE-WORKFLOW-IMPLEMENTATION.md"
+  ]
+}

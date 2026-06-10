@@ -1,0 +1,34 @@
+{
+  "name": "novels_dify_health_check",
+  "title": "Dify 工作流连通性检查",
+  "description": "检查 Dify API 可达性及 novel-chapter-generation 工作流是否已发布。",
+  "inputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "base_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "Dify API Base URL，如 https://api.dify.ai/v1"
+      }
+    },
+    "required": ["base_url"]
+  },
+  "outputSchema": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "reachable": { "type": "boolean" },
+      "workflow_published": { "type": "boolean" },
+      "latency_ms": { "type": "integer" },
+      "message": { "type": "string" }
+    },
+    "required": ["reachable", "message"]
+  },
+  "annotations": {
+    "readOnlyHint": true,
+    "destructiveHint": false,
+    "idempotentHint": true,
+    "openWorldHint": true
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "uri": "novelscreator://dify/workflow/world-generate-v1/manifest",
+  "name": "Novel World Generate v1",
+  "workflow_id": "novel-world-generate-v1",
+  "mcp_tool": "novels_world_generate",
+  "description": "LLM 世界 JSON + 图像模型等距圆柱地图",
+  "prompts": ["dify/world/prompts/w1-world-generate.md"],
+  "code_nodes": [
+    "world_w1_extract.py",
+    "world_w2_comfyui_bridge.py",
+    "world_end_success.py",
+    "world_parse_end_outputs.py"
+  ],
+  "schemas": {
+    "input": "dify/world/mcp/schemas/world-generate.input.json",
+    "output": "dify/world/mcp/schemas/world-generate.output.json"
+  },
+  "docs": [
+    "docs/world/DIFY-WORLD-WORKFLOW-DESIGN.md",
+    "docs/world/DIFY-WORLD-WORKFLOW-IMPLEMENTATION.md"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "name": "novels_chapter_generate",
+  "title": "生成长篇小说章节",
+  "description": "调用 Dify 工作流 novel-chapter-generation-v1.1：初稿 → 并行校验 → 润色 → 小说正文 + 视频脚本 → 剧情记忆 patch。",
+  "inputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "project_id": { "type": "string", "format": "uuid" },
+      "chapter_id": { "type": "string", "pattern": "^ch-[0-9]{3,}$" },
+      "chapter_title": { "type": "string", "minLength": 1, "maxLength": 200 },
+      "outline_beats": { "type": "string", "description": "JSON string: [{ order, text }]" },
+      "knowledge_snapshot": { "type": "string", "description": "JSON string: world/characters/factions/items" },
+      "plot_memory": { "type": "string", "description": "JSON string: plot-memory" },
+      "previous_chapter_summary": { "type": "string", "default": "" },
+      "video_platform_template": { "type": "string", "enum": ["generic-v1", "platform-x-v1", "configurable-v1"], "default": "generic-v1" },
+      "video_template_config": { "type": "string", "default": "", "description": "VideoTemplateConfig JSON string when configurable-v1" },
+      "estimated_duration_sec": { "type": "integer", "minimum": 30, "maximum": 3600, "default": 180 },
+      "max_retry": { "type": "integer", "minimum": 0, "maximum": 10, "default": 3 },
+      "generation_prompt": { "type": "string", "default": "" },
+      "generation_prompt_text": { "type": "string", "default": "" },
+      "retry_count": { "type": "integer", "minimum": 0, "maximum": 10, "default": 0 },
+      "retry_issues_formatted": { "type": "string", "default": "" }
+    },
+    "required": ["project_id", "chapter_id", "chapter_title", "outline_beats", "knowledge_snapshot", "plot_memory", "video_platform_template", "max_retry"]
+  },
+  "outputSchema": {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "status": { "type": "string", "enum": ["success", "retry", "circuit_break", "error"] },
+      "circuit_break": { "type": "boolean" },
+      "human_action_required": { "type": "boolean" },
+      "retry_count": { "type": "integer" },
+      "novel_body": { "type": "string" },
+      "video_script": { "type": "string" },
+      "draft_text": { "type": "string" },
+      "retry_issues_formatted": { "type": "string" },
+      "memory_patch": { "type": "object" },
+      "validation_report": { "type": "object" },
+      "workflow_version": { "type": "string" }
+    },
+    "required": ["status", "circuit_break", "retry_count"]
+  },
+  "annotations": {
+    "readOnlyHint": false,
+    "destructiveHint": false,
+    "idempotentHint": false,
+    "openWorldHint": true
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "description": "失败样例：绑定正确但 PARSE/END_OK 传入空数组（对应客户端「5 批无有效 JSON」）。用于对比测试，解析应失败。",
+  "outputs": {
+    "statusString": "success",
+    "society_jsonString": "{\"world_rules\":\"\",\"nations\":[],\"locations\":[]}",
+    "nations_jsonString": "[]",
+    "locations_jsonString": "[]",
+    "world_rulesString": ""
+  },
+  "workflow_api_response": {
+    "data": {
+      "id": "fixture-run-empty",
+      "outputs": {
+        "statusString": "success",
+        "society_jsonString": "{\"world_rules\":\"\",\"nations\":[],\"locations\":[]}",
+        "nations_jsonString": "[]",
+        "locations_jsonString": "[]",
+        "world_rulesString": ""
+      }
+    }
+  },
+  "expected_client_parse": {
+    "service_gate_pass": false
+  }
+}

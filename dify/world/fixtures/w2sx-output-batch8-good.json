@@ -1,0 +1,19 @@
+{
+  "description": "用户实测 W2SX 成功输出（8 城 · 2 国）。可模拟 END_OK 输入或校验解析。",
+  "w2sx_outputs": {
+    "locations_json": "[{\"id\": \"loc-001\", \"name\": \"青京城\", \"type\": \"capital\", \"x\": 45, \"y\": 38, \"nationId\": \"nation-001\", \"terrain\": \"plain\", \"climate\": \"温带季风\", \"description\": \"青王国的都城，坐落于辽阔的平原腹地，宫殿巍峨，市集繁盛，是王国的政治、文化与经济中心。\"}, {\"id\": \"loc-002\", \"name\": \"东阳府\", \"type\": \"city\", \"x\": 42, \"y\": 40, \"nationId\": \"nation-001\", \"terrain\": \"plain\", \"climate\": \"温带季风\", \"description\": \"东部行省的省治所在地，扼守交通要道，粮仓汇聚，商旅不绝，是王国重要的农业与贸易枢纽。\"}, {\"id\": \"loc-003\", \"name\": \"南关府\", \"type\": \"city\", \"x\": 44, \"y\": 42, \"nationId\": \"nation-001\", \"terrain\": \"hill\", \"climate\": \"温带湿润\", \"description\": \"丘陵之间的府治，关隘险要，驻军镇守，茶叶与矿石贸易使其成为南部军事与商业重镇。\"}, {\"id\": \"loc-004\", \"name\": \"石桥镇\", \"type\": \"town\", \"x\": 40, \"y\": 41, \"nationId\": \"nation-001\", \"terrain\": \"plain\", \"climate\": \"温带季风\", \"description\": \"宁静的县治小镇，一座古老石桥横跨河流，每逢集日周边农户云集，以陶器与果品闻名。\"}, {\"id\": \"loc-005\", \"name\": \"凛冬堡\", \"type\": \"capital\", \"x\": 62, \"y\": 28, \"nationId\": \"nation-002\", \"terrain\": \"plain\", \"climate\": \"亚寒带\", \"description\": \"北境公国的都城，由巨石与坚冰筑成的坚固堡垒，终年寒风凛冽，大公的宝座大厅燃着不灭的炉火。\"}, {\"id\": \"loc-006\", \"name\": \"铁炉城\", \"type\": \"city\", \"x\": 58, \"y\": 30, \"nationId\": \"nation-002\", \"terrain\": \"hill\", \"climate\": \"亚寒带\", \"description\": \"建在矿脉丰富的丘陵之上，府治以冶炼锻造著称，铁锤声日夜不息，为公国提供精良的兵甲与工具。\"}, {\"id\": \"loc-007\", \"name\": \"松岭镇\", \"type\": \"town\", \"x\": 60, \"y\": 32, \"nationId\": \"nation-002\", \"terrain\": \"forest\", \"climate\": \"亚寒带针叶林\", \"description\": \"深藏于松林中的县治，木屋错落，伐木与狩猎是主要生计，镇民坚韧而孤僻，守护着通往北境深处的小径。\"}, {\"id\": \"loc-008\", \"name\": \"观星峰\", \"type\": \"landmark\", \"x\": 65, \"y\": 26, \"nationId\": \"nation-002\", \"terrain\": \"mountain\", \"climate\": \"高山苔原\", \"description\": \"巍峨的孤峰，传说为古代观星祭司的圣地，峰顶石阵刻满星辰轨迹，如今成为旅人与学者朝圣的地标。\"}]",
+    "nations_json": "[{\"id\": \"nation-001\", \"government\": \"封建王国\", \"culture\": \"农耕文明\", \"description\": \"青王国地处北半球温带，沃野千里，人口众多。国家以农耕为本，商贸亦为兴盛，王权与各地领主共治，省府县三级行政稳固。民众信仰自然与祖先，文化务实而包容，常通过联姻与外交维持地区稳定。\", \"authorSettings\": \"\"}, {\"id\": \"nation-002\", \"government\": \"封建公国\", \"culture\": \"冰雪信仰\", \"description\": \"北境公国位于亚寒带，冬季漫长严酷。国家以矿业与林木为经济支柱，民风坚韧尚武。大公与军事贵族统治，信仰冰雪精魂与星辰，都城雪堡为坚固要塞。虽环境苛刻，但北境人团结一致，不断向南拓展生存空间。\", \"authorSettings\": \"\"}]",
+    "world_rules": "世界名为「苍翠与霜雪之境」……",
+    "society_json": "（见用户实测完整 society_json）"
+  },
+  "expected_client_parse": {
+    "locations_count": 8,
+    "nations_count": 2,
+    "service_gate_pass": true
+  },
+  "checklist": [
+    "locations 共 8 条，id 为 loc-001 … loc-008",
+    "x/y 与 batch8 territory 一致",
+    "仅润色了 name/description，坐标未改"
+  ]
+}

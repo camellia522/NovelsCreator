@@ -1,0 +1,63 @@
+{
+  "templateId": "pipe-import-v1",
+  "version": "1.0",
+  "outputFormat": "delimited",
+  "delimiter": "|",
+  "includeHeader": true,
+  "estimatedDurationSec": 120,
+  "shotCount": { "min": 10, "max": 20 },
+  "columns": [
+    {
+      "key": "scene_id",
+      "label": "镜头ID",
+      "type": "string",
+      "required": true,
+      "description": "S001 起三位递增"
+    },
+    {
+      "key": "duration",
+      "label": "时长",
+      "type": "integer",
+      "required": true,
+      "minimum": 3,
+      "maximum": 12
+    },
+    {
+      "key": "visual_prompt",
+      "label": "画面Prompt",
+      "type": "text",
+      "required": true,
+      "minLength": 30,
+      "maxLength": 180,
+      "description": "英文或中文；主体+环境+光影；字段内禁止换行与分隔符"
+    },
+    {
+      "key": "camera_angle",
+      "label": "拍摄角度",
+      "type": "enum",
+      "required": true,
+      "options": ["eye_level", "high_angle", "low_angle", "over_shoulder"]
+    },
+    {
+      "key": "camera_movement",
+      "label": "运镜",
+      "type": "enum",
+      "required": true,
+      "options": ["static", "pan_left", "pan_right", "zoom_in", "zoom_out", "tracking"]
+    },
+    {
+      "key": "dialogue",
+      "label": "对白",
+      "type": "text",
+      "required": false,
+      "emptyValue": "NONE"
+    },
+    {
+      "key": "transition",
+      "label": "转场",
+      "type": "enum",
+      "required": true,
+      "options": ["cut", "dissolve", "fade_in", "fade_out"]
+    }
+  ]
+}

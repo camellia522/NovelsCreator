@@ -1,0 +1,2980 @@
+app:
+  description: ''
+  icon: mantelpiece_clock
+  icon_background: '#E6F4D7'
+  icon_type: emoji
+  mode: workflow
+  name: NovelCreator
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/deepseek:0.0.17@f7a5c1d222d17ee419b17a80d6e4923838fe93788dc724a3af73fbc6990b3a32
+    version: null
+kind: app
+version: 0.6.0
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        attachment_image_file_size_limit: 2
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        file_upload_limit: 20
+        image_file_batch_limit: 10
+        image_file_size_limit: 10
+        single_chunk_attachment_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInLoop: false
+        sourceType: start
+        targetType: code
+      id: 1780319308559-source-1780319499468-target
+      selected: false
+      source: '1780319308559'
+      sourceHandle: source
+      target: '1780319499468'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1780319499468-source-1780319602957-target
+      selected: false
+      source: '1780319499468'
+      sourceHandle: source
+      target: '1780319602957'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780319602957-source-1780368302144-target
+      selected: false
+      source: '1780319602957'
+      sourceHandle: source
+      target: '1780368302144'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780319602957-source-1780368307129-target
+      selected: false
+      source: '1780319602957'
+      sourceHandle: source
+      target: '1780368307129'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780368302144-source-1780368966801-target
+      selected: false
+      source: '1780368302144'
+      sourceHandle: source
+      target: '1780368966801'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780368307129-source-1780368966801-target
+      selected: false
+      source: '1780368307129'
+      sourceHandle: source
+      target: '1780368966801'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1780368966801-source-1780369374991-target
+      selected: false
+      source: '1780368966801'
+      sourceHandle: source
+      target: '1780369374991'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1780369374991-true-1780369441579-target
+      selected: false
+      source: '1780369374991'
+      sourceHandle: 'true'
+      target: '1780369441579'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1780369374991-4ef77a24-b3b2-4f17-bc67-f78a6393dd82-1780369446330-target
+      selected: false
+      source: '1780369374991'
+      sourceHandle: 4ef77a24-b3b2-4f17-bc67-f78a6393dd82
+      target: '1780369446330'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780369374991-6e8b8ca8-3a38-4b01-95d0-398ae92b0298-1780370030463-target
+      selected: false
+      source: '1780369374991'
+      sourceHandle: 6e8b8ca8-3a38-4b01-95d0-398ae92b0298
+      target: '1780370030463'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780370030463-source-1780370481160-target
+      selected: false
+      source: '1780370030463'
+      sourceHandle: source
+      target: '1780370481160'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: if-else
+      id: 1780370030463-source-1780370659326-target
+      selected: false
+      source: '1780370030463'
+      sourceHandle: source
+      target: '1780370659326'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780370659326-true-1780370729697-target
+      selected: false
+      source: '1780370659326'
+      sourceHandle: 'true'
+      target: '1780370729697'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780370659326-bddb569b-1678-46f6-ad04-617eb42bd9bc-1780370736323-target
+      selected: false
+      source: '1780370659326'
+      sourceHandle: bddb569b-1678-46f6-ad04-617eb42bd9bc
+      target: '1780370736323'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780370659326-1429ac26-bad9-49e8-a5a5-964c398915a7-1780370743291-target
+      selected: false
+      source: '1780370659326'
+      sourceHandle: 1429ac26-bad9-49e8-a5a5-964c398915a7
+      target: '1780370743291'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780370729697-source-1780372951848-target
+      selected: false
+      source: '1780370729697'
+      sourceHandle: source
+      target: '1780372951848'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780370736323-source-1780372951848-target
+      selected: false
+      source: '1780370736323'
+      sourceHandle: source
+      target: '1780372951848'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780370743291-source-1780372951848-target
+      selected: false
+      source: '1780370743291'
+      sourceHandle: source
+      target: '1780372951848'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1780370659326-false-1780370729697-target
+      selected: false
+      source: '1780370659326'
+      sourceHandle: 'false'
+      target: '1780370729697'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1780372951848-source-1780373094333-target
+      selected: false
+      source: '1780372951848'
+      sourceHandle: source
+      target: '1780373094333'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: llm
+      id: 1780370481160-source-1780373094333-target
+      selected: false
+      source: '1780370481160'
+      sourceHandle: source
+      target: '1780373094333'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1780373094333-source-1780373414137-target
+      selected: false
+      source: '1780373094333'
+      sourceHandle: source
+      target: '1780373414137'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1780373414137-source-1780374273626-target
+      selected: false
+      source: '1780373414137'
+      sourceHandle: source
+      target: '1780374273626'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1780369441579-source-1780374273626-target
+      selected: false
+      source: '1780369441579'
+      sourceHandle: source
+      target: '1780374273626'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1780369446330-source-1780374273626-target
+      selected: false
+      source: '1780369446330'
+      sourceHandle: source
+      target: '1780374273626'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: end
+      id: 1780374273626-source-1780373557107-target
+      selected: false
+      source: '1780374273626'
+      sourceHandle: source
+      target: '1780373557107'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        selected: false
+        title: 用户输入
+        type: start
+        variables:
+        - default: ''
+          hint: ''
+          label: project_id
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: project_id
+        - default: ''
+          hint: ''
+          label: chapter_id
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: chapter_id
+        - default: ''
+          hint: ''
+          label: chapter_title
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: chapter_title
+        - default: ''
+          hint: ''
+          label: outline_beats
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: outline_beats
+        - default: ''
+          hint: ''
+          label: knowledge_snapshot
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: knowledge_snapshot
+        - default: ''
+          hint: ''
+          label: plot_memory
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: plot_memory
+        - default: ''
+          hint: ''
+          label: previous_chapter_summary
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: previous_chapter_summary
+        - default: ''
+          hint: ''
+          label: video_platform_template
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: video_platform_template
+        - default: ''
+          hint: ''
+          label: max_retry
+          options: []
+          placeholder: ''
+          required: true
+          type: number
+          variable: max_retry
+        - default: ''
+          hint: ''
+          label: generation_prompt
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: generation_prompt
+        - default: ''
+          hint: ''
+          label: generation_prompt_text
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: generation_prompt_text
+        - default: '180'
+          hint: ''
+          label: estimated_duration_sec
+          options: []
+          placeholder: ''
+          required: true
+          type: number
+          variable: estimated_duration_sec
+        - default: ''
+          hint: ''
+          label: video_template_config
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: video_template_config
+        - default: ''
+          hint: ''
+          label: route
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: route
+        - default: ''
+          hint: ''
+          label: retry_issues_formatted
+          options: []
+          placeholder: ''
+          required: false
+          type: text-input
+          variable: retry_issues_formatted
+        - default: '[]'
+          hint: ''
+          label: retry_issues
+          options: []
+          placeholder: ''
+          required: true
+          type: text-input
+          variable: retry_issues
+        - default: '0'
+          hint: ''
+          label: retry_count
+          options: []
+          placeholder: ''
+          required: true
+          type: number
+          variable: retry_count
+      height: 524
+      id: '1780319308559'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 242
+    - data:
+        code: "# P0 · Context Merge\n# Dify Code 节点 · 语言 Python3\n# 输入变量：generation_prompt,\
+          \ knowledge_snapshot, outline_beats, generation_prompt_text(可选)\n# 输出变量：merged_context,\
+          \ effective_beats, has_wizard, chapter_goal\n\nimport json\n\n\ndef safe_json(s:\
+          \ str, default=None):\n    if not s or not str(s).strip():\n        return\
+          \ default if default is not None else {}\n    try:\n        return json.loads(s)\n\
+          \    except json.JSONDecodeError:\n        return default if default is\
+          \ not None else {}\n\n\ndef find_char(characters, char_id, name):\n    for\
+          \ c in characters or []:\n        if char_id and c.get(\"id\") == char_id:\n\
+          \            return c\n        if name and c.get(\"name\") == name:\n  \
+          \          return c\n    return None\n\n\ndef main(generation_prompt: str,\
+          \ knowledge_snapshot: str, outline_beats: str) -> dict:\n    gp = safe_json(generation_prompt,\
+          \ None)\n    ks = safe_json(knowledge_snapshot, {})\n    beats = safe_json(outline_beats,\
+          \ [])\n\n    if gp and gp.get(\"plot\") and gp[\"plot\"].get(\"beats\"):\n\
+          \        effective_beats = gp[\"plot\"][\"beats\"]\n        chapter_goal\
+          \ = gp[\"plot\"].get(\"chapterGoal\", \"\")\n    else:\n        effective_beats\
+          \ = beats if isinstance(beats, list) else []\n        chapter_goal = \"\"\
+          \n\n    characters = []\n    if gp and gp.get(\"characters\"):\n       \
+          \ for wc in gp[\"characters\"]:\n            kb = find_char(ks.get(\"characters\"\
+          , []), wc.get(\"id\"), wc.get(\"name\"))\n            merged = dict(wc)\n\
+          \            if kb:\n                merged[\"relationships\"] = kb.get(\"\
+          relationships\", [])\n                merged[\"factionId\"] = kb.get(\"\
+          factionId\")\n                merged[\"arc\"] = kb.get(\"arc\")\n      \
+          \      characters.append(merged)\n    else:\n        characters = ks.get(\"\
+          characters\", [])\n\n    world = dict(ks.get(\"world\") or {})\n    wizard_env\
+          \ = gp.get(\"environment\") if gp else None\n\n    merged = {\n        \"\
+          has_wizard\": gp is not None,\n        \"world\": world,\n        \"wizard_env\"\
+          : wizard_env,\n        \"characters\": characters,\n        \"factions\"\
+          : ks.get(\"factions\", []),\n        \"items\": ks.get(\"items\", []),\n\
+          \    }\n\n    return {\n        \"merged_context\": json.dumps(merged, ensure_ascii=False),\n\
+          \        \"effective_beats\": json.dumps(effective_beats, ensure_ascii=False),\n\
+          \        \"has_wizard\": \"true\" if gp else \"false\",\n        \"chapter_goal\"\
+          : chapter_goal or \"\",\n    }\n"
+        code_language: python3
+        outputs:
+          chapter_goal:
+            children: null
+            type: string
+          effective_beats:
+            children: null
+            type: string
+          has_wizard:
+            children: null
+            type: string
+          merged_context:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1780319308559'
+          - generation_prompt
+          value_type: string
+          variable: generation_prompt
+        - value_selector:
+          - '1780319308559'
+          - knowledge_snapshot
+          value_type: string
+          variable: knowledge_snapshot
+        - value_selector:
+          - '1780319308559'
+          - outline_beats
+          value_type: string
+          variable: outline_beats
+      height: 51
+      id: '1780319499468'
+      position:
+        x: 530
+        y: 425
+      positionAbsolute:
+        x: 530
+        y: 425
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.8
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_config:
+          jinja2_variables:
+          - value_selector:
+            - '1780319308559'
+            - retry_count
+            variable: retry_count
+          - value_selector:
+            - '1780319308559'
+            - retry_issues_formatted
+            variable: retry_issues_formatted
+          - value_selector:
+            - '1780319308559'
+            - generation_prompt_text
+            variable: generation_prompt_text
+          - value_selector:
+            - '1780319308559'
+            - knowledge_snapshot
+            variable: knowledge_snapshot
+          - value_selector:
+            - '1780319308559'
+            - plot_memory
+            variable: plot_memory
+          - value_selector:
+            - '1780319308559'
+            - previous_chapter_summary
+            variable: previous_chapter_summary
+        prompt_template:
+        - id: 1f859529-4b5b-4b3e-9b5d-154c1d396011
+          role: system
+          text: '你是一位具备出版级经验的中文长篇小说执笔者，同时熟悉类型文学（玄幻、都市、悬疑、言情等）的叙事范式与连载节奏管理。你的写作建立在以下专业基准之上：
+
+
+            叙事能力
+
+            - 熟练运用场景—Sequel 结构、冲突升级曲线与章节内小高潮（Chapter Cliffhanger）设计；
+
+            - 能在第三人称限知或全知视角下保持视角稳定，避免随意跳 POV；
+
+            - 擅长以「行动 + 对话 + 内省」三维呈现人物，而非堆砌说明性旁白。
+
+
+            人物塑造
+
+            - 将性格（气质层）、人生观（信念层）、价值观（抉择层）落实为可观察的具体行为；
+
+            - 对话具备角色辨识度：用词、句长、修辞习惯与情绪外显方式须与人物档案一致；
+
+            - 拒绝脸谱化：允许矛盾与灰度，但不得违背已给定的人设锚点。
+
+
+            世界观执行
+
+            - 将环境要素（时代、地理、社会结构、超自然规则）转化为可感知的感官细节；
+
+            - 严格遵守设定中的「硬规则」，不对已声明不可违反的法则进行 silent retcon。
+
+
+            输出纪律
+
+            - 只输出任务要求的正文或脚本，不输出创作说明、道歉、元评论、自检清单；
+
+            - 不使用 Markdown 标题、列表、表格（除非节点明确要求结构化格式）；
+
+            - 不虚构任务上下文中未授权的重要新角色、势力、道具或历史事件。
+
+
+            ---
+
+
+            你正在执行长篇小说生产流水线 Stage-1：原始草稿（Raw Draft）阶段。本阶段目标是产出「结构完整、设定合规、节拍全覆盖」的叙事初稿，文学润色与排版规范由后续节点负责，因此：
+
+
+            - 优先保证：节拍落地 > 人设一致 > 前情连贯 > 文辞精美；
+
+            - 允许存在一定程度的语言粗糙，但绝不允许情节跳步、人设崩坏或设定冲突；
+
+            - 根据「目标字数」控制篇幅，误差范围 ±15%，通过调节场景描写密度与对话占比实现，而非跳过节拍。
+
+
+            重试修订协议（当用户在后续消息中提供编辑驳回意见时生效）：
+
+            - 将「上次校验失败原因」视为硬性修订清单，须逐条对照修正；
+
+            - 修订时重写全章，而非在旧稿上局部打补丁；
+
+            - 修正后须自检：每条 issue 是否在正文中存在明确、可定位的对应段落。
+
+
+            输出形态：
+
+            - 仅输出连续叙事正文；
+
+            - 不要输出章节标题、作者按、分隔线、括号内写作说明；
+
+            - 不要输出「以下是本章内容」等元语言。'
+        - edition_type: jinja2
+          id: 2d7e9621-6968-42a2-8dcb-0716868e5418
+          jinja2_text: "{% if retry_count | int > 0 %}\r\n═══════════════════════════════════════\r\
+            \n【编辑驳回通知 · 第{{ retry_count }}次修订】\r\n═══════════════════════════════════════\r\
+            \n\r\n上一版草稿未通过编审，请在重写全章时逐条消化以下意见。每条意见均需在正文中找到明确对应修正，不可敷衍跳过：\r\n\r\n{{\
+            \ retry_issues_formatted }}\r\n\r\n修订完成后，请默证：上述每一条 issue 均已在正文中得到实质性回应。\r\
+            \n\r\n{% endif %}\r\n\r\n═══════════════════════════════════════\r\n【Primary\
+            \ Brief · 结构化创作指令】\r\n═══════════════════════════════════════\r\n\r\n\
+            {{ generation_prompt_text }}\r\n\r\n\r\n\r\n═══════════════════════════════════════\r\
+            \n【Secondary Context · 项目知识库补充】\r\n═══════════════════════════════════════\r\
+            \n\r\n以下信息用于补充人物关系网、势力归属、关键道具、世界史细节。若与 Primary Brief 中人物三观/样貌/说话方式冲突，以\
+            \ Primary Brief 为准；关系与道具信息以本段为准。\r\n\r\n{{ knowledge_snapshot }}\r\n\r\
+            \n\r\n\r\n═══════════════════════════════════════\r\n【Continuity Context\
+            \ · 前情记忆库】\r\n═══════════════════════════════════════\r\n\r\n以下内容为已发生事实的权威记录。你不得与之矛盾（包括但不限于：已死亡角色复活、已销毁物品再现、已揭示身份回退、时间线倒流）。未解伏笔可以呼应但不得在本章提前揭穿除非\
+            \ Primary Brief 明确要求。\r\n\r\n{{ plot_memory }}\r\n\r\n{% if previous_chapter_summary\
+            \ %}\r\n═══════════════════════════════════════\r\n【Immediate Prequel\
+            \ · 上一章摘要】\r\n═══════════════════════════════════════\r\n\r\n{{ previous_chapter_summary\
+            \ }}\r\n\r\n本章开头须自然承接上述结尾状态（时间、空间、人物情绪、未完结动作）。\r\n\r\n{% endif %}\r\n\r\
+            \n\r\n\r\n═══════════════════════════════════════\r\n【Stage-1 执行规范】\r\n\
+            ═══════════════════════════════════════\r\n\r\n1. 节拍执行（Beat Sheet Execution）\r\
+            \n\r\n\r\n\r\n\r\n\r\n严格按照 Primary Brief 中「情节节拍」的编号顺序展开叙事；\r\n\r\n\r\n\
+            \r\n每个节拍至少对应一个可辨识的 dramatized scene（含时地人事件），不可仅在叙述中一笔带过；\r\n\r\n\r\n\r\
+            \n节拍之间须有因果或情绪过渡，避免「场景拼接感」。\r\n\r\n2. 戏剧冲突（Dramatic Conflict）\r\n\r\n\r\
+            \n\r\n\r\n\r\n依据 Primary Brief 的「核心冲突」类型，在本章内建立清晰的冲突轴；\r\n\r\n\r\n\r\n\
+            冲突须通过具体事件呈现，而非角色口头讨论「我们有冲突」；\r\n\r\n\r\n\r\n章内应存在至少一次张力峰值，并与叙事基调（tone）一致。\r\
+            \n\r\n3. 人物执行（Character Execution）\r\n\r\n\r\n\r\n\r\n\r\n各出场角色的决策、拒绝、妥协必须可回溯至其人生观与价值观；\r\
+            \n\r\n\r\n\r\n对话须体现 speechStyle：句长、修辞、情绪外显方式、是否使用语气词/粗口/文言；\r\n\r\n\r\n\
+            \r\n样貌特征在首次出场或相关场景中须被自然提及或暗示，不可与档案矛盾。\r\n\r\n4. 环境与氛围（Setting & Mood）\r\
+            \n\r\n\r\n\r\n\r\n\r\n开章 300 字内建立可感知的时间、空间与氛围（至少两种感官细节：视觉/听觉/触觉/嗅觉/味觉）；\r\
+            \n\r\n\r\n\r\n氛围词（如悬疑、黑暗）须转化为具体环境表现（光影、天气、人群行为、异常细节）；\r\n\r\n\r\n\r\n\
+            不得违反世界规则中的硬约束。\r\n\r\n5. 叙事技术参数\r\n\r\n\r\n\r\n\r\n\r\n叙事视角：默认第三人称，以主角为限知锚点，不随意切换至无铺垫的他者内心；\r\
+            \n\r\n\r\n\r\n叙事节奏：依 Primary Brief pacing 指示调节「描写/对话/动作」比例；\r\n\r\n\r\n\
+            \r\n禁止：作者跳出来评论剧情、打破第四面墙、现代网络梗（除非世界观允许）。\r\n\r\n6. 禁止事项（Hard Constraints）\r\
+            \n\r\n\r\n\r\n\r\n\r\n禁止引入 Primary Brief 与知识库均未授权的新重要角色、新势力、新神器；\r\n\r\
+            \n\r\n\r\n禁止输出任何非正文内容（分析、大纲、备选方案、写作思路）；\r\n\r\n\r\n\r\n禁止复制粘贴 Primary\
+            \ Brief 中的节拍原文作为正文段落。\r\n\r\n\r\n\r\n请现在开始撰写本章原始草稿。直接输出正文，无需标题行。"
+          role: user
+          text: ''
+        selected: false
+        title: LLM 初稿N1
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780319602957'
+      position:
+        x: 888.1620272355926
+        y: 363.31011031179366
+      positionAbsolute:
+        x: 888.1620272355926
+        y: 363.31011031179366
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_config:
+          jinja2_variables:
+          - value_selector:
+            - '1780319602957'
+            - text
+            variable: text
+          - value_selector:
+            - '1780319499468'
+            - effective_beats
+            variable: effective_beats
+          - value_selector:
+            - '1780319499468'
+            - chapter_goal
+            variable: chapter_goal
+        prompt_template:
+        - id: b481ca8a-4f89-4f34-a390-9e5fad7abdeb
+          role: system
+          text: '你是一位资深文学编辑兼 continuity supervisor（连续性监制），专责长篇连载的结构性审读与设定一致性审计。你的审读标准参照专业编辑
+            workflow：
+
+
+            审读立场
+
+            - 以「审读依据」为唯一裁判标准，不做主观审美评价；
+
+            - 区分「文学性扩写」与「结构性偏离」：前者允许，后者必须 flagged；
+
+            - 区分「路人/背景角色」与「具名/具功能的新增重要角色」。
+
+
+            输出纪律
+
+            - 必须且只能输出符合指定 JSON Schema 的单行或多行 JSON；
+
+            - 禁止输出 Markdown 代码围栏（```）、解释性前言、后记；
+
+            - 所有 issue 描述须具体、可执行、可定位（指明节拍序号、人物姓名或矛盾类型）。
+
+
+            判定原则
+
+            - 存在任一 hard fail 条件时，对应 valid 字段为 false；
+
+            - beat_coverage / character_checks 须逐项填写，不可省略数组元素；
+
+            - 若信息不足以判断某字段，在 note 中说明「证据不足」，并倾向于 flagged 而非默认通过。
+
+
+            ---
+
+
+            你正在执行 Stage-2a：结构编辑审读（Structural Edit Review），仅审读情节结构与节拍完整性，不审人设、世界观、文笔。
+
+
+            你的身份等价于出版流程中的 Developmental Editor（发展编辑）之「结构维度」：只问「这个故事段落是否完成了它声称要完成的事件序列」，不问「写得好不好」。'
+        - edition_type: jinja2
+          id: 1e7cbc92-705b-4514-ae3b-e947b1668906
+          jinja2_text: "═══════════════════════════════════════\r\n【待审正文 · Draft Under\
+            \ Review】\r\n═══════════════════════════════════════\r\n\r\n{{ text }}\r\
+            \n\r\n\r\n\r\n═══════════════════════════════════════\r\n【审读基准 · Authorized\
+            \ Beat Sheet】\r\n═══════════════════════════════════════\r\n\r\n以下 JSON\
+            \ 为本章唯一合法的节拍清单（effective beats）。审读时不得引入清单外的必达情节要求。\r\n\r\n{{ effective_beats\
+            \ }}\r\n\r\n{% if chapter_goal %}\r\n【本章戏剧目标 · Chapter Dramatic Goal】\r\
+            \n\r\n{{ chapter_goal }}\r\n{% endif %}\r\n\r\n\r\n\r\n═══════════════════════════════════════\r\
+            \n【审读 rubric · 逐项量表】\r\n═══════════════════════════════════════\r\n\r\n\
+            请对每一条 beat 执行 Coverage Audit（覆盖审计），并整体评估以下维度：\r\n\r\nA. 节拍覆盖（Beat Coverage）—\
+            \ Hard Fail 条件\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n判定\r\n\r\n\r\n\r\n标准\r\n\
+            \r\n\r\n\r\n\r\n\r\ncovered = true\r\n\r\n\r\n\r\n正文中存在** dramatized scene**\
+            \ 对应该节拍：有明确时地、参与角色、核心动作或对话，读者可回答「这一节拍发生了什么」\r\n\r\n\r\n\r\n\r\n\r\ncovered\
+            \ = false\r\n\r\n\r\n\r\n节拍被完全省略；或仅在旁白中一句话提及而无场景；或与节拍语义明显不符\r\n\r\nB.\
+            \ 节拍顺序（Sequence Integrity）— Hard Fail 条件\r\n\r\n\r\n\r\n\r\n\r\n节拍在正文中的首次呈现顺序须与\
+            \ beat.order 一致；\r\n\r\n\r\n\r\n允许插叙/闪回，但主时间线的事件链顺序不可颠倒导致因果断裂。\r\n\r\n\
+            C. 跑题检测（Goal Drift）— Hard Fail 条件\r\n\r\n\r\n\r\n\r\n\r\n若存在 chapter_goal：正文中有连续超过全文\
+            \ 15% 篇幅与 goal 及 beats 均无关的段落，判不通过；\r\n\r\n\r\n\r\n「无关」指：既非节拍内容，也非 goal\
+            \ 的必要铺垫。\r\n\r\nD. 允许的弹性（Non-fail）\r\n\r\n\r\n\r\n\r\n\r\n节拍之间的扩写、环境描写、次要互动；\r\
+            \n\r\n\r\n\r\n为衔接节拍而增加的过渡场景（须 note 中说明）；\r\n\r\n\r\n\r\n文学性细节增补，只要不改变\
+            \ beat 的核心语义。\r\n\r\nE. 整体判定 outline_valid\r\n\r\n\r\n\r\n\r\n\r\n当且仅当：所有\
+            \ beat covered = true，且无 B/C 类 Hard Fail → outline_valid = true；\r\n\r\
+            \n\r\n\r\n否则 outline_valid = false，outline_issues 须列出所有 Hard Fail 项，中文描述，含\
+            \ beat 序号。\r\n\r\n\r\n\r\n═══════════════════════════════════════\r\n\
+            【输出规范 · JSON Schema】\r\n═══════════════════════════════════════\r\n\r\n\
+            输出单个 JSON 对象，字段如下（type 须严格匹配）：\r\n\r\n{\r\n  \"outline_valid\": boolean,\r\
+            \n  \"outline_issues\": string[],\r\n  \"beat_coverage\": [\r\n    {\r\
+            \n      \"order\": number,\r\n      \"beat_text\": string,\r\n      \"\
+            covered\": boolean,\r\n      \"note\": string\r\n    }\r\n  ],\r\n  \"\
+            sequence_integrity\": boolean,\r\n  \"goal_drift_detected\": boolean,\r\
+            \n  \"reviewer_summary\": string\r\n}\r\n\r\n字段说明：\r\n\r\n\r\n\r\n\r\n\
+            \r\nbeat_coverage：须与 effective beats 一一对应，每条均有 note（通过时说明对应段落特征，不通过时说明缺失原因）；\r\
+            \n\r\n\r\n\r\nreviewer_summary：50–120 字，概括结构审读结论；\r\n\r\n\r\n\r\n若 outline_valid\
+            \ 为 false，outline_issues 至少 1 条。\r\n\r\n只输出 JSON，不要任何其他文字。"
+          role: user
+          text: ''
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              beat_coverage:
+                items:
+                  additionalProperties: false
+                  properties:
+                    beat_text:
+                      type: string
+                    covered:
+                      type: string
+                    note:
+                      type: string
+                    order:
+                      type: number
+                  required:
+                  - order
+                  - beat_text
+                  - covered
+                  - note
+                  type: object
+                type: array
+              goal_drift_detected:
+                type: boolean
+              outline_issues:
+                items:
+                  type: string
+                type: array
+              outline_valid:
+                type: boolean
+              reviewer_summary:
+                type: string
+              sequence_integrity:
+                type: boolean
+            required:
+            - outline_valid
+            - outline_issues
+            - beat_coverage
+            - sequence_integrity
+            - goal_drift_detected
+            - reviewer_summary
+            type: object
+        structured_output_enabled: true
+        title: LLM N2a 大纲剧情校验
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780368302144'
+      position:
+        x: 1200.7533107854033
+        y: 309.63420341686094
+      positionAbsolute:
+        x: 1200.7533107854033
+        y: 309.63420341686094
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_config:
+          jinja2_variables:
+          - value_selector:
+            - '1780319602957'
+            - text
+            variable: text
+          - value_selector:
+            - '1780319499468'
+            - merged_context
+            variable: merged_context
+          - value_selector:
+            - '1780319308559'
+            - plot_memory
+            variable: plot_memory
+        prompt_template:
+        - id: 373fc988-d97c-4af0-b573-9d61fb90b86f
+          role: system
+          text: '你是一位资深文学编辑兼 continuity supervisor（连续性监制），专责长篇连载的结构性审读与设定一致性审计。你的审读标准参照专业编辑
+            workflow：
+
+
+            审读立场
+
+            - 以「审读依据」为唯一裁判标准，不做主观审美评价；
+
+            - 区分「文学性扩写」与「结构性偏离」：前者允许，后者必须 flagged；
+
+            - 区分「路人/背景角色」与「具名/具功能的新增重要角色」。
+
+
+            输出纪律
+
+            - 必须且只能输出符合指定 JSON Schema 的单行或多行 JSON；
+
+            - 禁止输出 Markdown 代码围栏（```）、解释性前言、后记；
+
+            - 所有 issue 描述须具体、可执行、可定位（指明节拍序号、人物姓名或矛盾类型）。
+
+
+            判定原则
+
+            - 存在任一 hard fail 条件时，对应 valid 字段为 false；
+
+            - beat_coverage / character_checks 须逐项填写，不可省略数组元素；
+
+            - 若信息不足以判断某字段，在 note 中说明「证据不足」，并倾向于 flagged 而非默认通过。
+
+
+            ---
+
+
+            你正在执行 Stage-2b：连续性审读（Continuity & Lore Audit），专责人物一致性、世界观合规、设定边界审计，不审节拍覆盖（由
+            Stage-2a 负责）。
+
+
+            你的身份等价于 Script Coordinator + Lore Master：维护 canon（正史）不被侵犯。'
+        - edition_type: jinja2
+          id: 28060ade-7aa6-44fb-8ea3-21942b050129
+          jinja2_text: "═══════════════════════════════════════\r\n【待审正文 · Draft Under\
+            \ Review】\r\n═══════════════════════════════════════\r\n\r\n{{ text }}\r\
+            \n\r\n\r\n\r\n═══════════════════════════════════════\r\n【Canon 基准 · Merged\
+            \ Context】\r\n═══════════════════════════════════════\r\n\r\n{{ merged_context\
+            \ }}\r\n\r\n{% if has_wizard == \"true\" %}\r\n【优先级声明 · Canon Hierarchy】\r\
+            \n\r\n\r\n\r\n\r\n\r\n人物锚点（最高）：wizard characters 中的 personality / worldview\
+            \ / values / speechStyle / appearance → 行为与对话的强制约束；\r\n\r\n\r\n\r\n关系与归属：knowledge\
+            \ 中的 relationships / factionId / items → 社交行为与资源调用约束；\r\n\r\n\r\n\r\n\
+            世界硬规则：world.rules + wizard environment → 物理/魔法/社会法则约束；\r\n\r\n\r\n\r\n\
+            软设定：world.history / geography → 背景细节，矛盾时以 hard rules 为准。\r\n\r\n{% endif\
+            \ %}\r\n\r\n{% if plot_memory %}\r\n\r\n【已发生事实 · Plot Memory】\r\n\r\n\
+            {{ plot_memory }}\r\n\r\n正文不得 contradict 此处已记录事件。若正文与 memory 冲突，判 lore_valid\
+            \ = false。\r\n{% endif %}\r\n\r\n\r\n\r\n═══════════════════════════════════════\r\
+            \n【审读 rubric · 逐项量表】\r\n═══════════════════════════════════════\r\n\r\n\
+            一、人物一致性（Character Integrity）— 对每个出场主要角色检查\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\
+            \n维度\r\n\r\n\r\n\r\n审读问题\r\n\r\n\r\n\r\nHard Fail 示例\r\n\r\n\r\n\r\n\r\
+            \n\r\nworldview_ok\r\n\r\n\r\n\r\n重大抉择是否符合其人生观驱动？\r\n\r\n\r\n\r\n「守护」型角色对他人的核心威胁无动于衷且无动机解释\r\
+            \n\r\n\r\n\r\n\r\n\r\nvalues_ok\r\n\r\n\r\n\r\n代价交换是否符合其价值观排序？\r\n\r\n\
+            \r\n\r\n「正义」型角色为小利主动伤害无辜且无转折铺垫\r\n\r\n\r\n\r\n\r\n\r\nspeech_ok\r\n\r\n\
+            \r\n\r\n对话是否持续符合 speechStyle？\r\n\r\n\r\n\r\n「简短」型角色连续多段长篇演讲；「文绉」型角色通篇粗口\r\
+            \n\r\n\r\n\r\n\r\n\r\nappearance_ok\r\n\r\n\r\n\r\n外貌描写是否与档案一致？\r\n\r\n\
+            \r\n\r\n档案「左颊有疤」正文中变为「完美无瑕」且无解释\r\n\r\n\r\n\r\n\r\n\r\nmotivation_ok\r\
+            \n\r\n\r\n\r\n本章行为是否与其 chapterGoal / arc 方向一致？\r\n\r\n\r\n\r\n角色行为完全背离其本章声称目标\r\
+            \n\r\nspeech_ok 量化参考：\r\n\r\n\r\n\r\n\r\n\r\n若某角色 speechStyle = 「简短」：单句台词超过\
+            \ 40 字连续出现 ≥3 次 → 倾向 false；\r\n\r\n\r\n\r\n若 speechStyle = 「文绉」：全章无任何文言/成语/书面修辞\
+            \ → 倾向 false；\r\n\r\n\r\n\r\n允许单句 OOC 作为情绪爆发，但须在 note 中标注且全章不超过 1 处。\r\
+            \n\r\n二、世界观合规（World Rules Compliance）— Hard Fail 条件\r\n\r\n\r\n\r\n\r\n\
+            \r\n正文是否违反 world.rules 中明确禁止或明确限定的事项；\r\n\r\n\r\n\r\n是否擅自扩展 magic system\
+            \ / technology level 超出已声明边界；\r\n\r\n\r\n\r\n时代/场景是否与 environment 设定明显冲突（如古代场景出现现代物品且无解释）。\r\
+            \n\r\n三、设定边界（Canon Expansion Boundary）— Hard Fail 条件\r\n\r\n\r\n\r\n\r\
+            \n\r\n是否引入新的具名重要角色（有独立姓名 + 推动情节的功能），且不在 merged_context 任何角色列表中；\r\n\r\n\
+            \r\n\r\n是否引入新的重要势力/组织（非路人团体），且无 knowledge factions 授权；\r\n\r\n\r\n\r\n\
+            是否引入新的关键道具/能力（影响情节走向），且无 items 或 world.rules 授权；\r\n\r\n\r\n\r\n不判 fail：无名路人、背景店铺、一次性龙套、环境性群体。\r\
+            \n\r\n四、前情连续性（Continuity）— Hard Fail 条件\r\n\r\n\r\n\r\n\r\n\r\n与 plot_memory\
+            \ 中已记录事实直接矛盾；\r\n\r\n\r\n\r\n已 resolved 的 foreshadowing 被当作未揭示处理（若 memory\
+            \ 中有记录）。\r\n\r\n五、整体判定 lore_valid\r\n\r\n\r\n\r\n\r\n\r\n任一主要角色任一 hard\
+            \ fail 维度为 false，或触发二/三/四类 Hard Fail → lore_valid = false；\r\n\r\n\r\n\
+            \r\nlore_issues 须具体：「【人物·张三】values_ok：第 X 段接受贿赂与其正义价值观冲突，无铺垫」。\r\n\r\n\
+            \r\n\r\n═══════════════════════════════════════\r\n【输出规范 · JSON Schema】\r\
+            \n═══════════════════════════════════════\r\n\r\n{\r\n  \"lore_valid\"\
+            : boolean,\r\n  \"lore_issues\": string[],\r\n  \"character_checks\":\
+            \ [\r\n    {\r\n      \"name\": string,\r\n      \"worldview_ok\": boolean,\r\
+            \n      \"values_ok\": boolean,\r\n      \"speech_ok\": boolean,\r\n \
+            \     \"appearance_ok\": boolean,\r\n      \"motivation_ok\": boolean,\r\
+            \n      \"notes\": string\r\n    }\r\n  ],\r\n  \"world_rules_violations\"\
+            : string[],\r\n  \"unauthorized_expansions\": string[],\r\n  \"continuity_conflicts\"\
+            : string[],\r\n  \"reviewer_summary\": string\r\n}\r\n\r\n\r\n\r\n\r\n\
+            \r\ncharacter_checks：覆盖 merged_context 中本章应出场的所有主要角色（wizard characters\
+            \ 或 knowledge 主要角色）；\r\n\r\n\r\n\r\n若无违规，对应数组为空 []，不可省略字段；\r\n\r\n\r\n\
+            \r\nreviewer_summary：50–120 字。\r\n\r\n只输出 JSON，不要任何其他文字。"
+          role: user
+          text: ''
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              character_checks:
+                items:
+                  additionalProperties: false
+                  properties:
+                    appearance_ok:
+                      type: string
+                    motivation_ok:
+                      type: string
+                    name:
+                      type: string
+                    notes:
+                      type: string
+                    speech_ok:
+                      type: string
+                    values_ok:
+                      type: string
+                    worldview_ok:
+                      type: string
+                  required:
+                  - name
+                  - worldview_ok
+                  - values_ok
+                  - speech_ok
+                  - appearance_ok
+                  - motivation_ok
+                  - notes
+                  type: object
+                type: array
+              continuity_conflicts:
+                items:
+                  type: string
+                type: array
+              lore_issues:
+                items:
+                  type: string
+                type: array
+              lore_valid:
+                type: boolean
+              reviewer_summary:
+                type: string
+              unauthorized_expansions:
+                items:
+                  type: string
+                type: array
+              world_rules_violations:
+                items:
+                  type: string
+                type: array
+            required:
+            - lore_valid
+            - lore_issues
+            - character_checks
+            - world_rules_violations
+            - unauthorized_expansions
+            - continuity_conflicts
+            - reviewer_summary
+            type: object
+        structured_output_enabled: true
+        title: LLM N2B 人设世界观校验
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780368307129'
+      position:
+        x: 1199.7533107854033
+        y: 527.6342034168609
+      positionAbsolute:
+        x: 1199.7533107854033
+        y: 527.6342034168609
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# AGG · Validation Aggregate + Retry Router\n# 输入：outline_result, lore_result,\
+          \ retry_count, max_retry, draft_text\n# 兼容 Dify 误绑名：outline_text / lore_text\n\
+          # 输出：route, retry_count, retry_issues, merged_issues_for_polish, outline_valid,\
+          \ lore_valid\n\nimport json\nimport re\n\nTHINK_BLOCK_RE = re.compile(\n\
+          \    r\"<(?:redacted_)?think>.*?</(?:redacted_)?think>\",\n    re.DOTALL\
+          \ | re.IGNORECASE,\n)\n\n\ndef strip_think_blocks(text: str) -> str:\n \
+          \   return THINK_BLOCK_RE.sub(\"\", text).strip()\n\n\ndef parse_llm_json(raw:\
+          \ str) -> dict:\n    if not raw:\n        return {}\n    text = strip_think_blocks(raw.strip())\n\
+          \    if text.startswith(\"```\"):\n        lines = text.split(\"\\n\")\n\
+          \        text = \"\\n\".join(lines[1:-1] if len(lines) > 2 else lines)\n\
+          \    try:\n        return json.loads(text)\n    except json.JSONDecodeError:\n\
+          \        pass\n    start = text.rfind(\"{\")\n    end = text.rfind(\"}\"\
+          )\n    if start != -1 and end > start:\n        try:\n            return\
+          \ json.loads(text[start : end + 1])\n        except json.JSONDecodeError:\n\
+          \            pass\n    return {}\n\n\ndef main(\n    outline_result: str\
+          \ = \"\",\n    lore_result: str = \"\",\n    retry_count: int = 0,\n   \
+          \ max_retry: int = 3,\n    draft_text: str = \"\",\n    outline_text: str\
+          \ = \"\",\n    lore_text: str = \"\",\n) -> dict:\n    o = parse_llm_json(outline_result\
+          \ or outline_text)\n    l = parse_llm_json(lore_result or lore_text)\n\n\
+          \    outline_valid = bool(o.get(\"outline_valid\", False))\n    lore_valid\
+          \ = bool(l.get(\"lore_valid\", False))\n\n    outline_issues = o.get(\"\
+          outline_issues\") or []\n    lore_issues = l.get(\"lore_issues\") or []\n\
+          \    merged_issues = list(outline_issues) + list(lore_issues)\n\n    retry_issues_json\
+          \ = json.dumps(merged_issues, ensure_ascii=False)\n    merged_issues_for_polish\
+          \ = \"\\n\".join(f\"- {x}\" for x in merged_issues) if merged_issues else\
+          \ \"（无）\"\n\n    if outline_valid and lore_valid:\n        route = \"continue\"\
+          \n        new_retry_count = retry_count\n    elif retry_count < max_retry:\n\
+          \        route = \"retry\"\n        new_retry_count = retry_count + 1\n\
+          \    else:\n        route = \"circuit_break\"\n        new_retry_count =\
+          \ retry_count\n\n    return {\n        \"route\": route,\n        \"retry_count\"\
+          : new_retry_count,\n        \"retry_issues\": retry_issues_json,\n     \
+          \   \"retry_issues_formatted\": merged_issues_for_polish,\n        \"merged_issues_for_polish\"\
+          : merged_issues_for_polish,\n        \"outline_valid\": outline_valid,\n\
+          \        \"lore_valid\": lore_valid,\n    }\n"
+        code_language: python3
+        outputs:
+          lore_valid:
+            children: null
+            type: boolean
+          merged_issues_for_polish:
+            children: null
+            type: string
+          outline_valid:
+            children: null
+            type: boolean
+          retry_count:
+            children: null
+            type: number
+          retry_issues:
+            children: null
+            type: string
+          retry_issues_formatted:
+            children: null
+            type: string
+          route:
+            children: null
+            type: string
+        selected: false
+        title: AGG 校验汇总
+        type: code
+        variables:
+        - value_selector:
+          - '1780368302144'
+          - text
+          value_type: string
+          variable: outline_text
+        - value_selector:
+          - '1780368307129'
+          - text
+          value_type: string
+          variable: lore_text
+        - value_selector:
+          - '1780319308559'
+          - retry_count
+          value_type: number
+          variable: retry_count
+        - value_selector:
+          - '1780319308559'
+          - max_retry
+          value_type: number
+          variable: max_retry
+        - value_selector:
+          - '1780319602957'
+          - text
+          value_type: string
+          variable: draft_text
+      height: 51
+      id: '1780368966801'
+      position:
+        x: 1490.499213987928
+        y: 405.62608750021195
+      positionAbsolute:
+        x: 1490.499213987928
+        y: 405.62608750021195
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: 3fa86e52-39df-424e-afb3-33939aa36451
+            value: retry
+            varType: string
+            variable_selector:
+            - '1780368966801'
+            - route
+          id: 'true'
+          logical_operator: and
+        - case_id: 4ef77a24-b3b2-4f17-bc67-f78a6393dd82
+          conditions:
+          - comparison_operator: is
+            id: 13ada268-c311-45db-8b53-7b79d405016a
+            value: circuit_break
+            varType: string
+            variable_selector:
+            - '1780368966801'
+            - route
+          id: 4ef77a24-b3b2-4f17-bc67-f78a6393dd82
+          logical_operator: and
+        - case_id: 6e8b8ca8-3a38-4b01-95d0-398ae92b0298
+          conditions:
+          - comparison_operator: is
+            id: 33d5bbf8-b6da-49fd-8157-04d9c2b75171
+            value: continue
+            varType: string
+            variable_selector:
+            - '1780368966801'
+            - route
+          id: 6e8b8ca8-3a38-4b01-95d0-398ae92b0298
+          logical_operator: and
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 267
+      id: '1780369374991'
+      position:
+        x: 1819.969539076872
+        y: 391.55506758846684
+      positionAbsolute:
+        x: 1819.969539076872
+        y: 391.55506758846684
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# RE · Client Retry Handoff Output\n# 方案 B：Dify 画布不回连 N1；route=retry\
+          \ 时组装 outputs，由客户端/MCP 再次 POST。\n# 输入：draft_text, retry_count, outline_valid,\
+          \ lore_valid, retry_issues, retry_issues_formatted\n\nimport json\n\n\n\
+          def main(\n    draft_text: str,\n    retry_count: int,\n    outline_valid:\
+          \ bool,\n    lore_valid: bool,\n    retry_issues: str,\n    retry_issues_formatted:\
+          \ str,\n) -> dict:\n    issues = json.loads(retry_issues) if retry_issues\
+          \ else []\n    end_outputs = {\n        \"status\": \"retry\",\n       \
+          \ \"circuit_break\": False,\n        \"human_action_required\": False,\n\
+          \        \"retry_count\": retry_count,\n        \"draft_text\": draft_text\
+          \ or \"\",\n        \"retry_issues_formatted\": retry_issues_formatted or\
+          \ \"\",\n        \"validation_report\": {\n            \"outline_valid\"\
+          : outline_valid,\n            \"lore_valid\": lore_valid,\n            \"\
+          issues\": issues,\n        },\n        \"workflow_version\": \"novel-chapter-generation-v1.1\"\
+          ,\n    }\n    return {\"end_outputs\": json.dumps(end_outputs, ensure_ascii=False)}\n"
+        code_language: python3
+        desc: 校验未通过且仍可重试；组装 status=retry 的 outputs
+        outputs:
+          end_outputs:
+            children: null
+            type: string
+        selected: false
+        title: RE 重试早退输出
+        type: code
+        variables:
+        - value_selector:
+          - '1780319602957'
+          - text
+          value_type: string
+          variable: draft_text
+        - value_selector:
+          - '1780368966801'
+          - retry_count
+          value_type: number
+          variable: retry_count
+        - value_selector:
+          - '1780368966801'
+          - outline_valid
+          value_type: boolean
+          variable: outline_valid
+        - value_selector:
+          - '1780368966801'
+          - lore_valid
+          value_type: boolean
+          variable: lore_valid
+        - value_selector:
+          - '1780368966801'
+          - retry_issues
+          value_type: string
+          variable: retry_issues
+        - value_selector:
+          - '1780368966801'
+          - retry_issues_formatted
+          value_type: string
+          variable: retry_issues_formatted
+      height: 95
+      id: '1780369441579'
+      position:
+        x: 2231.5955223115875
+        y: 189.9729669985961
+      positionAbsolute:
+        x: 2231.5955223115875
+        y: 189.9729669985961
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# CB · Circuit Break End Output\n# 输入：draft_text, retry_count, outline_valid,\
+          \ lore_valid, retry_issues\n\nimport json\n\n\ndef main(\n    draft_text:\
+          \ str,\n    retry_count: int,\n    outline_valid: bool,\n    lore_valid:\
+          \ bool,\n    retry_issues: str,\n) -> dict:\n    issues = json.loads(retry_issues)\
+          \ if retry_issues else []\n    end_outputs = {\n        \"status\": \"circuit_break\"\
+          ,\n        \"circuit_break\": True,\n        \"human_action_required\":\
+          \ True,\n        \"retry_count\": retry_count,\n        \"draft_text\":\
+          \ draft_text or \"\",\n        \"validation_report\": {\n            \"\
+          outline_valid\": outline_valid,\n            \"lore_valid\": lore_valid,\n\
+          \            \"issues\": issues,\n        },\n        \"workflow_version\"\
+          : \"novel-chapter-generation-v1.1\",\n    }\n    return {\"end_outputs\"\
+          : json.dumps(end_outputs, ensure_ascii=False)}\n"
+        code_language: python3
+        desc: 校验达上限，输出可人工介入的结构
+        outputs:
+          end_outputs:
+            children: null
+            type: string
+        selected: false
+        title: CB 熔断输出
+        type: code
+        variables:
+        - value_selector:
+          - '1780319602957'
+          - text
+          value_type: string
+          variable: draft_text
+        - value_selector:
+          - '1780368966801'
+          - retry_count
+          value_type: number
+          variable: retry_count
+        - value_selector:
+          - '1780368966801'
+          - outline_valid
+          value_type: boolean
+          variable: outline_valid
+        - value_selector:
+          - '1780368966801'
+          - lore_valid
+          value_type: boolean
+          variable: lore_valid
+        - value_selector:
+          - '1780368966801'
+          - retry_issues
+          value_type: string
+          variable: retry_issues
+      height: 79
+      id: '1780369446330'
+      position:
+        x: 2225.5955223115875
+        y: 367.9729669985961
+      positionAbsolute:
+        x: 2225.5955223115875
+        y: 367.9729669985961
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - role: system
+          text: '你是一位具备出版级经验的中文长篇小说执笔者，同时熟悉类型文学（玄幻、都市、悬疑、言情等）的叙事范式与连载节奏管理。你的写作建立在以下专业基准之上：
+
+            叙事能力
+
+            熟练运用场景— Sequel 结构、冲突升级曲线与章节内小高潮（Chapter Cliffhanger）设计；
+
+            能在第三人称限知或全知视角下保持视角稳定，避免随意跳 POV；
+
+            擅长以「行动 + 对话 + 内省」三维呈现人物，而非堆砌说明性旁白。
+
+            人物塑造
+
+            将性格（气质层）、人生观（信念层）、价值观（抉择层）落实为可观察的具体行为；
+
+            对话具备角色辨识度：用词、句长、修辞习惯与情绪外显方式须与人物档案一致；
+
+            拒绝脸谱化：允许矛盾与灰度，但不得违背已给定的人设锚点。
+
+            世界观执行
+
+            将环境要素（时代、地理、社会结构、超自然规则）转化为可感知的感官细节；
+
+            严格遵守设定中的「硬规则」，不对已声明不可违反的法则进行 silent retcon。
+
+            输出纪律
+
+            只输出任务要求的正文或脚本，不输出创作说明、道歉、元评论、自检清单；
+
+            不使用 Markdown 标题、列表、表格（除非节点明确要求结构化格式）；
+
+            不虚构任务上下文中未授权的重要新角色、势力、道具或历史事件。
+
+
+            本节点专项职责
+
+            你正在执行 Stage-3：线稿编辑（Line Edit） 阶段。稿件已通过结构与人设审读，你的任务是提升语言质量、节奏与沉浸感，同时严格遵守以下「不可触碰层（Non-negotiable
+            Layer）」：
+
+            不可更改
+
+            事件发生的先后顺序；
+
+            每个 dramatized scene 是否存在（节拍覆盖不得回退）；
+
+            人物重大决策的方向与动机逻辑；
+
+            世界观硬规则与已确立的人物锚点。
+
+            可以且应当优化
+
+            语病、冗余、重复用词、弱动词、抽象形容词堆砌；
+
+            对话的自然度、潜台词、角色辨识度；
+
+            场景感官细节的分镜感与氛围浓度；
+
+            段落节奏：长短句交错、场景切换的呼吸感。'
+        - id: a7de0276-a3fb-4b32-97c6-085589a471a0
+          role: user
+          text: '═══════════════════════════════════════ 【已通过审读的原始草稿】 ═══════════════════════════════════════
+
+            {{#1780319602957.text#}}
+
+            ═══════════════════════════════════════ 【编审参考意见 · Editorial Notes】 ═══════════════════════════════════════
+
+            以下意见来自上一阶段审读（含已通过项的改进建议），润色时可参考，但不得以此为借口删改情节事实：
+
+            {{#1780368966801.merged_issues_for_polish#}}
+
+            ═══════════════════════════════════════ 【Line Edit 执行规范】 ═══════════════════════════════════════
+
+            1. 语言层（Prose Quality）
+
+            将「告诉式」叙述改为「展示式」：用动作、细节、对话暗示情绪，减少「他很愤怒」类直述；
+
+            删除 filler 句（「与此同时」「不得不说」「事实上」等无信息增量连接词），除非用于节奏刻意停顿；
+
+            同一语义不重复表达超过两次；同一段落内避免相同形容词/动词根重复。
+
+            2. 对话层（Dialogue Craft）
+
+            对话须承担至少一项功能：推进情节 / 揭示性格 / 制造冲突 / 传递信息；
+
+            保持各角色 speechStyle 辨识度：句长分布、语气词、是否省略主语、是否使用反问/沉默；
+
+            引号规范：中文双引号「」；对话标签（「他说」）适度使用，避免连续多轮仅引号无动作穿插；
+
+            允许删改对话措辞，不允许删改对话所承诺的情节功能。
+
+            3. 场景层（Scene Immersion）
+
+            关键场景至少强化一种非视觉感官（声/触/嗅/味）；
+
+            环境细节须服务氛围（tone），不做无关风景堆砌；
+
+            动作描写具备物理连贯性（人物位置、道具状态前后一致）。
+
+            4. 节奏层（Pacing）
+
+            高潮段：短句、短段、动作密集；
+
+            铺垫/余韵段：可适当延长描写与内省，但不拖慢至读者失焦；
+
+            章末宜留「情绪余波」或「悬念钩子」，避免 abrupt stop。
+
+            5. 禁止事项
+
+            不增删 beat 对应场景；
+
+            不引入审读基准外的新重要角色/势力/道具；
+
+            不输出润色说明、修改对照、Editor''s note；
+
+            不使用 Markdown 格式。
+
+            请输出润色后的完整章节正文。篇幅与初稿相当（±10%），直接开始叙事，无需标题。'
+        selected: false
+        title: LLM N3 润色
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780370030463'
+      position:
+        x: 2221.5955223115875
+        y: 607.9729669985961
+      positionAbsolute:
+        x: 2221.5955223115875
+        y: 607.9729669985961
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 89556d8e-a77d-4f45-b695-44fe3dab8e42
+          role: system
+          text: '你是一位具备出版级经验的中文长篇小说执笔者，同时熟悉类型文学（玄幻、都市、悬疑、言情等）的叙事范式与连载节奏管理。你的写作建立在以下专业基准之上：
+
+            叙事能力
+
+            熟练运用场景— Sequel 结构、冲突升级曲线与章节内小高潮（Chapter Cliffhanger）设计；
+
+            能在第三人称限知或全知视角下保持视角稳定，避免随意跳 POV；
+
+            擅长以「行动 + 对话 + 内省」三维呈现人物，而非堆砌说明性旁白。
+
+            人物塑造
+
+            将性格（气质层）、人生观（信念层）、价值观（抉择层）落实为可观察的具体行为；
+
+            对话具备角色辨识度：用词、句长、修辞习惯与情绪外显方式须与人物档案一致；
+
+            拒绝脸谱化：允许矛盾与灰度，但不得违背已给定的人设锚点。
+
+            世界观执行
+
+            将环境要素（时代、地理、社会结构、超自然规则）转化为可感知的感官细节；
+
+            严格遵守设定中的「硬规则」，不对已声明不可违反的法则进行 silent retcon。
+
+            输出纪律
+
+            只输出任务要求的正文或脚本，不输出创作说明、道歉、元评论、自检清单；
+
+            不使用 Markdown 标题、列表、表格（除非节点明确要求结构化格式）；
+
+            不虚构任务上下文中未授权的重要新角色、势力、道具或历史事件。
+
+
+            ---
+
+
+            你正在执行 Stage-4a：出版排版规范化（Publication Format Normalization）。输入为已通过 Line Edit
+            的润色稿，输出为可直接交付阅读平台的标准中文小说章节正文。
+
+
+            本阶段不做实质性改写，仅执行格式规范、段落优化与标题植入。'
+        - id: 2ef4fdea-a16e-4ca5-b495-6cf36e01634d
+          role: user
+          text: '═══════════════════════════════════════ 【润色定稿输入 · Line Edit Manuscript】
+            ═══════════════════════════════════════
+
+            {{#1780370030463.text#}}
+
+            ═══════════════════════════════════════ 【章节元数据】 ═══════════════════════════════════════
+
+            章节标题：{{#1780319308559.chapter_title#}}
+
+            章节 ID：{{#1780319308559.chapter_id#}}
+
+            ═══════════════════════════════════════ 【Publication Format Spec · 出版格式规范】
+            ═══════════════════════════════════════
+
+            1. 章标题（Chapter Heading）
+
+            正文第一行：单独一行输出「{{#1780319308559.chapter_title#}}」；
+
+            不自动添加「第 X 章」前缀，除非 {{#1780319308559.chapter_id#}}本身已含；
+
+            标题后空一行，再开始正文。
+
+            2. 段落规范（Paragraphing）
+
+            一般叙述段：2–5 句，单段不超过 120 字为宜（对话段除外）；
+
+            场景切换（时/地/POV 变化）：段前空一行；
+
+            严禁出现超 200 字无断行的「墙式段落」；
+
+            连续对话轮次超过 6 轮时，中间插入动作/神态描写段以调节节奏。
+
+            3. 对话与标点（Dialogue & Punctuation）
+
+            对话使用中文直角引号「」；
+
+            对话内嵌套引用使用『』；
+
+            省略号：……（六点）；
+
+            破折号：——（占两字符）；
+
+            不使用英文直引号 " 与 '' 作为正文标点。
+
+            4. 内心活动（Interior Monologue）
+
+            全书统一采用以下单一方案（择一贯穿全章）：
+
+            方案 A：无引号，第三人称内省（「他意识到……」）；
+
+            方案 B：单引号『』包裹自由直接引语；
+
+            本节点默认方案 A，除非润色稿已统一使用方案 B。
+
+            5. 数字与时间（Numerals）
+
+            十以内中文数字与阿拉伯数字均可，须全章统一；
+
+            时间表述全章统一（「子时三刻」或「凌晨两点」，不混用）。
+
+            6. 禁止输出（Forbidden Output）
+
+            Markdown 语法（# * _ ` 等）；
+
+            编号列表、表格、分隔线（---）；
+
+            作者按、版权声明、「本章完」「待续」；
+
+            JSON、XML、HTML 标签；
+
+            分镜/镜头/Scene 标记（属于视频脚本阶段）。
+
+            7. 篇幅控制
+
+            相对润色稿：只做段落拆分/合并与标点修正，不删减情节内容；
+
+            字数浮动 ±5%。
+
+            请按上述规范输出最终小说正文。第一行必须是章标题。'
+        selected: false
+        title: LLM N4a 小说正文
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780370481160'
+      position:
+        x: 2539.205209851978
+        y: 450.9729669985961
+      positionAbsolute:
+        x: 2539.205209851978
+        y: 450.9729669985961
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: be83ac5d-5d67-485c-8593-eeb5902db5a7
+            value: generic-v1
+            varType: string
+            variable_selector:
+            - '1780319308559'
+            - video_platform_template
+          id: 'true'
+          logical_operator: and
+        - case_id: bddb569b-1678-46f6-ad04-617eb42bd9bc
+          conditions:
+          - comparison_operator: contains
+            id: f9f3d129-5e74-4765-99af-e99ef55ead76
+            value: platform-x-v1
+            varType: string
+            variable_selector:
+            - '1780319308559'
+            - video_platform_template
+          logical_operator: and
+        - case_id: 1429ac26-bad9-49e8-a5a5-964c398915a7
+          conditions:
+          - comparison_operator: contains
+            id: c08a8fa2-5a48-4cbe-aaa5-b100622db6e6
+            value: configurable-v1
+            varType: string
+            variable_selector:
+            - '1780319308559'
+            - video_platform_template
+          logical_operator: and
+        selected: false
+        title: 条件分支 2
+        type: if-else
+      height: 291
+      id: '1780370659326'
+      position:
+        x: 2547.205209851978
+        y: 763.9729669985961
+      positionAbsolute:
+        x: 2547.205209851978
+        y: 763.9729669985961
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - role: system
+          text: '你是一位具备出版级经验的中文长篇小说执笔者，同时熟悉类型文学（玄幻、都市、悬疑、言情等）的叙事范式与连载节奏管理。你的写作建立在以下专业基准之上：
+
+            叙事能力
+
+            熟练运用场景— Sequel 结构、冲突升级曲线与章节内小高潮（Chapter Cliffhanger）设计；
+
+            能在第三人称限知或全知视角下保持视角稳定，避免随意跳 POV；
+
+            擅长以「行动 + 对话 + 内省」三维呈现人物，而非堆砌说明性旁白。
+
+            人物塑造
+
+            将性格（气质层）、人生观（信念层）、价值观（抉择层）落实为可观察的具体行为；
+
+            对话具备角色辨识度：用词、句长、修辞习惯与情绪外显方式须与人物档案一致；
+
+            拒绝脸谱化：允许矛盾与灰度，但不得违背已给定的人设锚点。
+
+            世界观执行
+
+            将环境要素（时代、地理、社会结构、超自然规则）转化为可感知的感官细节；
+
+            严格遵守设定中的「硬规则」，不对已声明不可违反的法则进行 silent retcon。
+
+            输出纪律
+
+            只输出任务要求的正文或脚本，不输出创作说明、道歉、元评论、自检清单；
+
+            不使用 Markdown 标题、列表、表格（除非节点明确要求结构化格式）；
+
+            不虚构任务上下文中未授权的重要新角色、势力、道具或历史事件。
+
+
+            你是一位兼具 分镜编剧（Storyboard Writer） 与 AI 视频生成 Prompt 工程师 双重背景的专业从业者。你熟悉将文学叙事转化为
+            可执行、可生成、可剪辑 的镜头序列，并理解当前主流文生视频/图生视频模型对 Prompt 的具体性要求：
+
+            主体（Subject）、动作（Action）、环境（Environment）、光影（Lighting）、风格（Style）须分离描述；
+
+            避免抽象比喻（「心如刀绞」），转化为可见行为（「他按住胸口，指节发白」）；
+
+            镜头设计服务于叙事节拍，而非平均切片。
+
+
+            '
+        - id: b0d97925-586a-4507-96e3-c14ac71324f6
+          role: user
+          text: '═══════════════════════════════════════ 【源文本 · Source Narrative】
+            ═══════════════════════════════════════
+
+            {{#1780370030463.text#}}
+
+            ═══════════════════════════════════════ 【章节元数据】 ═══════════════════════════════════════
+
+            章节：{{#1780319308559.chapter_title#}}（{{#1780319308559.chapter_id#}}）
+
+            模板：generic-v1（通用分镜脚本）
+
+            ═══════════════════════════════════════ 【分镜脚本生产规范 · Storyboard Spec】 ═══════════════════════════════════════
+
+            1. 输出结构
+
+            文件首行（标题行）：
+
+            视频脚本 · {{#1780319308559.chapter_title#}}
+
+            随后每个镜头为一个独立块，格式如下（字段名不可更改）：
+
+            【镜头 S{三位序号}】 时长：{整数秒}s 景别：{远景/全景/中景/近景/特写/大特写} 机位：{固定/推/拉/摇/移/跟/升降/手持}
+            画面：{主体 + 环境 + 光影 + 色调 + 风格关键词，50–120 字，具体可视} 动作：{人物/物体可见动作，含起始态→变化态} 对白/旁白：{台词原文或「无」；旁白标注「（旁白）」}
+            音效：{环境音/拟音/Foley，无则「无」} BGM：{情绪/节奏描述或「无」} 转场：{切/溶/淡入淡出/匹配剪辑/无特殊}
+
+            2. 镜头数量与覆盖
+
+            总镜头数：10–24 个，依章节长度与 beat 密度调整；
+
+            每个关键情节转折点至少 1 个 dedicated 镜头；
+
+            对话场景：说话者反应镜头与听者反应镜头交替（shot-reverse-shot 原则）；
+
+            章末须预留 Hook 镜头（悬念/情绪峰值/定格）。
+
+            3. 画面描述专业要求（Visual Prompt Engineering）
+
+            每个「画面」字段须包含：主体外观锚点（与小说一致的外貌特征）、空间位置、时间/天气、主光源方向、情绪色调；
+
+            使用 cinematography 词汇：如 side lighting, rim light, shallow depth of field,
+            rain streaks, neon reflection；
+
+            禁止：「很美」「非常震撼」等不可生成的空泛形容；
+
+            AI 生成友好：优先 concrete nouns & verbs。
+
+            4. 对白处理
+
+            对白须来自源文本或忠实压缩，不改变语义、不 OOC；
+
+            长台词可拆至多个镜头，标注「（接 S00X）」；
+
+            无对白镜头须用「对白/旁白：无」，不可省略字段。
+
+            5. 节奏与时长
+
+            单镜头时长：3–15 秒；动作镜头偏短，氛围镜头可偏长；
+
+            全章总时长目标：{{#1780319308559.estimated_duration_sec#}}秒；各镜头 duration 之和应接近此值
+            ±20%。
+
+            6. 禁止输出
+
+            JSON、Markdown 表格、XML；
+
+            模型参数、Negative prompt、Seed 等工程字段（除非平台另行要求）；
+
+            对源文本的情节改写或删减。
+
+            请输出完整分镜脚本。首行必须是标题行，随后按 S001 递增排列全部镜头块。'
+        selected: false
+        title: LLM N4b-G
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780370729697'
+      position:
+        x: 2880.2105716357687
+        y: 649.6458140582357
+      positionAbsolute:
+        x: 2880.2105716357687
+        y: 649.6458140582357
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - role: system
+          text: '你是一位具备出版级经验的中文长篇小说执笔者，同时熟悉类型文学（玄幻、都市、悬疑、言情等）的叙事范式与连载节奏管理。你的写作建立在以下专业基准之上：
+
+            叙事能力
+
+            熟练运用场景— Sequel 结构、冲突升级曲线与章节内小高潮（Chapter Cliffhanger）设计；
+
+            能在第三人称限知或全知视角下保持视角稳定，避免随意跳 POV；
+
+            擅长以「行动 + 对话 + 内省」三维呈现人物，而非堆砌说明性旁白。
+
+            人物塑造
+
+            将性格（气质层）、人生观（信念层）、价值观（抉择层）落实为可观察的具体行为；
+
+            对话具备角色辨识度：用词、句长、修辞习惯与情绪外显方式须与人物档案一致；
+
+            拒绝脸谱化：允许矛盾与灰度，但不得违背已给定的人设锚点。
+
+            世界观执行
+
+            将环境要素（时代、地理、社会结构、超自然规则）转化为可感知的感官细节；
+
+            严格遵守设定中的「硬规则」，不对已声明不可违反的法则进行 silent retcon。
+
+            输出纪律
+
+            只输出任务要求的正文或脚本，不输出创作说明、道歉、元评论、自检清单；
+
+            不使用 Markdown 标题、列表、表格（除非节点明确要求结构化格式）；
+
+            不虚构任务上下文中未授权的重要新角色、势力、道具或历史事件。
+
+
+            你是 AI 视频生成平台 X 认证的脚本格式化工程师，负责将文学章节转化为该平台 Batch Import API 可识别的标准化镜头记录。你必须严格遵循平台字段定义，确保每条记录可被
+            API 解析并直接进入生成队列。
+
+            '
+        - id: 217dcf84-dcaa-4cb0-b3be-a8c1b7c29476
+          role: user
+          text: '═══════════════════════════════════════ 【源文本 · Source Narrative】
+            ═══════════════════════════════════════
+
+            {{#1780370030463.text#}}
+
+            ═══════════════════════════════════════ 【章节与平台参数】 ═══════════════════════════════════════
+
+            章节：{{#1780319308559.chapter_title#}}（{{#1780319308559.chapter_id#}}）
+
+            平台模板：platform-x-v1
+
+            目标总时长：{{#1780319308559.estimated_duration_sec#}} 秒（各镜头 duration 之和应接近
+            ±20%）
+
+            ═══════════════════════════════════════ 【Platform X Import Spec】 ═══════════════════════════════════════
+
+            1. 输出格式
+
+            第一行必须是 表头（字段名精确匹配，竖线分隔）： Scene_ID|Duration|Visual_Prompt|Dialogue|Camera_Movement|Audio|Transition|Character_Anchor
+
+            从第二行起，每行一个镜头，字段用竖线 | 分隔，共 8 列，不可缺列。
+
+            2. 字段定义
+
+            字段
+
+            类型
+
+            规范
+
+            Scene_ID
+
+            string
+
+            S001 起递增，三位数字
+
+            Duration
+
+            int
+
+            秒数，3–15
+
+            Visual_Prompt
+
+            string
+
+            英文或中文；须含 subject + environment + lighting + style；50–150 字；禁止换行
+
+            Dialogue
+
+            string
+
+            台词文本；无对白填 NONE；旁白前缀 NARR:
+
+            Camera_Movement
+
+            enum
+
+            static / pan_left / pan_right / zoom_in / zoom_out / tracking / crane
+            / handheld
+
+            Audio
+
+            string
+
+            sfx 或 ambient 描述；无则 NONE
+
+            Transition
+
+            enum
+
+            cut / dissolve / fade_in / fade_out / match_cut
+
+            Character_Anchor
+
+            string
+
+            本镜头主要角色外貌锚点（发色/服装/标志特征），多人用分号分隔；无人物填 NONE
+
+            3. 内容规则
+
+            镜头数 12–28，覆盖源文本全部关键 beat；
+
+            Visual_Prompt 须 machine-parseable：具体名词 + 可见动作，无 metaphor；
+
+            Dialogue 不得 OOC，不得凭空增删情节；
+
+            Character_Anchor 须与源文本外貌设定一致。
+
+            4. 禁止
+
+            表头以外的 Markdown、JSON、解释文字；
+
+            字段内嵌入竖线 | 或换行符；
+
+            Scene 编号跳号或重复。
+
+            请直接输出：第一行表头，随后全部镜头数据行。不要任何前言或后记。'
+        selected: false
+        title: LLM N4b-X
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780370736323'
+      position:
+        x: 2882.2105716357687
+        y: 897.6458140582357
+      positionAbsolute:
+        x: 2882.2105716357687
+        y: 897.6458140582357
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        model:
+          completion_params:
+            temperature: 0.5
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 3f823127-3ac5-4690-b0d5-c0160395ff2c
+          role: system
+          text: '你是一位 可配置视频脚本格式化工程师（Configurable Video Script Formatter）。你的任务是将文学章节润色稿转化为严格符合用户给定模板配置（VideoTemplateConfig）
+            的镜头序列，供下游 AI 视频软件导入或 API 解析。
+
+            核心原则
+
+            模板配置是唯一字段权威：只输出配置中 columns[].key 定义的字段，不得擅自增删列或改名；
+
+            内容忠实源文本：对白与情节来自润色稿，禁止 OOC、跳步、凭空增删重要事件；
+
+            机器可解析：outputFormat=json 时只输出一个 JSON 对象；outputFormat=delimited 时只输出表头（若配置要求）+
+            数据行，字段内禁止嵌入分隔符与换行；
+
+            可视化可生成：描述字段须具体名词 + 可见动作 + 光影环境，禁止「很美」「非常震撼」等空泛语；
+
+            enum 严守：type=enum 的列只能使用配置中 options 列出的值；
+
+            空值占位：无内容时使用列配置的 emptyValue，缺省为 NONE。
+
+            输出纪律
+
+            禁止 Markdown 代码围栏（```）、解释性前言、后记、自检清单；
+
+            禁止输出 JSON 以外的多余文字（json 模式）；delimited 模式禁止表头/数据行以外的文字。'
+        - id: 657f9753-dbda-4fe0-b39e-24c934ecff42
+          role: user
+          text: '═══════════════════════════════════════ 【源文本 · Source Narrative】
+            ═══════════════════════════════════════
+
+            {{#1780370030463.text#}}
+
+            ═══════════════════════════════════════ 【章节元数据】 ═══════════════════════════════════════
+
+            章节：{{#1780319308559.chapter_title#}}（{{#1780319308559.chapter_id#}}）
+
+            模板模式：configurable-v1
+
+            ═══════════════════════════════════════ 【VideoTemplateConfig · 字段与输出契约】
+            ═══════════════════════════════════════
+
+            以下 JSON 定义本任务的全部输出列、类型、枚举与格式。你必须逐列遵守。
+
+            {{#1780319308559.video_template_config#}}
+
+            ═══════════════════════════════════════ 【执行规范 · Production Rules】 ═══════════════════════════════════════
+
+            1. 解析配置
+
+            读取 outputFormat：json 或 delimited；
+
+            读取 columns 数组顺序：delimited 模式下列顺序必须与数组一致；
+
+            读取 shotCount.min / shotCount.max（缺省则 8–28）；镜头数须落在此区间；
+
+            读取 estimatedDurationSec（缺省 180）：若存在 duration / duration_sec 类整型列，各镜头之和应接近该值
+            ±20%。
+
+            2. 逐列填充（对每个镜头）
+
+            对 columns 中每一项：
+
+            type
+
+            规则
+
+            string / text
+
+            满足 description、minLength/maxLength；text 可较长但 delimited 模式内单行
+
+            integer / number
+
+            满足 minimum/maximum；duration 类通常 3–15
+
+            boolean
+
+            仅 true 或 false
+
+            enum
+
+            必须为 options 中之一，大小写一致
+
+            required=false 且无内容
+
+            使用 emptyValue 或 NONE
+
+            3. outputFormat = json 时的输出形状（唯一合法结构）
+
+            输出单个 JSON 对象，不要包裹在 markdown 围栏中：
+
+            { "templateId": "<与配置 templateId 相同>", "chapterId": "
+
+
+            ", "chapterTitle": "
+
+
+            ", "estimatedDurationSec":
+
+
+            , "shots": [ { "<columns[0].key>":
+
+
+            , "<columns[1].key>":
+
+
+            , ... }, ... ] }
+
+
+            shots 数组长度在 shotCount 区间内；
+
+            每个 shot 对象仅包含 columns 中定义的 key，required 列不可省略；
+
+            字符串值使用 UTF-8，JSON 内须正确转义。
+
+            4. outputFormat = delimited 时的输出形状
+
+            若 includeHeader 为 true（默认）：第一行为各列 key，以 delimiter 连接；
+
+            随后每行一个镜头，字段顺序与 columns 一致，以 delimiter 连接；
+
+            字段值内不得出现 delimiter 字符或换行符；
+
+            不要输出 JSON、Markdown 表格、标题行。
+
+            5. globalRules
+
+            若配置中存在 globalRules 数组，逐条视为 Hard Constraints。
+
+            6. 禁止
+
+            改写润色稿核心情节；新增配置与源文本均未授权的重要角色/道具；
+
+            输出配置外字段；enum 外取值；delimited 模式多行空行或注释行。
+
+            请根据 VideoTemplateConfig 立即生成完整视频脚本。只输出符合 outputFormat 的正文，不要任何其他文字。'
+        selected: false
+        title: LLM Nb4-c
+        type: llm
+        vision:
+          enabled: false
+      height: 87
+      id: '1780370743291'
+      position:
+        x: 2889.2105716357687
+        y: 1123.6458140582358
+      positionAbsolute:
+        x: 2889.2105716357687
+        y: 1123.6458140582358
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# N4B-MUX · Video Script Branch Merge\n# 三分支 N4b 仅有一路执行；合并为单一 video_script\
+          \ 供 N5 汇聚与 END_OK 使用。\n# 输入：generic_text, platform_text, configurable_text（未执行分支为空）\n\
+          \ndef main(\n    generic_text: str,\n    platform_text: str,\n    configurable_text:\
+          \ str,\n) -> dict:\n    video_script = (generic_text or platform_text or\
+          \ configurable_text or \"\").strip()\n    return {\"video_script\": video_script}\n"
+        code_language: python3
+        outputs:
+          video_script:
+            children: null
+            type: string
+        selected: false
+        title: N4b-MUX
+        type: code
+        variables:
+        - value_selector:
+          - '1780370736323'
+          - text
+          value_type: string
+          variable: platform_text
+        - value_selector:
+          - '1780370743291'
+          - text
+          value_type: string
+          variable: configurable_text
+        - value_selector:
+          - '1780370729697'
+          - text
+          value_type: string
+          variable: generic_text
+      height: 51
+      id: '1780372951848'
+      position:
+        x: 3329.251949812557
+        y: 880.9067561158881
+      positionAbsolute:
+        x: 3329.251949812557
+        y: 880.9067561158881
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: 从定稿正文提取 continuity 摘要
+        model:
+          completion_params:
+            temperature: 0.2
+          mode: chat
+          name: deepseek-v4-pro
+          provider: langgenius/deepseek/deepseek
+        prompt_template:
+        - id: 4e1ada62-6984-4ecf-8e2e-4c5aad8839ba
+          role: system
+          text: '你是一位资深文学编辑兼 continuity supervisor（连续性监制），专责长篇连载的结构性审读与设定一致性审计。你的审读标准参照专业编辑
+            workflow：
+
+            审读立场
+
+            以「审读依据」为唯一裁判标准，不做主观审美评价；
+
+            区分「文学性扩写」与「结构性偏离」：前者允许，后者必须 flagged；
+
+            区分「路人/背景角色」与「具名/具功能的新增重要角色」。
+
+            输出纪律
+
+            必须且只能输出符合指定 JSON Schema 的单行或多行 JSON；
+
+            禁止输出 Markdown 代码围栏（```）、解释性前言、后记；
+
+            所有 issue 描述须具体、可执行、可定位（指明节拍序号、人物姓名或矛盾类型）。
+
+            判定原则
+
+            存在任一 hard fail 条件时，对应 valid 字段为 false；
+
+            beat_coverage / character_checks 须逐项填写，不可省略数组元素；
+
+            若信息不足以判断某字段，在 note 中说明「证据不足」，并倾向于 flagged 而非默认通过。
+
+            你同时承担 narrative continuity archivist（叙事连续性档案员）职责：从定稿文本中提取客观、可检索、可跨章引用的状态快照，禁止文学性润色或主观预测后续剧情。
+
+
+            本节点专项职责
+
+            你正在执行 Stage-5：Continuity Archive Update（连续性档案增量更新） 阶段。你的输出将写入长篇小说 动态剧情记忆库，供后续章节的
+            AI 生成与人工审读引用。
+
+            你必须以 档案员（Archivist） 而非 作者（Author） 的身份工作：
+
+            只记录已经发生的事实；
+
+            不做预测、不写读者向评论、不使用煽情修辞；
+
+            不删除或覆盖历史章节的摘要，仅生成本章增量 patch。'
+        - id: 58056390-b153-4db0-afb4-841631947cde
+          role: user
+          text: '═══════════════════════════════════════ 【本章定稿正文 · Canonical Chapter
+            Text】 ═══════════════════════════════════════
+
+            {{#1780370481160.text#}}
+
+            ═══════════════════════════════════════ 【现有记忆库 · Existing Plot Memory】
+            ═══════════════════════════════════════
+
+            {{#1780319308559.plot_memory#}}
+
+            ═══════════════════════════════════════ 【章节标识】 ═══════════════════════════════════════
+
+            chapterId: {{#1780319308559.chapter_id#}}
+
+            title: {{#1780319308559.chapter_title#}}
+
+            ═══════════════════════════════════════ 【Archive Patch 生成规范】 ═══════════════════════════════════════
+
+            1. chapterSummary.summary（150–400 汉字）
+
+            采用第三人称客观叙述，过去式或现在式全章统一；
+
+            结构建议：开篇状态 → 核心冲突经过 → 结尾状态/悬念；
+
+            禁止：「本章讲述了」「作者意图」「读者将会看到」；
+
+            必须包含：时地变化、关键转折、结尾悬念（若有）。
+
+            2. chapterSummary.keyEvents（3–8 条）
+
+            每条 8–25 字，动词开头，描述不可逆或高信息量事件；
+
+            按时间顺序排列；
+
+            不记录纯心理活动，除非心理活动直接导致行为变化。
+
+            3. chapterSummary.characterStates
+
+            覆盖本章所有主要出场角色的结尾状态（物理/情绪/关系/持有物/认知变化）；
+
+            state 字段须具体：「左臂轻伤，已确认剑客口诀与师门有关」优于「很困惑」；
+
+            characterId 未知时填 "unknown"，name 必填。
+
+            4. chapterSummary.openThreads
+
+            列出本章新埋设或仍未解决的悬念/伏笔/承诺；
+
+            已在本章解决的不列入；
+
+            每条须可被后续章节验证是否 resolved。
+
+            5. globalSummaryDelta（1–3 句，50–120 字）
+
+            描述本章对全书主线的增量贡献；
+
+            将 append 至 globalSummary，须自成逻辑，不依赖「上一章」指代；
+
+            不重复 chapterSummary 全文。
+
+            6. foreshadowingUpdates
+
+            新伏笔：生成唯一 id（fs-{chapter_id}-{序号}），resolved: false；
+
+            已揭示伏笔：同 id，resolved: true，description 补充揭示方式；
+
+            若无伏笔更新，输出空数组 []。
+
+            7. 一致性约束
+
+            不得与 Existing Plot Memory 中已记录事实矛盾；
+
+            若正文似乎 contradict memory，在 reviewer_internal_note 字段说明（该字段可选，仅用于调试，客户端可忽略）。
+
+            ═══════════════════════════════════════ 【输出 JSON Schema】 ═══════════════════════════════════════
+
+            {”chapterSummary“:“{{#1780319308559.chapter_id#}}", "title": "{{#1780319308559.chapter_title#}}",
+            "summary": string, "keyEvents": string[], "characterStates": [ { "characterId":
+            string, "name": string, "state": string } ], "openThreads": string[] },
+            "globalSummaryDelta": string, "foreshadowingUpdates": [ { "id": string,
+            "plantedIn": string, "description": string, "resolved": boolean } ] }
+
+            只输出 JSON，不要任何其他文字。'
+        selected: false
+        structured_output:
+          schema:
+            additionalProperties: false
+            properties:
+              additionalProperties:
+                type: string
+              properties:
+                additionalProperties: false
+                properties:
+                  chapterSummary:
+                    additionalProperties: false
+                    properties:
+                      properties:
+                        additionalProperties: false
+                        properties:
+                          chapterId:
+                            additionalProperties: false
+                            properties:
+                              type:
+                                type: string
+                            required:
+                            - type
+                            type: object
+                          characterStates:
+                            additionalProperties: false
+                            properties:
+                              items:
+                                additionalProperties: false
+                                properties:
+                                  properties:
+                                    additionalProperties: false
+                                    properties:
+                                      characterId:
+                                        additionalProperties: false
+                                        properties:
+                                          type:
+                                            type: string
+                                        required:
+                                        - type
+                                        type: object
+                                      name:
+                                        additionalProperties: false
+                                        properties:
+                                          type:
+                                            type: string
+                                        required:
+                                        - type
+                                        type: object
+                                      state:
+                                        additionalProperties: false
+                                        properties:
+                                          type:
+                                            type: string
+                                        required:
+                                        - type
+                                        type: object
+                                    required:
+                                    - characterId
+                                    - name
+                                    - state
+                                    type: object
+                                  required:
+                                    items:
+                                      type: string
+                                    type: array
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                - required
+                                - properties
+                                type: object
+                              type:
+                                type: string
+                            required:
+                            - type
+                            - items
+                            type: object
+                          keyEvents:
+                            additionalProperties: false
+                            properties:
+                              items:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              maxItems:
+                                type: number
+                              minItems:
+                                type: number
+                              type:
+                                type: string
+                            required:
+                            - type
+                            - items
+                            - minItems
+                            - maxItems
+                            type: object
+                          openThreads:
+                            additionalProperties: false
+                            properties:
+                              items:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              type:
+                                type: string
+                            required:
+                            - type
+                            - items
+                            type: object
+                          summary:
+                            additionalProperties: false
+                            properties:
+                              description:
+                                type: string
+                              type:
+                                type: string
+                            required:
+                            - type
+                            - description
+                            type: object
+                          title:
+                            additionalProperties: false
+                            properties:
+                              type:
+                                type: string
+                            required:
+                            - type
+                            type: object
+                        required:
+                        - chapterId
+                        - title
+                        - summary
+                        - keyEvents
+                        - characterStates
+                        - openThreads
+                        type: object
+                      required:
+                        items:
+                          type: string
+                        type: array
+                      type:
+                        type: string
+                    required:
+                    - type
+                    - required
+                    - properties
+                    type: object
+                  foreshadowingUpdates:
+                    additionalProperties: false
+                    properties:
+                      items:
+                        additionalProperties: false
+                        properties:
+                          properties:
+                            additionalProperties: false
+                            properties:
+                              description:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              id:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              plantedIn:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                              resolved:
+                                additionalProperties: false
+                                properties:
+                                  type:
+                                    type: string
+                                required:
+                                - type
+                                type: object
+                            required:
+                            - id
+                            - plantedIn
+                            - description
+                            - resolved
+                            type: object
+                          required:
+                            items:
+                              type: string
+                            type: array
+                          type:
+                            type: string
+                        required:
+                        - type
+                        - required
+                        - properties
+                        type: object
+                      type:
+                        type: string
+                    required:
+                    - type
+                    - items
+                    type: object
+                  globalSummaryDelta:
+                    additionalProperties: false
+                    properties:
+                      description:
+                        type: string
+                      type:
+                        type: string
+                    required:
+                    - type
+                    - description
+                    type: object
+                required:
+                - chapterSummary
+                - globalSummaryDelta
+                - foreshadowingUpdates
+                type: object
+              required:
+                items:
+                  type: string
+                type: array
+              type:
+                type: string
+            required:
+            - type
+            - additionalProperties
+            - required
+            - properties
+            type: object
+        structured_output_enabled: true
+        title: LLM N5
+        type: llm
+        vision:
+          enabled: false
+      height: 115
+      id: '1780373094333'
+      position:
+        x: 3667.1944748258634
+        y: 873.5381859472404
+      positionAbsolute:
+        x: 3667.1944748258634
+        y: 873.5381859472404
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# END_OK · Success Output Assembler\n# 输入：novel_body, video_script,\
+          \ memory_patch, retry_count, outline_valid, lore_valid\n# memory_patch：N5\
+          \ 结构化 dict、JSON 字符串，或含 redacted_thinking 的 LLM text\n\nimport json\nimport\
+          \ re\nfrom typing import Any, Union\n\nTHINK_RE = re.compile(r\"<(?:redacted_)?think>[\\\
+          s\\S]*?</(?:redacted_)?think>\", re.I)\n\n\ndef strip_think(text: str) ->\
+          \ str:\n    return THINK_RE.sub(\"\", text or \"\").strip()\n\n\ndef extract_json_object(text:\
+          \ str) -> dict:\n    s = strip_think(text).strip()\n    if not s:\n    \
+          \    return {}\n    if s.startswith(\"```\"):\n        lines = s.split(\"\
+          \\n\")\n        s = \"\\n\".join(lines[1:-1] if len(lines) > 2 else lines).strip()\n\
+          \    start = s.find(\"{\")\n    if start < 0:\n        return {}\n    depth\
+          \ = 0\n    for i in range(start, len(s)):\n        ch = s[i]\n        if\
+          \ ch == \"{\":\n            depth += 1\n        elif ch == \"}\":\n    \
+          \        depth -= 1\n            if depth == 0:\n                try:\n\
+          \                    parsed = json.loads(s[start : i + 1])\n           \
+          \         return parsed if isinstance(parsed, dict) else {}\n          \
+          \      except json.JSONDecodeError:\n                    return {}\n   \
+          \ return {}\n\n\ndef parse_memory_patch(raw: Union[str, dict, None]) ->\
+          \ dict:\n    if raw is None:\n        return {}\n    if isinstance(raw,\
+          \ dict):\n        if raw.get(\"chapterSummary\") or raw.get(\"globalSummaryDelta\"\
+          ) or raw.get(\"foreshadowingUpdates\"):\n            return raw\n      \
+          \  inner = raw.get(\"text\")\n        if isinstance(inner, str) and inner.strip():\n\
+          \            return extract_json_object(inner)\n        return raw\n   \
+          \ text = str(raw).strip()\n    if not text:\n        return {}\n    if text.startswith(\"\
+          {\"):\n        try:\n            parsed = json.loads(text)\n           \
+          \ return parsed if isinstance(parsed, dict) else extract_json_object(text)\n\
+          \        except json.JSONDecodeError:\n            return extract_json_object(text)\n\
+          \    return extract_json_object(text)\n\n\ndef main(\n    novel_body: str,\n\
+          \    video_script: str,\n    memory_patch: Any = \"\",\n    retry_count:\
+          \ int = 0,\n    outline_valid: bool = True,\n    lore_valid: bool = True,\n\
+          ) -> dict:\n    patch = parse_memory_patch(memory_patch)\n    end_outputs\
+          \ = {\n        \"status\": \"success\",\n        \"circuit_break\": False,\n\
+          \        \"human_action_required\": False,\n        \"retry_count\": retry_count,\n\
+          \        \"novel_body\": novel_body or \"\",\n        \"video_script\":\
+          \ video_script or \"\",\n        \"memory_patch\": patch,\n        \"validation_report\"\
+          : {\n            \"outline_valid\": outline_valid,\n            \"lore_valid\"\
+          : lore_valid,\n            \"issues\": [],\n        },\n        \"workflow_version\"\
+          : \"novel-chapter-generation-v1.1\",\n    }\n    return {\"end_outputs\"\
+          : json.dumps(end_outputs, ensure_ascii=False)}\n"
+        code_language: python3
+        outputs:
+          end_outputs:
+            children: null
+            type: string
+        selected: false
+        title: End-ok
+        type: code
+        variables:
+        - value_selector:
+          - '1780372951848'
+          - video_script
+          value_type: string
+          variable: video_script
+        - value_selector:
+          - '1780370481160'
+          - text
+          value_type: string
+          variable: novel_body
+        - value_selector:
+          - '1780373094333'
+          - structured_output
+          value_type: object
+          variable: memory_patch
+        - value_selector:
+          - '1780319308559'
+          - retry_count
+          value_type: number
+          variable: retry_count
+      height: 51
+      id: '1780373414137'
+      position:
+        x: 4068.2837870850985
+        y: 905.9992054263918
+      positionAbsolute:
+        x: 4068.2837870850985
+        y: 905.9992054263918
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        outputs:
+        - value_selector:
+          - '1780374273626'
+          - status
+          value_type: string
+          variable: status
+        - value_selector:
+          - '1780374273626'
+          - circuit_break
+          value_type: boolean
+          variable: circuit_break
+        - value_selector:
+          - '1780374273626'
+          - human_action_required
+          value_type: boolean
+          variable: human_action_required
+        - value_selector:
+          - '1780374273626'
+          - retry_count
+          value_type: number
+          variable: retry_count
+        - value_selector:
+          - '1780374273626'
+          - novel_body
+          value_type: string
+          variable: novel_body
+        - value_selector:
+          - '1780374273626'
+          - video_script
+          value_type: string
+          variable: video_script
+        - value_selector:
+          - '1780374273626'
+          - memory_patch
+          value_type: string
+          variable: memory_patch
+        - value_selector:
+          - '1780374273626'
+          - draft_text
+          value_type: string
+          variable: draft_text
+        - value_selector:
+          - '1780374273626'
+          - retry_issues_formatted
+          value_type: string
+          variable: retry_issues_formatted
+        - value_selector:
+          - '1780374273626'
+          - validation_report
+          value_type: string
+          variable: validation_report
+        - value_selector:
+          - '1780374273626'
+          - workflow_version
+          value_type: string
+          variable: workflow_version
+        selected: false
+        title: 输出
+        type: end
+      height: 347
+      id: '1780373557107'
+      position:
+        x: 4805.605290035536
+        y: 601.9242087145667
+      positionAbsolute:
+        x: 4805.605290035536
+        y: 601.9242087145667
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    - data:
+        code: "# PARSE · End Outputs Flattener（章节工作流 END 前最后一环 Code 节点）\n# 勿与 end_success.py\
+          \ / n5_parse_memory_patch.py 混用。\n#\n# Dify 入参（均可选，非必填 + 默认 \"\"）：\n#  \
+          \ re_end_outputs / cb_end_outputs / ok_end_outputs / end_outputs\n# 单次 run\
+          \ 仅 RE / CB / END_OK 之一有值，其余为空属正常。\n\nimport json\nimport re\nfrom typing\
+          \ import Any\n\nTHINK_RE = re.compile(r\"<(?:redacted_)?think>[\\s\\S]*?</(?:redacted_)?think>\"\
+          , re.I)\n\n\ndef _coerce_end_outputs(value: Any) -> str:\n    if value is\
+          \ None:\n        return \"\"\n    if isinstance(value, dict):\n        return\
+          \ json.dumps(value, ensure_ascii=False)\n    text = str(value).strip()\n\
+          \    if not text or text in (\"None\", \"null\"):\n        return \"\"\n\
+          \    return text\n\n\ndef _pick_raw(*candidates: Any) -> str:\n    for candidate\
+          \ in candidates:\n        text = _coerce_end_outputs(candidate)\n      \
+          \  if text:\n            return text\n    return \"\"\n\n\ndef _strip_think(text:\
+          \ str) -> str:\n    return THINK_RE.sub(\"\", text or \"\").strip()\n\n\n\
+          def _extract_json_object(text: str) -> dict:\n    s = _strip_think(text).strip()\n\
+          \    if not s:\n        return {}\n    if s.startswith(\"```\"):\n     \
+          \   lines = s.split(\"\\n\")\n        s = \"\\n\".join(lines[1:-1] if len(lines)\
+          \ > 2 else lines).strip()\n    start = s.find(\"{\")\n    if start < 0:\n\
+          \        return {}\n    depth = 0\n    for i in range(start, len(s)):\n\
+          \        ch = s[i]\n        if ch == \"{\":\n            depth += 1\n  \
+          \      elif ch == \"}\":\n            depth -= 1\n            if depth ==\
+          \ 0:\n                try:\n                    parsed = json.loads(s[start\
+          \ : i + 1])\n                    return parsed if isinstance(parsed, dict)\
+          \ else {}\n                except json.JSONDecodeError:\n              \
+          \      return {}\n    return {}\n\n\ndef _normalize_memory_patch(raw: Any)\
+          \ -> dict:\n    if raw is None:\n        return {}\n    if isinstance(raw,\
+          \ dict):\n        if raw.get(\"chapterSummary\") or raw.get(\"globalSummaryDelta\"\
+          ) or raw.get(\"foreshadowingUpdates\"):\n            return raw\n      \
+          \  inner = raw.get(\"text\")\n        if isinstance(inner, str) and inner.strip():\n\
+          \            return _extract_json_object(inner)\n        return raw\n  \
+          \  if isinstance(raw, str):\n        text = raw.strip()\n        if not\
+          \ text:\n            return {}\n        if text.startswith(\"{\"):\n   \
+          \         try:\n                parsed = json.loads(text)\n            \
+          \    if isinstance(parsed, dict):\n                    if parsed.get(\"\
+          chapterSummary\") or parsed.get(\"globalSummaryDelta\"):\n             \
+          \           return parsed\n                    return _extract_json_object(text)\n\
+          \            except json.JSONDecodeError:\n                return _extract_json_object(text)\n\
+          \        return _extract_json_object(text)\n    return {}\n\n\ndef _flatten_end_outputs(raw:\
+          \ str) -> dict:\n    o = json.loads(raw) if raw else {}\n    memory_patch\
+          \ = _normalize_memory_patch(o.get(\"memory_patch\"))\n    validation_report\
+          \ = o.get(\"validation_report\") or {}\n    if isinstance(validation_report,\
+          \ str):\n        try:\n            validation_report = json.loads(validation_report)\n\
+          \        except json.JSONDecodeError:\n            validation_report = {}\n\
+          \    return {\n        \"status\": o.get(\"status\", \"\"),\n        \"\
+          circuit_break\": bool(o.get(\"circuit_break\", False)),\n        \"human_action_required\"\
+          : bool(o.get(\"human_action_required\", False)),\n        \"retry_count\"\
+          : int(o.get(\"retry_count\", 0) or 0),\n        \"novel_body\": o.get(\"\
+          novel_body\") or \"\",\n        \"video_script\": o.get(\"video_script\"\
+          ) or \"\",\n        \"draft_text\": o.get(\"draft_text\") or \"\",\n   \
+          \     \"retry_issues_formatted\": o.get(\"retry_issues_formatted\") or \"\
+          \",\n        \"memory_patch\": json.dumps(memory_patch, ensure_ascii=False),\n\
+          \        \"validation_report\": json.dumps(validation_report, ensure_ascii=False),\n\
+          \        \"workflow_version\": o.get(\"workflow_version\") or \"\",\n  \
+          \  }\n\n\ndef main(**kwargs: Any) -> dict:\n    \"\"\"Dify Code 节点统一入口：兼容仅\
+          \ end_outputs 或四路 end_outputs 变量名。\"\"\"\n    re_end_outputs = kwargs.get(\"\
+          re_end_outputs\", \"\")\n    cb_end_outputs = kwargs.get(\"cb_end_outputs\"\
+          , \"\")\n    ok_end_outputs = kwargs.get(\"ok_end_outputs\", \"\")\n   \
+          \ end_outputs = kwargs.get(\"end_outputs\", \"\")\n    raw = _pick_raw(re_end_outputs,\
+          \ cb_end_outputs, ok_end_outputs, end_outputs)\n    return _flatten_end_outputs(raw)\n"
+        code_language: python3
+        outputs:
+          circuit_break:
+            children: null
+            type: boolean
+          draft_text:
+            children: null
+            type: string
+          human_action_required:
+            children: null
+            type: boolean
+          memory_patch:
+            children: null
+            type: string
+          novel_body:
+            children: null
+            type: string
+          retry_count:
+            children: null
+            type: number
+          retry_issues_formatted:
+            children: null
+            type: string
+          status:
+            children: null
+            type: string
+          validation_report:
+            children: null
+            type: string
+          video_script:
+            children: null
+            type: string
+          workflow_version:
+            children: null
+            type: string
+        selected: true
+        title: parse
+        type: code
+        variables:
+        - value_selector:
+          - '1780369441579'
+          - end_outputs
+          value_type: string
+          variable: re_end_outputs
+        - value_selector:
+          - '1780369446330'
+          - end_outputs
+          value_type: string
+          variable: cb_end_outputs
+        - value_selector:
+          - '1780373414137'
+          - end_outputs
+          value_type: string
+          variable: ok_end_outputs
+      height: 51
+      id: '1780374273626'
+      position:
+        x: 4348.13572850566
+        y: 607.9729669985961
+      positionAbsolute:
+        x: 4348.13572850566
+        y: 607.9729669985961
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 241
+    viewport:
+      x: -41.22673737648347
+      y: 281.6200620938335
+      zoom: 0.25
+  rag_pipeline_variables: []

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.world-generate.input",
+  "type": "object",
+  "required": [
+    "project_id",
+    "world_name",
+    "era",
+    "atmosphere",
+    "scale",
+    "climate",
+    "city_count",
+    "include_landmarks",
+    "seed",
+    "geological_years_ma",
+    "creative_brief"
+  ],
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "NovelsCreator 项目 ID（project.json 的 id），与章节工作流一致，用于 Dify 日志与追踪"
+    },
+    "world_name": { "type": "string" },
+    "era": { "type": "string" },
+    "atmosphere": { "type": "string" },
+    "scale": {
+      "type": "string",
+      "enum": ["kingdom", "archipelago", "continent", "world", "planet"]
+    },
+    "climate": {
+      "type": "string",
+      "enum": ["temperate", "cold", "tropical", "mixed"]
+    },
+    "city_count": { "type": "string" },
+    "include_landmarks": { "type": "string", "enum": ["true", "false"] },
+    "seed": { "type": "string" },
+    "geological_years_ma": { "type": "string" },
+    "creative_brief": { "type": "string" },
+    "image_size": {
+      "type": "string",
+      "description": "可选。万相图像尺寸，格式 宽*高，如 1280*640。空则由 W1X 按 scale 推导（仅 1024*512 / 1280*640 / 1440*720）"
+    }
+  },
+  "additionalProperties": false
+}

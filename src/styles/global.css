@@ -1,0 +1,75 @@
+@import '../assets/themes/dark.css';
+@import '../assets/themes/light.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  height: 100%;
+  font-family: var(--nc-font-ui);
+  background: var(--nc-bg-base);
+  color: var(--nc-text-primary);
+  transition:
+    background-color var(--nc-transition-normal),
+    color var(--nc-transition-normal);
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+textarea {
+  font: inherit;
+  font-family: var(--nc-font-ui);
+}
+
+select.nc-input {
+  cursor: pointer;
+}
+
+/* 模态层 */
+.nc-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--nc-overlay);
+  display: grid;
+  place-items: center;
+  z-index: 1000;
+  animation: nc-fade-in 0.2s ease;
+  backdrop-filter: blur(2px);
+}
+
+.nc-modal-panel {
+  animation: nc-modal-in 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes nc-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes nc-modal-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

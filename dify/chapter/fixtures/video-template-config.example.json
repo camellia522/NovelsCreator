@@ -1,0 +1,103 @@
+{
+  "templateId": "detailed-storyboard-v1",
+  "version": "1.0",
+  "outputFormat": "json",
+  "estimatedDurationSec": 180,
+  "shotCount": { "min": 12, "max": 24 },
+  "columns": [
+    {
+      "key": "shot_id",
+      "label": "镜头",
+      "type": "string",
+      "required": true,
+      "description": "镜头编号，从 S001 起三位递增，不可跳号"
+    },
+    {
+      "key": "duration_sec",
+      "label": "时长",
+      "type": "integer",
+      "required": true,
+      "minimum": 3,
+      "maximum": 15,
+      "description": "单镜头时长（秒）"
+    },
+    {
+      "key": "shot_size",
+      "label": "景别",
+      "type": "enum",
+      "required": true,
+      "options": ["extreme_wide", "wide", "full", "medium", "medium_close", "close_up", "extreme_close_up"],
+      "description": "画面景别"
+    },
+    {
+      "key": "camera_angle",
+      "label": "拍摄角度",
+      "type": "enum",
+      "required": true,
+      "options": ["eye_level", "high_angle", "low_angle", "over_shoulder", "bird_eye", "dutch_angle", "pov"],
+      "description": "摄影机相对主体的垂直/关系角度"
+    },
+    {
+      "key": "camera_movement",
+      "label": "运镜",
+      "type": "enum",
+      "required": true,
+      "options": ["static", "pan_left", "pan_right", "tilt_up", "tilt_down", "zoom_in", "zoom_out", "tracking", "crane", "handheld"],
+      "description": "镜头运动方式"
+    },
+    {
+      "key": "visual_description",
+      "label": "画面描述",
+      "type": "text",
+      "required": true,
+      "minLength": 40,
+      "maxLength": 220,
+      "description": "主体+环境+光影+色调；具体可视名词与动作，禁止空泛形容"
+    },
+    {
+      "key": "action",
+      "label": "动作",
+      "type": "text",
+      "required": false,
+      "emptyValue": "NONE",
+      "description": "人物/物体可见动作；无则 NONE"
+    },
+    {
+      "key": "dialogue",
+      "label": "对白",
+      "type": "text",
+      "required": false,
+      "emptyValue": "NONE",
+      "description": "台词原文或忠实压缩；旁白前缀 NARR:"
+    },
+    {
+      "key": "audio",
+      "label": "音效",
+      "type": "string",
+      "required": false,
+      "emptyValue": "NONE",
+      "description": "环境音/拟音；无则 NONE"
+    },
+    {
+      "key": "transition",
+      "label": "转场",
+      "type": "enum",
+      "required": true,
+      "options": ["cut", "dissolve", "fade_in", "fade_out", "match_cut"],
+      "description": "与下一镜头的转场"
+    },
+    {
+      "key": "character_anchor",
+      "label": "角色锚点",
+      "type": "string",
+      "required": false,
+      "emptyValue": "NONE",
+      "description": "本镜主要角色外貌锚点（与小说一致）；多人分号分隔"
+    }
+  ],
+  "globalRules": [
+    "覆盖源文本全部关键情节节拍，章末保留悬念 Hook 镜头",
+    "对白不得 OOC，不得凭空增删情节",
+    "visual_description 须 AI 生成友好：具体名词+可见动作，避免隐喻"
+  ]
+}

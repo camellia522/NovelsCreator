@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.outline-generate.input",
+  "type": "object",
+  "required": ["project_id", "knowledge_snapshot", "target_chapters"],
+  "properties": {
+    "project_id": { "type": "string" },
+    "knowledge_snapshot": { "type": "string" },
+    "plot_memory": { "type": "string" },
+    "outline_brief": { "type": "string" },
+    "target_volumes": { "type": "string" },
+    "target_chapters": { "type": "string" },
+    "genre": { "type": "string" },
+    "tone": { "type": "string" },
+    "volume_id": { "type": "string", "description": "目标卷，如 vol-01" },
+    "next_chapter_id": { "type": "string", "description": "单章模式：待生成章 id" },
+    "generation_mode": { "type": "string", "enum": ["single_chapter", "full"] },
+    "existing_volume_outline": { "type": "string", "description": "本卷已有章节 JSON" },
+    "max_retry": { "type": "string" },
+    "retry_count": { "type": "string" },
+    "retry_issues_formatted": { "type": "string" }
+  },
+  "additionalProperties": false
+}

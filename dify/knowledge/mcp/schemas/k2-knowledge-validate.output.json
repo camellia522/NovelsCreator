@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.knowledge.k2.output",
+  "type": "object",
+  "required": [
+    "knowledge_valid",
+    "knowledge_issues",
+    "structure_score",
+    "lore_consistency_score",
+    "character_coverage_ok"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "knowledge_valid": { "type": "boolean" },
+    "knowledge_issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "location", "message"],
+        "additionalProperties": false,
+        "properties": {
+          "severity": { "type": "string", "enum": ["hard", "warn"] },
+          "location": { "type": "string" },
+          "message": { "type": "string", "minLength": 8 }
+        }
+      }
+    },
+    "structure_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "lore_consistency_score": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "character_coverage_ok": { "type": "boolean" }
+  }
+}

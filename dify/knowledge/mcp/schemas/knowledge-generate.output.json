@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.knowledge.generate.output",
+  "type": "object",
+  "required": [
+    "status",
+    "circuit_break",
+    "human_action_required",
+    "retry_count",
+    "knowledge_summary",
+    "knowledge_json",
+    "validation_report",
+    "workflow_version"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "retry", "circuit_break", "error"]
+    },
+    "circuit_break": { "type": "string" },
+    "human_action_required": { "type": "string" },
+    "retry_count": { "type": "string" },
+    "knowledge_summary": { "type": "string" },
+    "knowledge_json": { "type": "string" },
+    "validation_report": { "type": "string" },
+    "retry_issues_formatted": { "type": "string" },
+    "workflow_version": { "type": "string" }
+  }
+}

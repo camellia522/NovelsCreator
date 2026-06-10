@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator://dify/schemas/novel-chapter-generate.output/v1.1",
+  "title": "NovelChapterGenerateOutput",
+  "description": "工作流 End 节点 outputs，作为 MCP tools/call structuredContent",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": ["success", "retry", "circuit_break", "error"]
+    },
+    "circuit_break": { "type": "boolean" },
+    "human_action_required": { "type": "boolean" },
+    "retry_count": { "type": "integer", "minimum": 0 },
+    "novel_body": { "type": "string" },
+    "video_script": { "type": "string" },
+    "draft_text": { "type": "string" },
+    "retry_issues_formatted": {
+      "type": "string",
+      "description": "status=retry 时供下轮 inputs 回传"
+    },
+    "memory_patch": {
+      "type": "object",
+      "properties": {
+        "chapterSummary": { "type": "object" },
+        "globalSummaryDelta": { "type": "string" },
+        "foreshadowingUpdates": { "type": "array" }
+      }
+    },
+    "validation_report": {
+      "type": "object",
+      "properties": {
+        "outline_valid": { "type": "boolean" },
+        "lore_valid": { "type": "boolean" },
+        "issues": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "workflow_run_id": { "type": "string" },
+    "workflow_version": {
+      "type": "string",
+      "const": "novel-chapter-generation-v1.1"
+    }
+  },
+  "required": ["status", "circuit_break", "retry_count"]
+}

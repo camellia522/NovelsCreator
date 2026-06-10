@@ -1,0 +1,123 @@
+{
+  "version": "1.0.0",
+  "workflow_id": "novel-knowledge-generation-v1",
+  "workflow_name": "Novel Knowledge Generation v1",
+  "description": "K1 知识库生成 + K1X 解析 + K2 校验 + AGG → (RE|CB|END_OK) → PARSE → END",
+  "mcp_tool": "novels_knowledge_generate",
+  "retry_strategy": "plan_b_client_loop",
+  "nodes": [
+    { "id": "START", "type": "start", "title": "Workflow Inputs" },
+    { "id": "K1", "type": "llm", "title": "Knowledge Generate", "jinja": true, "structured_output": "k1-knowledge.output.json" },
+    { "id": "K1X", "type": "code", "title": "K1 Extract", "source": "knowledge_k1_extract.py" },
+    { "id": "K2", "type": "llm", "title": "Knowledge Validate", "structured_output": "k2-knowledge-validate.output.json" },
+    { "id": "AGG", "type": "code", "title": "Validation Aggregate", "source": "knowledge_agg_validation.py" },
+    { "id": "IF-ROUTE", "type": "if-else", "branches": ["retry", "circuit_break", "continue"] },
+    { "id": "RE", "type": "code", "title": "Retry Handoff", "source": "knowledge_retry_end.py" },
+    { "id": "CB", "type": "code", "title": "Circuit Break", "source": "knowledge_cb_circuit_break.py" },
+    { "id": "END_OK", "type": "code", "title": "Success Output", "source": "knowledge_end_success.py" },
+    { "id": "PARSE", "type": "code", "title": "Parse End Outputs", "source": "knowledge_parse_end_outputs.py" },
+    { "id": "END", "type": "end", "title": "Workflow Outputs" }
+  ],
+  "edges": [
+    ["START", "K1"],
+    ["K1", "K1X"],
+    ["K1X", "K2"],
+    ["K2", "AGG"],
+    ["AGG", "IF-ROUTE"],
+    ["IF-ROUTE", "RE", "retry"],
+    ["IF-ROUTE", "CB", "circuit_break"],
+    ["IF-ROUTE", "END_OK", "continue"],
+    ["RE", "PARSE"],
+    ["CB", "PARSE"],
+    ["END_OK", "PARSE"],
+    ["PARSE", "END"]
+  ],
+  "code_bindings": {
+    "K1X": {
+      "inputs": {
+        "k1_result": "K1.text",
+        "structured_output": "K1.structured_output"
+      },
+      "outputs": ["knowledge_summary", "knowledge_json"]
+    },
+    "K2": {
+      "inputs": {
+        "knowledge_json": "K1X.knowledge_json",
+        "knowledge_summary": "K1X.knowledge_summary",
+        "existing_knowledge_snapshot": "START.existing_knowledge_snapshot",
+        "knowledge_brief": "START.knowledge_brief",
+        "generation_mode": "START.generation_mode",
+        "genre": "START.genre",
+        "tone": "START.tone",
+        "era": "START.era",
+        "scene": "START.scene"
+      }
+    },
+    "AGG": {
+      "inputs": {
+        "validate_result": "K2.text",
+        "retry_count": "START.retry_count",
+        "max_retry": "START.max_retry",
+        "knowledge_json": "K1X.knowledge_json"
+      },
+      "outputs": ["route", "retry_count", "retry_issues_formatted", "knowledge_valid", "validation_report", "knowledge_json"]
+    },
+    "IF-ROUTE": {
+      "conditions": [
+        { "field": "AGG.route", "op": "equals", "value": "retry", "target": "RE" },
+        { "field": "AGG.route", "op": "equals", "value": "circuit_break", "target": "CB" },
+        { "field": "AGG.route", "op": "equals", "value": "continue", "target": "END_OK" }
+      ]
+    },
+    "RE": {
+      "inputs": {
+        "knowledge_json": "K1X.knowledge_json",
+        "knowledge_summary": "K1X.knowledge_summary",
+        "retry_count": "AGG.retry_count",
+        "retry_issues_formatted": "AGG.retry_issues_formatted",
+        "validation_report": "AGG.validation_report"
+      }
+    },
+    "CB": {
+      "inputs": {
+        "knowledge_json": "K1X.knowledge_json",
+        "knowledge_summary": "K1X.knowledge_summary",
+        "retry_count": "AGG.retry_count",
+        "validation_report": "AGG.validation_report"
+      }
+    },
+    "END_OK": {
+      "inputs": {
+        "knowledge_summary": "K1X.knowledge_summary",
+        "knowledge_json": "K1X.knowledge_json",
+        "validation_report": "AGG.validation_report",
+        "retry_count": "START.retry_count"
+      }
+    },
+    "PARSE": {
+      "inputs": {
+        "re_end_outputs": "RE.end_outputs",
+        "cb_end_outputs": "CB.end_outputs",
+        "ok_end_outputs": "END_OK.end_outputs"
+      }
+    }
+  },
+  "end_output_bindings": {
+    "status": "PARSE.status",
+    "circuit_break": "PARSE.circuit_break",
+    "human_action_required": "PARSE.human_action_required",
+    "retry_count": "PARSE.retry_count",
+    "knowledge_summary": "PARSE.knowledge_summary",
+    "knowledge_json": "PARSE.knowledge_json",
+    "validation_report": "PARSE.validation_report",
+    "retry_issues_formatted": "PARSE.retry_issues_formatted",
+    "workflow_version": "PARSE.workflow_version"
+  },
+  "schema_refs": {
+    "input": "dify/knowledge/mcp/schemas/knowledge-generate.input.json",
+    "output": "dify/knowledge/mcp/schemas/knowledge-generate.output.json",
+    "k1_output": "dify/knowledge/mcp/schemas/k1-knowledge.output.json",
+    "k2_output": "dify/knowledge/mcp/schemas/k2-knowledge-validate.output.json",
+    "mcp_tool": "dify/knowledge/mcp/tools/novels_knowledge_generate.json"
+  }
+}

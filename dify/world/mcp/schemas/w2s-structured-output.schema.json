@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "novelscreator.w2s.structured-output.v3",
+  "title": "W2S 社会层输出（LLM 结构化 JSON）",
+  "description": "粘贴到 Dify W2S LLM 节点「结构化输出 / JSON Schema」。客户端以 territory_json.localDraftLocations 为准：locations 须与输入 id/x/y/type/terrain/nationId 一致，仅润色文案。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["world_rules", "nations", "locations"],
+  "properties": {
+    "world_rules": {
+      "type": "string",
+      "description": "300–600 字中文世界规则与各国关系概述",
+      "minLength": 80,
+      "maxLength": 3000
+    },
+    "nations": {
+      "type": "array",
+      "description": "与 nations_outline_json 同 id 集合，不得增删国家",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/nationItem" }
+    },
+    "locations": {
+      "type": "array",
+      "description": "与 territory_json.localDraftLocations 同条数与同 id；禁止增删；坐标不得改",
+      "items": { "$ref": "#/$defs/locationItem" }
+    }
+  },
+  "$defs": {
+    "nationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "government", "culture", "description"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "必须与 nations_outline_json 中 id 完全一致",
+          "pattern": "^nation-"
+        },
+        "name": {
+          "type": "string",
+          "description": "可选润色国名；缺省时客户端保留本地名"
+        },
+        "government": { "type": "string" },
+        "culture": { "type": "string" },
+        "description": {
+          "type": "string",
+          "description": "须体现该国 environmentalProfile / developmentTier 差异"
+        },
+        "authorSettings": {
+          "type": "string",
+          "description": "作者可继续编辑的长文本设定"
+        }
+      }
+    },
+    "locationItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "name",
+        "type",
+        "x",
+        "y",
+        "nationId",
+        "terrain",
+        "climate",
+        "description"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "必须与 localDraftLocations[].id 一致",
+          "pattern": "^loc-"
+        },
+        "name": { "type": "string" },
+        "type": {
+          "type": "string",
+          "enum": ["capital", "city", "town", "village", "fortress", "landmark"]
+        },
+        "x": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "地图 0–100，须与 localDraft 相同"
+        },
+        "y": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "地图 0–100，须与 localDraft 相同"
+        },
+        "nationId": {
+          "type": "string",
+          "pattern": "^nation-"
+        },
+        "terrain": {
+          "type": "string",
+          "enum": ["ocean", "coast", "plain", "hill", "mountain", "forest", "desert", "wetland"]
+        },
+        "climate": {
+          "type": "string",
+          "description": "如：温带、寒带、热带"
+        },
+        "description": {
+          "type": "string",
+          "description": "须呼应 adminRole/terrain/latBand，仅润色文案"
+        },
+        "population": {
+          "type": "string",
+          "description": "如：35–50万、3–12万"
+        },
+        "regionId": {
+          "type": "string",
+          "description": "行省/府/县 regionId，须与 localDraft 一致",
+          "pattern": "^prov-"
+        },
+        "authorSettings": {
+          "type": "string",
+          "description": "可选；客户端保留区划：区划：省会 等"
+        }
+      }
+    }
+  }
+}

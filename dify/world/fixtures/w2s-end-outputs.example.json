@@ -1,0 +1,43 @@
+{
+  "description": "END 节点 outputs 示例。客户端同时识别 society_json 与 Dify 常见的 society_jsonString（PARSE 扁平化后映射到 END）",
+  "workflow_run_outputs_dify_string_suffix": {
+    "statusString": "success",
+    "society_jsonString": "{\"world_rules\":\"……\",\"nations\":[…],\"locations\":[…]}",
+    "world_rulesString": "【测试世界·架空·史诗】……",
+    "nations_jsonString": "[{\"id\":\"nation-001\"}]",
+    "locations_jsonString": "[{\"id\":\"loc-001\"}]"
+  },
+  "workflow_run_outputs": {
+    "status": "success",
+    "society_json": "{\"world_rules\":\"……\",\"nations\":[…],\"locations\":[…]}",
+    "world_rules": "【测试世界·架空·史诗】……",
+    "nations_json": "[{\"id\":\"nation-001\",\"government\":\"议会共和\",\"culture\":\"重商\",\"description\":\"……\"}]",
+    "locations_json": "[{\"id\":\"loc-001\",\"name\":\"临宁京\",\"type\":\"capital\",\"x\":38.2,\"y\":44.1,\"nationId\":\"nation-001\",\"terrain\":\"plain\",\"climate\":\"温带\",\"description\":\"……\"}]",
+    "workflow_version": "world-society-v1",
+    "error_message": ""
+  },
+  "society_json_parsed": {
+    "world_rules": "【测试世界·架空·史诗】作者以六边形框选划定两国……",
+    "nations": [
+      {
+        "id": "nation-001",
+        "government": "议会共和",
+        "culture": "重商",
+        "description": "温带湿润、成长级政区……"
+      }
+    ],
+    "locations": [
+      {
+        "id": "loc-001",
+        "name": "临宁京",
+        "type": "capital",
+        "x": 38.2,
+        "y": 44.1,
+        "nationId": "nation-001",
+        "terrain": "plain",
+        "climate": "温带",
+        "description": "青王国都城……"
+      }
+    ]
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "description": "知识库工作流试运行 · novel-knowledge-generation-v1",
+  "inputs": {
+    "project_id": "00000000-0000-4000-8000-000000000001",
+    "knowledge_brief": "架空史诗大陆，主角周衍为边关斥候。需要：4 个主要国家背景（不必写地图坐标）、6 名核心角色（含 1 反派）、2 个秘密势力、3 件关键道具。冷兵器、低魔、权谋+战争。",
+    "existing_knowledge_snapshot": "{\"world\":{\"title\":\"NewWorld\",\"rules\":\"\"},\"nations\":[],\"locations\":[],\"regions\":[],\"characters\":[],\"factions\":[],\"items\":[]}",
+    "genre": "史诗（架空）",
+    "tone": "史诗",
+    "era": "架空",
+    "scene": "大陆",
+    "generation_mode": "bootstrap",
+    "max_retry": "3",
+    "retry_count": "0",
+    "retry_issues_formatted": ""
+  },
+  "response_mode": "blocking",
+  "user": "novelscreator-knowledge-fixture"
+}
