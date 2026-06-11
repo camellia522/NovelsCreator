@@ -2,9 +2,9 @@
 
 const path = require('node:path')
 const fs = require('node:fs')
+const rcedit = require('rcedit')
 
 async function main() {
-  const { rcedit } = await import('rcedit')
   const root = path.join(__dirname, '..')
   const exe = path.join(root, 'release', 'win-unpacked', 'NovelsCreator.exe')
   const icon = path.join(root, 'resources', 'icon.ico')
