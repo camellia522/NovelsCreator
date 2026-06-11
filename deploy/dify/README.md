@@ -1,6 +1,9 @@
-# Dify 工作流部署（DSL 导入）
+# Dify 工作流部署（Legacy 高级模式）
 
-本目录包含 NovelsCreator **v0.2.0** 对应的四个 Workflow DSL，可从 Dify 控制台 **导入** 使用，无需按文档手动搭节点。
+本目录包含 NovelsCreator **v1.0** 可选 **Dify Legacy** 对应的四个 Workflow DSL。  
+**v1.0 默认无需导入**：新用户只需在客户端设置 API Key 即可使用内置 LangGraph。
+
+若你使用 **Dify 高级模式**（设置 → AI → 切换引擎），可从 Dify 控制台 **导入** 下列 DSL，无需手动搭节点。
 
 源码级资产（Prompt、Code 节点、Fixture）仍在仓库根目录 [`dify/`](../../dify/)。
 
@@ -24,6 +27,8 @@
 - 已部署 [Dify](https://docs.dify.ai/)（自建 Docker 或 Dify Cloud）
 - Dify 版本建议 ≥ 0.15，支持 Workflow DSL 导入
 - 已在 Dify **设置 → 模型供应商** 中配置 LLM（DSL 中示例依赖 DeepSeek 插件，可导入后改绑其他模型）
+
+> 升级至 v1.0（内置 AI）见 **[docs/v1.0/README.md](../../v1.0/README.md)**。v0.x 用户继续按本文导入 DSL 即可。
 
 ---
 
@@ -60,6 +65,8 @@ https://api.dify.ai/v1
 | 知识库生成 | 导入 `novel-knowledge-generation-v1.yml` 后的应用 API Key |
 | 世界观社会层 | 导入 `novel-world-society-v1.yml` 后的应用 API Key |
 
+> v1.0 设置路径：**设置 → AI → 高级：Dify Legacy**（四个槽位 Key 与 Base URL）。
+
 四个应用 **Key 不同**，须分别复制，勿混用。
 
 ---
@@ -69,7 +76,7 @@ https://api.dify.ai/v1
 1. NovelsCreator 设置中每个槽位点 **测试连接**  
 2. 打开测试项目，试 **AI 生成大纲** 或 **生成一章**  
 
-更详细的客户端操作见 [`docs/app/USER-GUIDE.md`](../../docs/app/USER-GUIDE.md) §3。
+更详细的客户端操作见 [`docs/app/USER-GUIDE.md`](../../docs/app/USER-GUIDE.md) §3（Local 默认）与 §3 高级区（Dify Legacy）。
 
 ---
 

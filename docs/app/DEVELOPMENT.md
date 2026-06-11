@@ -1,7 +1,7 @@
 # NovelsCreator — 开发文档
 
 > 类 IDEA 风格桌面端长篇小说创作工具  
-> 技术栈：Electron + Vue 3 · AI 编排：Dify 工作流 · 开发工具：Cursor
+> 技术栈：Electron + Vue 3 · **AI 编排：内置 LangGraph（默认）+ Dify Legacy** · 开发工具：Cursor
 
 ---
 
@@ -13,6 +13,7 @@
 | **[MODULES.md](./MODULES.md)** | **12 个功能模块拆分 + 每模块流程实现（时序图 / 伪代码 / IPC）** |
 | **[UI-NAVIGATION.md](./UI-NAVIGATION.md)** | **客户端页面布局、IDE 分区、路由与跳转流程（Welcome / Workspace / 标签 / 面板）** |
 | **[GENERATION-WIZARD.md](../chapter/GENERATION-WIZARD.md)** | **三要素生成选择页、统一 generation_prompt 格式与 Dify 对接** |
+| **[docs/v1.0/README.md](../v1.0/README.md)** | **v1.0.0 正式版：LangGraph + 小说助手** |
 | **[PROMPT-DESIGN.md](../chapter/PROMPT-DESIGN.md)** | **完整 Prompt 体系：客户端渲染、Dify 全节点模板、JSON 输出、重试与示例** |
 | **[DIFY-WORKFLOW-DESIGN.md](../chapter/DIFY-WORKFLOW-DESIGN.md)** | **Dify 工作流设计：拓扑、节点规格、MCP Tool/Resource 映射（JSON Schema 2020-12）** |
 | **[DIFY-WORKFLOW-IMPLEMENTATION.md](../chapter/DIFY-WORKFLOW-IMPLEMENTATION.md)** | **Dify 工作流实现：画布搭建、Code 粘贴、发布联调、MCP Server 桥接** |
@@ -748,7 +749,8 @@ function applyMemoryPatch(memory, patch):
 
 | 方向 | 说明 |
 |------|------|
-| **新视频平台** | Dify 增加模板分支 + 项目 settings 枚举 |
+| **v1.0 内置 AI** | [docs/v1.0/README.md](../v1.0/README.md) — LangGraph 工作流 + **Deep Agents Harness** 助手；Dify 降为高级模式 |
+| **新视频平台** | Dify / Local 工作流增加模板分支 + 项目 settings 枚举 |
 | **流式生成** | `response_mode: streaming`，Renderer 逐段 append |
 | **Git 集成** | 项目目录即仓库，Main 调用 simple-git |
 | **插件系统** | 预留 `plugins/` 加载自定义导出器 |

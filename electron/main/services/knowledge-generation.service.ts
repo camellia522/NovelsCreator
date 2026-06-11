@@ -10,7 +10,7 @@ import { refreshWorldSettingConstraints } from '@/utils/world-setting-catalog'
 import { readKnowledge, saveKnowledge } from './project-files.service'
 import { getCurrentProject } from './project.service'
 import { buildKnowledgeGenerationPayload } from './knowledge-dify.service'
-import { runKnowledgeGenerationWithRetry } from './dify.service'
+import { getWorkflowRunner } from '../workflows/workflow-runner.factory'
 
 export async function runKnowledgeGeneration(
   projectId: string,
@@ -22,7 +22,8 @@ export async function runKnowledgeGeneration(
   }
 
   const payload = await buildKnowledgeGenerationPayload(options)
-  const result = await runKnowledgeGenerationWithRetry({
+  const runner = await getWorkflowRunner()
+  const result = await runner.runKnowledgeGenerationWithRetry({
     project_id: projectId,
     knowledge_brief: payload.knowledge_brief,
     existing_knowledge_snapshot: payload.existing_knowledge_snapshot,
@@ -62,7 +63,7 @@ export async function runKnowledgeGeneration(
     return {
       ...result,
       ok: false,
-      error: 'knowledge_json 无法解析，请检查 Dify K1X 节点输出'
+      error: 'knowledge_json 无法解析，请检查 K1X 节点输出'
     }
   }
 

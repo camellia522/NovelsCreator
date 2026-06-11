@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
+import { access, copyFile, mkdir, readFile, readdir, rename, rm, writeFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import type {
   ChapterSummaryEntry,
@@ -14,9 +14,74 @@ import type {
   WorldMapDocument
 } from '../../src/types/project'
 import { getCurrentProject } from './project.service'
+import { withProjectFilesLock } from './project-file-mutex'
+
+function jsonBackupPath(path: string): string {
+  return `${path}.bak`
+}
+
+async function fileExists(path: string): Promise<boolean> {
+  try {
+    await access(path)
+    return true
+  } catch {
+    return false
+  }
+}
 
 async function writeJson(path: string, data: unknown): Promise<void> {
-  await writeFile(path, JSON.stringify(data, null, 2), 'utf-8')
+  const content = JSON.stringify(data, null, 2)
+  if (await fileExists(path)) {
+    await copyFile(path, jsonBackupPath(path))
+  }
+  const tmp = `${path}.tmp-${process.pid}-${Date.now()}`
+  await writeFile(tmp, content, 'utf-8')
+  await rename(tmp, path)
+}
+
+async function readJsonStrict(path: string, label: string): Promise<unknown> {
+  let raw: string
+  try {
+    raw = await readFile(path, 'utf-8')
+  } catch {
+    const backup = jsonBackupPath(path)
+    if (await fileExists(backup)) {
+      raw = await readFile(backup, 'utf-8')
+      try {
+        const parsed = JSON.parse(raw)
+        await copyFile(backup, path)
+        return parsed
+      } catch {
+        /* fall through */
+      }
+    }
+    throw new Error(`${label} 不存在或无法读取：${path}`)
+  }
+  try {
+    return JSON.parse(raw)
+  } catch (e) {
+    const backup = jsonBackupPath(path)
+    if (await fileExists(backup)) {
+      try {
+        const backupRaw = await readFile(backup, 'utf-8')
+        const parsed = JSON.parse(backupRaw)
+        await copyFile(backup, path)
+        return parsed
+      } catch {
+        /* use primary error below */
+      }
+    }
+    const msg = e instanceof Error ? e.message : String(e)
+    throw new Error(`${label} JSON 损坏（${path}）：${msg}。请从备份恢复或手动修复该文件。`)
+  }
+}
+
+function lockRoot(): string {
+  return requireProject().rootPath
+}
+
+async function withCurrentProjectFilesLock<T>(fn: () => Promise<T>): Promise<T> {
+  return withProjectFilesLock(lockRoot(), fn)
 }
 
 /** 从 { key: [] }、裸数组或空对象中安全取出实体列表 */
@@ -39,14 +104,18 @@ function requireProject() {
 }
 
 export async function readOutline(): Promise<OutlineDocument> {
-  const project = requireProject()
-  const raw = await readFile(join(project.rootPath, 'outline', 'outline.json'), 'utf-8')
-  return JSON.parse(raw) as OutlineDocument
+  return withCurrentProjectFilesLock(async () => {
+    const project = requireProject()
+    const raw = await readJsonStrict(join(project.rootPath, 'outline', 'outline.json'), 'outline.json')
+    return raw as OutlineDocument
+  })
 }
 
 export async function saveOutline(doc: OutlineDocument): Promise<void> {
-  const project = requireProject()
-  await writeJson(join(project.rootPath, 'outline', 'outline.json'), doc)
+  return withCurrentProjectFilesLock(async () => {
+    const project = requireProject()
+    await writeJson(join(project.rootPath, 'outline', 'outline.json'), doc)
+  })
 }
 
 async function readJsonFile(path: string): Promise<unknown | null> {
@@ -215,13 +284,13 @@ function normalizeLocations(raw: unknown): WorldLocation[] {
   })
 }
 
-export async function readKnowledge(): Promise<KnowledgeDocument> {
+async function readKnowledgeUnlocked(): Promise<KnowledgeDocument> {
   const project = requireProject()
   const root = project.rootPath
-  const world = JSON.parse(await readFile(join(root, 'knowledge', 'world.json'), 'utf-8'))
-  const characters = JSON.parse(await readFile(join(root, 'knowledge', 'characters.json'), 'utf-8'))
-  const factions = JSON.parse(await readFile(join(root, 'knowledge', 'factions.json'), 'utf-8'))
-  const items = JSON.parse(await readFile(join(root, 'knowledge', 'items.json'), 'utf-8'))
+  const world = await readJsonStrict(join(root, 'knowledge', 'world.json'), 'world.json')
+  const characters = await readJsonStrict(join(root, 'knowledge', 'characters.json'), 'characters.json')
+  const factions = await readJsonStrict(join(root, 'knowledge', 'factions.json'), 'factions.json')
+  const items = await readJsonStrict(join(root, 'knowledge', 'items.json'), 'items.json')
   const mapRaw = await readJsonFile(join(root, 'knowledge', 'map.json'))
   const locRaw = await readJsonFile(join(root, 'knowledge', 'locations.json'))
 
@@ -233,6 +302,46 @@ export async function readKnowledge(): Promise<KnowledgeDocument> {
     factions: normalizeFactions(extractEntityList(factions, 'factions')),
     items: normalizeItems(extractEntityList(items, 'items'))
   }
+}
+
+async function saveKnowledgeUnlocked(doc: KnowledgeDocument): Promise<void> {
+  const project = requireProject()
+  const root = project.rootPath
+  await writeJson(join(root, 'knowledge', 'world.json'), doc.world)
+  await writeJson(join(root, 'knowledge', 'characters.json'), { characters: doc.characters })
+  await writeJson(join(root, 'knowledge', 'factions.json'), { factions: doc.factions })
+  await writeJson(join(root, 'knowledge', 'items.json'), { items: doc.items })
+  if (doc.mapImageBase64 && doc.map) {
+    doc.map = { ...doc.map, hasRasterImage: true }
+  }
+  if (doc.map) {
+    await writeJson(join(root, 'knowledge', 'map.json'), doc.map)
+  }
+  if (doc.mapImageBase64) {
+    const raw = doc.mapImageBase64.replace(/^data:image\/\w+;base64,/, '')
+    await writeFile(join(root, 'knowledge', 'map.png'), Buffer.from(raw, 'base64'))
+  }
+  await writeJson(join(root, 'knowledge', 'locations.json'), { locations: doc.locations })
+}
+
+export async function readKnowledge(): Promise<KnowledgeDocument> {
+  return withCurrentProjectFilesLock(readKnowledgeUnlocked)
+}
+
+export async function saveKnowledge(doc: KnowledgeDocument): Promise<void> {
+  return withCurrentProjectFilesLock(() => saveKnowledgeUnlocked(doc))
+}
+
+/** 原子读-改-写 knowledge，避免并行 tool 互相覆盖 */
+export async function mutateKnowledge(
+  mutator: (doc: KnowledgeDocument) => KnowledgeDocument | void | Promise<KnowledgeDocument | void>
+): Promise<KnowledgeDocument> {
+  return withCurrentProjectFilesLock(async () => {
+    const doc = await readKnowledgeUnlocked()
+    const next = (await mutator(doc)) ?? doc
+    await saveKnowledgeUnlocked(next)
+    return next
+  })
 }
 
 function normalizeWorld(raw: Record<string, unknown>): KnowledgeDocument['world'] {
@@ -390,37 +499,22 @@ export async function readMapImageDataUrl(): Promise<string | null> {
   }
 }
 
-export async function saveKnowledge(doc: KnowledgeDocument): Promise<void> {
-  const project = requireProject()
-  const root = project.rootPath
-  await writeJson(join(root, 'knowledge', 'world.json'), doc.world)
-  await writeJson(join(root, 'knowledge', 'characters.json'), { characters: doc.characters })
-  await writeJson(join(root, 'knowledge', 'factions.json'), { factions: doc.factions })
-  await writeJson(join(root, 'knowledge', 'items.json'), { items: doc.items })
-  if (doc.mapImageBase64 && doc.map) {
-    doc.map = { ...doc.map, hasRasterImage: true }
-  }
-  if (doc.map) {
-    await writeJson(join(root, 'knowledge', 'map.json'), doc.map)
-  }
-  if (doc.mapImageBase64) {
-    const raw = doc.mapImageBase64.replace(/^data:image\/\w+;base64,/, '')
-    await writeFile(join(root, 'knowledge', 'map.png'), Buffer.from(raw, 'base64'))
-  }
-  await writeJson(join(root, 'knowledge', 'locations.json'), { locations: doc.locations })
-}
-
 export async function readPlotMemory(): Promise<PlotMemoryDocument> {
-  const project = requireProject()
-  const raw = JSON.parse(
-    await readFile(join(project.rootPath, 'memory', 'plot-memory.json'), 'utf-8')
-  ) as Record<string, unknown>
-  return normalizePlotMemory(raw)
+  return withCurrentProjectFilesLock(async () => {
+    const project = requireProject()
+    const raw = (await readJsonStrict(
+      join(project.rootPath, 'memory', 'plot-memory.json'),
+      'plot-memory.json'
+    )) as Record<string, unknown>
+    return normalizePlotMemory(raw)
+  })
 }
 
 export async function savePlotMemory(doc: PlotMemoryDocument): Promise<void> {
-  const project = requireProject()
-  await writeJson(join(project.rootPath, 'memory', 'plot-memory.json'), doc)
+  return withCurrentProjectFilesLock(async () => {
+    const project = requireProject()
+    await writeJson(join(project.rootPath, 'memory', 'plot-memory.json'), doc)
+  })
 }
 
 export async function readChapterText(

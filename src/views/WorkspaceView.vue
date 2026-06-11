@@ -19,6 +19,7 @@ import { useEditorStore } from '@/stores/editor.store'
 import { useUiStore } from '@/stores/ui.store'
 import { useLayoutStore } from '@/stores/layout.store'
 import { useDifyStore } from '@/stores/dify.store'
+import { useAssistantStore } from '@/stores/assistant.store'
 import { flushProjectPersist } from '@/utils/project-persist'
 
 const router = useRouter()
@@ -30,6 +31,7 @@ const editor = useEditorStore()
 const layout = useLayoutStore()
 const dify = useDifyStore()
 const ui = useUiStore()
+const assistant = useAssistantStore()
 
 const gridColumns = computed(() => {
   if (!layout.sidePanelVisible) return '48px 1fr'
@@ -40,7 +42,12 @@ onMounted(async () => {
   window.addEventListener('keydown', onKeydown)
   ui.closeWorldMapEdit()
   await layout.loadFromConfig()
-  await Promise.all([outline.load(), knowledge.load(), memory.load()])
+  await Promise.all([
+    outline.load(),
+    knowledge.load(),
+    memory.load(),
+    assistant.loadSessionForProject()
+  ])
   if (project.current?.autoBackupMessage) {
     dify.log('info', project.current.autoBackupMessage)
   }

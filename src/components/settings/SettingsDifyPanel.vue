@@ -23,7 +23,7 @@ const testingSlot = ref<DifyWorkflowSlot | null>(null)
 const saving = ref(false)
 const saveMessage = ref<StatusMsg | null>(null)
 
-const MASKED = '********'
+const SAVED_KEY_HINT = '已保存；留空并保存将删除 Key'
 
 async function reloadFromDisk(): Promise<void> {
   if (!window.novelsCreator) return
@@ -32,16 +32,19 @@ async function reloadFromDisk(): Promise<void> {
   for (const def of DIFY_WORKFLOW_DEFINITIONS) {
     const w = config.dify.workflows[def.slot]
     configured[def.slot] = w.configured
-    workflowKeys[def.slot] = w.configured ? MASKED : ''
+    workflowKeys[def.slot] = ''
   }
 }
 
 function buildWorkflowsPayload(): Partial<DifyWorkflowKeys> {
   const workflows: Partial<DifyWorkflowKeys> = {}
   for (const def of DIFY_WORKFLOW_DEFINITIONS) {
-    const v = workflowKeys[def.slot].trim()
-    if (!v || v === MASKED) continue
-    workflows[def.slot] = v
+    const trimmed = workflowKeys[def.slot].trim()
+    if (trimmed) {
+      workflows[def.slot] = trimmed
+    } else if (configured[def.slot]) {
+      workflows[def.slot] = ''
+    }
   }
   return workflows
 }
@@ -105,7 +108,7 @@ async function testConnection(slot: DifyWorkflowSlot): Promise<void> {
 }
 
 function keyPlaceholder(slot: DifyWorkflowSlot): string {
-  return configured[slot] ? '已保存，留空则不修改' : 'app-...'
+  return configured[slot] ? SAVED_KEY_HINT : 'app-...'
 }
 </script>
 

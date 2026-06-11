@@ -4,20 +4,20 @@ import { SETTINGS_TAB_ICON } from '@/components/icons/icon-paths'
 import NcIcon from '@/components/icons/NcIcon.vue'
 import NcIconButton from '@/components/icons/NcIconButton.vue'
 import SettingsAppearancePanel from '@/components/settings/SettingsAppearancePanel.vue'
-import SettingsDifyPanel from '@/components/settings/SettingsDifyPanel.vue'
+import SettingsAiPanel from '@/components/settings/SettingsAiPanel.vue'
 import SettingsGeneralPanel from '@/components/settings/SettingsGeneralPanel.vue'
 import SettingsWorkspacePanel from '@/components/settings/SettingsWorkspacePanel.vue'
 import type { IconName } from '@/components/icons/icon-paths'
 
 const emit = defineEmits<{ close: [] }>()
 
-type SettingsTab = 'appearance' | 'dify' | 'general' | 'workspace'
+type SettingsTab = 'appearance' | 'ai' | 'general' | 'workspace'
 
 const tab = ref<SettingsTab>('appearance')
 
 const tabs: { id: SettingsTab; label: string; icon: IconName }[] = [
   { id: 'appearance', icon: SETTINGS_TAB_ICON.appearance, label: '外观' },
-  { id: 'dify', icon: SETTINGS_TAB_ICON.dify, label: 'Dify' },
+  { id: 'ai', icon: SETTINGS_TAB_ICON.ai, label: 'AI' },
   { id: 'general', icon: SETTINGS_TAB_ICON.general, label: '常规' },
   { id: 'workspace', icon: SETTINGS_TAB_ICON.workspace, label: '工作区' }
 ]
@@ -49,7 +49,7 @@ const tabs: { id: SettingsTab; label: string; icon: IconName }[] = [
         <div class="content">
           <Transition name="tab-fade" mode="out-in">
             <SettingsAppearancePanel v-if="tab === 'appearance'" key="appearance" />
-            <SettingsDifyPanel v-else-if="tab === 'dify'" key="dify" />
+            <SettingsAiPanel v-else-if="tab === 'ai'" key="ai" />
             <SettingsGeneralPanel v-else-if="tab === 'general'" key="general" />
             <SettingsWorkspacePanel v-else key="workspace" />
           </Transition>

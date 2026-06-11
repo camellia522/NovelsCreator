@@ -1,4 +1,4 @@
-import * as monaco from 'monaco-editor/esm/vs/editor/editor.api'
+import * as monaco from 'monaco-editor'
 import type { EffectiveTheme } from '@/utils/apply-theme'
 import { monacoThemeName } from '@/utils/apply-theme'
 

@@ -15,7 +15,7 @@ const WORLDENGINE_URL = 'https://github.com/Mindwerks/worldengine'
         <button type="button" class="nc-btn" @click="ui.aboutOpen = false">关闭</button>
       </header>
       <p class="body">
-        IDE 风格长篇小说创作工具 · Dify Workflow 驱动<br />
+        IDE 风格长篇小说创作工具 · 内置 LangGraph + 小说助手<br />
         版本 {{ APP_VERSION }}
       </p>
       <p class="muted">大纲 / 设定 / 记忆 / 正文均可编辑与 AI 生成。</p>
@@ -44,6 +44,12 @@ const WORLDENGINE_URL = 'https://github.com/Mindwerks/worldengine'
             作者：Federico Tomassetti、Bret Curtis<br />
             许可：<a :href="WORLDENGINE_URL" target="_blank" rel="noopener noreferrer">MIT License</a><br />
             项目：<a :href="WORLDENGINE_URL" target="_blank" rel="noopener noreferrer">{{ WORLDENGINE_URL }}</a>
+          </dd>
+          <dt>LangChain / LangGraph / Deep Agents</dt>
+          <dd>
+            工作流编排与小说助手 Harness（MIT License）<br />
+            项目：<a href="https://github.com/langchain-ai/langgraphjs" target="_blank" rel="noopener noreferrer">langgraphjs</a> ·
+            <a href="https://github.com/langchain-ai/deepagentsjs" target="_blank" rel="noopener noreferrer">deepagentsjs</a>
           </dd>
         </dl>
         <p class="credit-note muted">

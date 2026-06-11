@@ -233,7 +233,7 @@ async function runSocietyGeneration(): Promise<void> {
     let merged = local
     let sourceLabel = '本地规则'
 
-    if (window.novelsCreator?.world?.generateSociety) {
+    if (window.novelsCreator?.world) {
       try {
         const parsed = await fetchSocietyLlmPayload(
           workerOut.territoryBriefJson,

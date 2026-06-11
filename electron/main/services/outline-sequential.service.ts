@@ -4,7 +4,7 @@ import type {
   OutlineGenerateInputs,
   OutlineGenerationProgress
 } from '../../src/types/api'
-import { runOutlineGenerationWithRetry } from './dify.service'
+import { getWorkflowRunner } from '../workflows/workflow-runner.factory'
 import { buildOutlineGenerationPayload } from './project.service'
 import { readOutline, saveOutline } from './project-files.service'
 import { syncAndSavePlotMemoryFromOutline } from './memory.service'
@@ -70,7 +70,8 @@ export async function runSequentialOutlineGeneration(
       retry_issues_formatted: ''
     }
 
-    const result = await runOutlineGenerationWithRetry(inputs)
+    const runner = await getWorkflowRunner()
+    const result = await runner.runOutlineGenerationWithRetry(inputs)
     totalClientRetryRounds += result.clientRetryRounds ?? 0
     lastResult = result
 

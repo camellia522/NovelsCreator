@@ -106,8 +106,72 @@ export interface TestDifyPayload {
   apiKey?: string
 }
 
+export type AiEngineId = 'dify' | 'local'
+
+export interface AiLocalConfigPublic {
+  baseUrl: string
+  model: string
+  reasoningModel?: string
+  /** 已配置时为 ******** */
+  apiKey: string
+  configured: boolean
+}
+
+export interface AiAssistantConfigPublic {
+  model: string
+  baseUrl: string
+  /** 已配置时为 ******** */
+  apiKey: string
+  configured: boolean
+}
+
+export interface AiSettingsPublic {
+  engine: AiEngineId
+  onboardingCompleted?: boolean
+  local?: AiLocalConfigPublic
+  assistant?: AiAssistantConfigPublic
+}
+
+export interface SetAiEnginePayload {
+  engine: AiEngineId
+}
+
+export interface SetAiLocalPayload {
+  baseUrl: string
+  model: string
+  reasoningModel?: string
+  apiKey?: string
+}
+
+export interface SetAiAssistantPayload {
+  model?: string
+  baseUrl?: string
+  apiKey?: string
+}
+
+export interface TestAssistantLlmPayload {
+  baseUrl?: string
+  apiKey?: string
+  model?: string
+}
+
 export interface AppConfig {
   dify: Pick<DifyAppConfig, 'baseUrl'>
+  ai?: {
+    engine: AiEngineId
+    onboardingCompleted?: boolean
+    local?: {
+      baseUrl: string
+      model: string
+      reasoningModel?: string
+    }
+    assistant?: {
+      model?: string
+      baseUrl?: string
+    }
+    /** 用户曾清空 API Key 时为 true，不再使用打包内置的环境变量 Key */
+    llmKeyCleared?: boolean
+  }
   recentProjects: string[]
   defaultProjectsDir?: string
   appearance?: AppearancePrefs
@@ -132,7 +196,7 @@ export interface SetAppearancePayload {
   editorLineNumbers?: boolean
 }
 
-export type WorkspaceActivityId = 'explorer' | 'outline' | 'knowledge' | 'memory'
+export type WorkspaceActivityId = 'explorer' | 'outline' | 'knowledge' | 'memory' | 'assistant'
 
 export interface WorkspaceLayoutPrefs {
   activity?: WorkspaceActivityId
@@ -180,6 +244,80 @@ export interface GenerateChapterResponse {
 export interface HealthCheckResponse {
   ok: boolean
   message: string
+}
+
+export interface AssistantChatRequest {
+  message: string
+  projectId: string
+  threadId?: string
+}
+
+export interface AssistantChatResponse {
+  ok: boolean
+  threadId?: string
+  reply?: string
+  error?: string
+  /** Harness 等待用户确认 generate_* / write_* */
+  pendingApproval?: {
+    toolName: string
+    description: string
+    /** 并行待确认工具数（>1 时须一次性批准全部） */
+    count?: number
+    items?: Array<{ toolName: string; description: string }>
+  }
+  /** 本次响应由文字「同意/取消」触发了 HITL resume */
+  hitlResumed?: boolean
+}
+
+export interface AssistantStreamChunk {
+  threadId: string
+  kind: 'text'
+  delta: string
+}
+
+export type AssistantToolActivityPhase = 'start' | 'end' | 'error' | 'waiting'
+
+export interface AssistantToolActivityEvent {
+  threadId: string
+  kind: 'tool'
+  phase: AssistantToolActivityPhase
+  toolCallId?: string
+  toolName: string
+  label: string
+  detail?: string
+  fileHint?: string
+}
+
+export type AssistantStreamEvent = AssistantStreamChunk | AssistantToolActivityEvent
+
+export interface AssistantActivityStep {
+  id: string
+  toolName: string
+  label: string
+  detail?: string
+  fileHint?: string
+  status: 'running' | 'done' | 'error' | 'waiting'
+}
+
+export interface AssistantSessionSnapshot {
+  threadId: string
+  messages: Array<{
+    role: 'user' | 'assistant' | 'error'
+    content: string
+    activities?: AssistantActivityStep[]
+  }>
+}
+
+export interface AssistantResumeRequest {
+  threadId: string
+  projectId: string
+  approved: boolean
+}
+
+export interface AssistantSuggestion {
+  id: string
+  label: string
+  prompt: string
 }
 
 export interface GenerateChapterOptions {
@@ -336,16 +474,22 @@ export interface NovelsCreatorAPI {
     get: () => Promise<
       AppConfig & {
         dify: DifySettingsPublic
+        ai: AiSettingsPublic
         /** 至少一个工作流已配置 Key */
         hasApiKey?: boolean
       }
     >
     setDify: (payload: SetDifyConfigPayload) => Promise<void>
+    setAiEngine: (payload: SetAiEnginePayload) => Promise<void>
+    setAiLocal: (payload: SetAiLocalPayload) => Promise<void>
+    setAiAssistant: (payload: SetAiAssistantPayload) => Promise<void>
+    testAssistantLlm: (payload?: TestAssistantLlmPayload) => Promise<HealthCheckResponse>
     testDify: (payload?: TestDifyPayload) => Promise<HealthCheckResponse>
     setLayout: (layout: WorkspaceLayoutPrefs) => Promise<void>
     setAppearance: (payload: SetAppearancePayload) => Promise<void>
     setDefaultProjectsDir: (dir: string | undefined) => Promise<void>
     clearWorkspaceLayout: () => Promise<void>
+    setAiOnboardingCompleted: (completed: boolean) => Promise<void>
   }
   project: {
     create: (name: string, parentDir?: string) => Promise<ProjectMeta>
@@ -384,6 +528,36 @@ export interface NovelsCreatorAPI {
     pickAndRestore: () => Promise<{ ok: boolean; message: string }>
     restore: (zipPath: string) => Promise<{ ok: boolean; message: string }>
   }
+  ai: {
+    generateChapter: (options: GenerateChapterOptions) => Promise<GenerateChapterResponse>
+    generateOutline: (options: GenerateOutlineOptions) => Promise<GenerateOutlineResponse>
+    generateKnowledge: (options: GenerateKnowledgeOptions) => Promise<GenerateKnowledgeResponse>
+    onOutlineProgress: (
+      listener: (progress: OutlineGenerationProgress) => void
+    ) => () => void
+  }
+  agent: {
+    chat: (req: AssistantChatRequest) => Promise<AssistantChatResponse>
+    chatStream: (
+      req: AssistantChatRequest,
+      onEvent: (event: AssistantStreamEvent) => void
+    ) => Promise<AssistantChatResponse>
+    resumeStream: (
+      req: AssistantResumeRequest,
+      onEvent: (event: AssistantStreamEvent) => void
+    ) => Promise<AssistantChatResponse>
+    resume: (req: AssistantResumeRequest) => Promise<AssistantChatResponse>
+    getPendingApproval: (
+      projectId: string,
+      threadId: string
+    ) => Promise<AssistantChatResponse['pendingApproval']>
+    clearThread: (projectId: string, threadId: string) => Promise<void>
+    loadSession: (projectId: string) => Promise<AssistantSessionSnapshot | null>
+    saveSession: (projectId: string, snapshot: AssistantSessionSnapshot) => Promise<void>
+    listSuggestedActions: (projectId: string) => Promise<AssistantSuggestion[]>
+    onProjectMutated: (listener: () => void) => () => void
+  }
+  /** @deprecated Use ai.* */
   dify: {
     generateChapter: (options: GenerateChapterOptions) => Promise<GenerateChapterResponse>
     generateOutline: (options: GenerateOutlineOptions) => Promise<GenerateOutlineResponse>

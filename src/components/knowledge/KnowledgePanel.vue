@@ -51,7 +51,7 @@ const knowledge = useKnowledgeStore()
 const memory = useMemoryStore()
 const ui = useUiStore()
 const dify = useDifyStore()
-const { doc, selectedCharacterId, dirty, saving, loading, error, mapImageFilePath } =
+const { doc, selectedCharacterId, dirty, saving, loading, error, mapImageDataUrl, mapImageFilePath } =
   storeToRefs(knowledge)
 const tab = ref<KnowledgeTabId>('world')
 

@@ -8,10 +8,11 @@ const ui = useUiStore()
 <template>
   <header class="welcome-header">
     <div class="brand">
-      <span class="logo">NC</span>
+      <img class="logo" src="/icon.png" width="36" height="36" alt="" />
       <span class="title">{{ APP_TITLE }}</span>
     </div>
     <div class="actions">
+      <button type="button" class="nc-btn" @click="ui.settingsOpen = true">设置</button>
       <button type="button" class="nc-btn" @click="ui.aboutOpen = true">关于</button>
     </div>
   </header>
@@ -34,12 +35,8 @@ const ui = useUiStore()
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: var(--nc-accent);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  font-weight: 700;
-  font-size: 14px;
+  display: block;
+  object-fit: cover;
 }
 .title {
   font-size: 18px;

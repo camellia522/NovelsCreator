@@ -180,7 +180,7 @@ export function nearestTerrainCell(
 }
 
 export function buildHexGridFromMap(
-  map: Pick<WorldMapDocument, 'terrainCells' | 'hexGrid'>,
+  map: Pick<WorldMapDocument, 'terrainCells' | 'hexGrid' | 'gridSize'>,
   cols?: number,
   rows?: number
 ): MapHexCell[] {

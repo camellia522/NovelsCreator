@@ -12,7 +12,8 @@ const items: { id: ActivityId; label: string }[] = [
   { id: 'explorer', label: '资源' },
   { id: 'outline', label: '大纲' },
   { id: 'knowledge', label: '设定' },
-  { id: 'memory', label: '记忆' }
+  { id: 'memory', label: '记忆' },
+  { id: 'assistant', label: '助手' }
 ]
 
 function onClick(id: ActivityId): void {

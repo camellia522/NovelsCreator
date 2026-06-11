@@ -1,7 +1,7 @@
 {
   "name": "novels-creator",
-  "version": "0.2.0",
-  "description": "IDE-style long-form novel creator with Dify workflow",
+  "version": "1.0.0",
+  "description": "IDE-style long-form novel creator with built-in LangGraph workflows and novel assistant",
   "author": "camellia522",
   "homepage": "https://github.com/camellia522",
   "main": "./out/main/index.js",
@@ -15,6 +15,7 @@
     "pack:win": "npm run build && npm run build:python && npx electron-builder --win",
     "pack:mac": "npm run build && npm run build:python && npx electron-builder --mac",
     "pack:linux": "npm run build && npm run build:python && npx electron-builder --linux",
+    "icons": "node scripts/generate-app-icons.cjs",
     "preview": "electron-vite preview",
     "typecheck": "vue-tsc --noEmit -p tsconfig.web.json",
     "test:society-parse": "npx --yes tsx scripts/test-society-dify-parse.ts",
@@ -33,27 +34,45 @@
     "test:knowledge-client": "npx --yes tsx --tsconfig tsconfig.web.json scripts/test-knowledge-client-flow.ts",
     "test:chapter-client": "npx --yes tsx --tsconfig tsconfig.web.json scripts/test-chapter-client-flow.ts",
     "test:chapter-dify": "npx --yes tsx --tsconfig tsconfig.web.json scripts/test-chapter-dify-e2e.ts",
+    "test:outline-local-nodes": "npx --yes tsx scripts/test-outline-local-nodes.ts",
+    "test:knowledge-local-nodes": "npx --yes tsx scripts/test-knowledge-local-nodes.ts",
+    "test:society-local-nodes": "npx --yes tsx scripts/test-society-local-nodes.ts",
+    "test:chapter-local-nodes": "npx --yes tsx scripts/test-chapter-local-nodes.ts",
+    "test:local-nodes": "npm run test:outline-local-nodes && npm run test:knowledge-local-nodes && npm run test:society-local-nodes && npm run test:chapter-local-nodes",
+    "test:outline-local-e2e": "npx --yes tsx scripts/test-outline-local-e2e.ts",
+    "studio:dev": "npx @langchain/langgraph-cli dev",
+    "studio:graphs-check": "npx --yes tsx langgraph/studio/check-graphs.ts",
     "test:knowledge-dify": "npx --yes tsx --tsconfig tsconfig.web.json scripts/test-knowledge-dify-e2e.ts",
     "postinstall": "node node_modules/electron/install.js",
     "electron:install": "node node_modules/electron/install.js"
   },
   "dependencies": {
+    "@langchain/core": "^1.1.48",
+    "@langchain/langgraph": "^1.3.7",
+    "@langchain/langgraph-checkpoint": "^1.0.4",
+    "@langchain/openai": "^1.4.7",
     "@types/three": "^0.184.1",
     "archiver": "^8.0.0",
     "axios": "^1.9.0",
+    "deepagents": "^1.10.2",
     "extract-zip": "^2.0.1",
+    "langchain": "^1.4.4",
     "monaco-editor": "^0.55.1",
     "pinia": "^3.0.2",
     "three": "^0.184.0",
     "vue": "^3.5.16",
-    "vue-router": "^4.5.1"
+    "vue-router": "^4.5.1",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@langchain/langgraph-cli": "^0.0.64",
     "@types/archiver": "^8.0.0",
     "@vitejs/plugin-vue": "^5.2.4",
     "electron": "^36.4.0",
-    "electron-vite": "^3.1.0",
     "electron-builder": "^25.1.8",
+    "electron-vite": "^3.1.0",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.35.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
     "vue-tsc": "^2.2.10"
@@ -62,6 +81,7 @@
     "appId": "com.novelscreator.app",
     "productName": "NovelsCreator",
     "copyright": "Copyright © 2026 camellia522",
+    "icon": "resources/icon.png",
     "directories": {
       "output": "release"
     },
@@ -72,27 +92,46 @@
     "asar": true,
     "extraResources": [
       {
+        "from": "resources/icon.png",
+        "to": "icon.png"
+      },
+      {
+        "from": "resources/icon.ico",
+        "to": "icon.ico"
+      },
+      {
         "from": "resources/python",
         "to": "python",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       },
       {
         "from": "resources/scripts",
         "to": "scripts",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       }
     ],
     "win": {
-      "target": ["nsis"],
+      "target": [
+        "nsis"
+      ],
+      "icon": "resources/icon.ico",
       "artifactName": "NovelsCreator-${version}-win-${arch}.${ext}"
     },
     "mac": {
-      "target": ["dmg"],
+      "target": [
+        "dmg"
+      ],
       "artifactName": "NovelsCreator-${version}-mac-${arch}.${ext}",
       "category": "public.app-category.productivity"
     },
     "linux": {
-      "target": ["AppImage"],
+      "target": [
+        "AppImage"
+      ],
       "artifactName": "NovelsCreator-${version}-linux-${arch}.${ext}",
       "category": "Office"
     },

@@ -2,6 +2,7 @@ import { BrowserWindow } from 'electron'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { APP_TITLE } from '@/constants/app-meta'
+import { resolveAppIconPath } from './app-icon'
 
 function resolvePreloadPath(): string {
   const base = join(__dirname, '../preload/index')
@@ -11,12 +12,14 @@ function resolvePreloadPath(): string {
 }
 
 export function createMainWindow(): BrowserWindow {
+  const icon = resolveAppIconPath()
   const win = new BrowserWindow({
     width: 1280,
     height: 860,
     minWidth: 960,
     minHeight: 640,
     title: APP_TITLE,
+    icon,
     show: false,
     webPreferences: {
       preload: resolvePreloadPath(),

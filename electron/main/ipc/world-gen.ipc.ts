@@ -1,7 +1,7 @@
 import { ipcMain } from 'electron'
 import type { WorldGenConfig, WorldSocietyGenerateRequest } from '../../src/types/world-gen'
 import { getCurrentProject } from '../services/project.service'
-import { runTerritorySocietyLlm } from '../services/world-society.service'
+import { getWorkflowRunner } from '../workflows/workflow-runner.factory'
 import {
   checkWorldEngineInstall,
   readCachedMapAsDataUrl,
@@ -44,14 +44,8 @@ export function registerWorldGenIpc(): void {
       return { ok: false, error: '请先打开或创建项目' }
     }
     const plain = toPlain(req)
-    const result = await runTerritorySocietyLlm(
-      {
-        config: plain.config,
-        nations: plain.nations,
-        territoryBriefJson: plain.territoryBriefJson
-      },
-      project.id
-    )
+    const runner = await getWorkflowRunner()
+    const result = await runner.runSocietyWorkflow(project.id, plain)
     return toPlain(result)
   })
 }

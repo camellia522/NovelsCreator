@@ -1,14 +1,10 @@
 import editorWorker from 'monaco-editor/esm/vs/editor/editor.worker?worker'
-
-declare global {
-  // eslint-disable-next-line no-var
-  var MonacoEnvironment: { getWorker: () => Worker } | undefined
-}
+import type { Environment } from 'monaco-editor'
 
 globalThis.MonacoEnvironment = {
-  getWorker() {
+  getWorker(_workerId, _label) {
     return new editorWorker()
   }
-}
+} satisfies Environment
 
 export {}

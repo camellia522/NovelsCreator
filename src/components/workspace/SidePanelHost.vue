@@ -4,6 +4,7 @@ import ProjectExplorer from '@/components/explorer/ProjectExplorer.vue'
 import OutlineTreePanel from '@/components/outline/OutlineTreePanel.vue'
 import KnowledgePanel from '@/components/knowledge/KnowledgePanel.vue'
 import MemoryPanel from '@/components/memory/MemoryPanel.vue'
+import NovelAssistantPanel from '@/components/agent/NovelAssistantPanel.vue'
 
 const layout = useLayoutStore()
 
@@ -11,7 +12,8 @@ const panels = {
   explorer: ProjectExplorer,
   outline: OutlineTreePanel,
   knowledge: KnowledgePanel,
-  memory: MemoryPanel
+  memory: MemoryPanel,
+  assistant: NovelAssistantPanel
 } as const
 </script>
 

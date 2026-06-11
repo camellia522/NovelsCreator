@@ -15,12 +15,12 @@ export const APP_COPYRIGHT = `Copyright © 2026 ${APP_AUTHOR}`
 /** 语义化版本，与 package.json 同步，迭代时只改 package.json */
 export const APP_VERSION = pkg.version
 
-/** 窗口标题 / 品牌展示：NovelsCreator v0.2.0 */
+/** 窗口标题 / 品牌展示：NovelsCreator v1.0.0 */
 export const APP_TITLE = `${APP_NAME} v${APP_VERSION}`
 
 /**
- * 当前里程碑：0.2.0
- * - 知识库 / 大纲 / 章节 / 社会层 Dify 客户端闭环
- * - 设置（外观 / Dify / 工作区）、主题与 Monaco
- * - 备份管理、线条图标、E2E 脚本
+ * 当前里程碑：1.0.0
+ * - 内置 LangGraph 四工作流（大纲 / 知识库 / 章节 / 社会层）
+ * - Deep Agents 小说助手（流式 + HITL）
+ * - Dify Legacy 高级模式、WorldEngine 地图
  */

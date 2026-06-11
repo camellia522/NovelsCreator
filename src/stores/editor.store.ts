@@ -124,6 +124,15 @@ export const useEditorStore = defineStore('editor', () => {
     })
   }
 
+  async function reloadOpenTabsFromDisk(): Promise<void> {
+    if (!window.novelsCreator) return
+    for (const tab of tabs.value) {
+      if (tab.dirty || !tab.chapterId) continue
+      const kind = tab.type === 'chapter-novel' ? 'novel' : 'video'
+      tab.content = await window.novelsCreator.project.getChapterText(tab.chapterId, kind)
+    }
+  }
+
   return {
     tabs,
     activeTabId,
@@ -137,6 +146,7 @@ export const useEditorStore = defineStore('editor', () => {
     closeTab,
     closeChapterTabs,
     clearTabs,
-    openChapterTabs
+    openChapterTabs,
+    reloadOpenTabsFromDisk
   }
 })

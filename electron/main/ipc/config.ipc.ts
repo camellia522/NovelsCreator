@@ -1,13 +1,18 @@
 import { ipcMain } from 'electron'
 
-import type { SetAppearancePayload, SetDifyConfigPayload, TestDifyPayload } from '../../src/types/api'
+import type { SetAppearancePayload, SetAiAssistantPayload, SetAiEnginePayload, SetAiLocalPayload, SetDifyConfigPayload, TestAssistantLlmPayload, TestDifyPayload } from '../../src/types/api'
 
 import {
   DIFY_MASKED_API_KEY,
   clearWorkspaceLayout,
+  getAiSettingsPublic,
   getDifyCredentials,
   getDifySettingsPublic,
   getPublicConfig,
+  setAiAssistant,
+  setAiEngine,
+  setAiLocal,
+  setAiOnboardingCompleted,
   setAppearance,
   setDefaultProjectsDir,
   setDifyConfig,
@@ -15,6 +20,8 @@ import {
 } from '../services/config.service'
 
 import { healthCheck } from '../services/dify.service'
+import { testAssistantLlm } from '../services/llm-health.service'
+import { invalidateAssistantCache } from '../agent/novel-assistant.service'
 
 
 
@@ -25,10 +32,11 @@ export function registerConfigIpc(): void {
     const config = await getPublicConfig()
 
     const dify = await getDifySettingsPublic()
+    const ai = await getAiSettingsPublic()
 
     const hasApiKey = Object.values(dify.workflows).some((w) => w.configured)
 
-    return { ...config, dify, hasApiKey }
+    return { ...config, dify, ai, hasApiKey }
 
   })
 
@@ -38,6 +46,28 @@ export function registerConfigIpc(): void {
 
     await setDifyConfig(payload)
 
+  })
+
+  ipcMain.handle('config:setAiEngine', async (_e, payload: SetAiEnginePayload) => {
+    await setAiEngine(payload)
+  })
+
+  ipcMain.handle('config:setAiLocal', async (_e, payload: SetAiLocalPayload) => {
+    await setAiLocal(payload)
+    invalidateAssistantCache()
+  })
+
+  ipcMain.handle('config:setAiOnboardingCompleted', async (_e, completed: boolean) => {
+    await setAiOnboardingCompleted(completed)
+  })
+
+  ipcMain.handle('config:setAiAssistant', async (_e, payload: SetAiAssistantPayload) => {
+    await setAiAssistant(payload)
+    invalidateAssistantCache()
+  })
+
+  ipcMain.handle('config:testAssistantLlm', async (_e, partial?: TestAssistantLlmPayload) => {
+    return testAssistantLlm(partial)
   })
 
 

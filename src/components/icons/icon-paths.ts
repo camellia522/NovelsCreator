@@ -18,6 +18,7 @@ export type IconName =
   | 'trash'
   | 'file-plus'
   | 'dot-filled'
+  | 'message'
 
 export type IconElement =
   | { type: 'path'; d: string; fill?: string }
@@ -109,6 +110,9 @@ export const ICONS: Record<IconName, IconElement[]> = {
     { type: 'path', d: 'M14 2v4a2 2 0 0 0 2 2h4' },
     { type: 'path', d: 'M9 15h6' },
     { type: 'path', d: 'M12 12v6' }
+  ],
+  message: [
+    { type: 'path', d: 'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z' }
   ]
 }
 
@@ -117,11 +121,13 @@ export const ACTIVITY_ICON: Record<string, IconName> = {
   explorer: 'folder',
   outline: 'file-text',
   knowledge: 'book',
-  memory: 'layers'
+  memory: 'layers',
+  assistant: 'message'
 }
 
 export const SETTINGS_TAB_ICON: Record<string, IconName> = {
   appearance: 'palette',
+  ai: 'workflow',
   dify: 'workflow',
   general: 'folder-open',
   workspace: 'monitor'

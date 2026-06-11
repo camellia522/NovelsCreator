@@ -1,0 +1,11 @@
+{
+  "node_version": "20",
+  "dependencies": ["."],
+  "graphs": {
+    "outline": "./langgraph/studio/graphs/outline.ts:graph",
+    "knowledge": "./langgraph/studio/graphs/knowledge.ts:graph",
+    "chapter": "./langgraph/studio/graphs/chapter.ts:graph",
+    "society": "./langgraph/studio/graphs/society.ts:graph"
+  },
+  "env": ".env"
+}

@@ -1,5 +1,5 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import type { NovelsCreatorAPI, OutlineGenerationProgress } from '../../src/types/api'
+import type { NovelsCreatorAPI, OutlineGenerationProgress, AssistantChatRequest, AssistantChatResponse, AssistantResumeRequest, AssistantSessionSnapshot, AssistantStreamEvent, AssistantSuggestion, SetAiAssistantPayload, SetAiEnginePayload, SetAiLocalPayload, TestAssistantLlmPayload } from '../../src/types/api'
 
 function toWorldMapUrl(filePath: string): string {
   return `nc-map://${encodeURIComponent(filePath)}`
@@ -8,11 +8,18 @@ const api: NovelsCreatorAPI = {
   config: {
     get: () => ipcRenderer.invoke('config:get'),
     setDify: (dify) => ipcRenderer.invoke('config:setDify', dify),
+    setAiEngine: (payload: SetAiEnginePayload) => ipcRenderer.invoke('config:setAiEngine', payload),
+    setAiLocal: (payload: SetAiLocalPayload) => ipcRenderer.invoke('config:setAiLocal', payload),
+    setAiAssistant: (payload: SetAiAssistantPayload) => ipcRenderer.invoke('config:setAiAssistant', payload),
+    testAssistantLlm: (payload?: TestAssistantLlmPayload) =>
+      ipcRenderer.invoke('config:testAssistantLlm', payload),
     testDify: (dify) => ipcRenderer.invoke('config:testDify', dify),
     setLayout: (layout) => ipcRenderer.invoke('config:setLayout', layout),
     setAppearance: (payload) => ipcRenderer.invoke('config:setAppearance', payload),
     setDefaultProjectsDir: (dir) => ipcRenderer.invoke('config:setDefaultProjectsDir', dir),
-    clearWorkspaceLayout: () => ipcRenderer.invoke('config:clearWorkspaceLayout')
+    clearWorkspaceLayout: () => ipcRenderer.invoke('config:clearWorkspaceLayout'),
+    setAiOnboardingCompleted: (completed: boolean) =>
+      ipcRenderer.invoke('config:setAiOnboardingCompleted', completed)
   },
   project: {
     create: (name, parentDir) => ipcRenderer.invoke('project:create', name, parentDir),
@@ -47,6 +54,57 @@ const api: NovelsCreatorAPI = {
         ok: boolean
         deleted: boolean
       }>
+  },
+  ai: {
+    generateChapter: (options) => ipcRenderer.invoke('ai:generateChapter', options),
+    generateOutline: (options) => ipcRenderer.invoke('ai:generateOutline', options),
+    generateKnowledge: (options) => ipcRenderer.invoke('ai:generateKnowledge', options),
+    onOutlineProgress: (listener: (progress: OutlineGenerationProgress) => void) => {
+      const handler = (_event: unknown, progress: OutlineGenerationProgress) => {
+        listener(progress)
+      }
+      ipcRenderer.on('ai:outlineProgress', handler)
+      return () => ipcRenderer.removeListener('ai:outlineProgress', handler)
+    }
+  },
+  agent: {
+    chat: (req: AssistantChatRequest) => ipcRenderer.invoke('agent:chat', req) as Promise<AssistantChatResponse>,
+    chatStream: async (req: AssistantChatRequest, onEvent: (event: AssistantStreamEvent) => void) => {
+      const handler = (_event: unknown, ev: AssistantStreamEvent) => onEvent(ev)
+      ipcRenderer.on('agent:streamEvent', handler)
+      try {
+        return (await ipcRenderer.invoke('agent:chatStream', req)) as AssistantChatResponse
+      } finally {
+        ipcRenderer.removeListener('agent:streamEvent', handler)
+      }
+    },
+    resumeStream: async (req: AssistantResumeRequest, onEvent: (event: AssistantStreamEvent) => void) => {
+      const handler = (_event: unknown, ev: AssistantStreamEvent) => onEvent(ev)
+      ipcRenderer.on('agent:streamEvent', handler)
+      try {
+        return (await ipcRenderer.invoke('agent:resumeStream', req)) as AssistantChatResponse
+      } finally {
+        ipcRenderer.removeListener('agent:streamEvent', handler)
+      }
+    },
+    resume: (req: AssistantResumeRequest) => ipcRenderer.invoke('agent:resume', req) as Promise<AssistantChatResponse>,
+    getPendingApproval: (projectId: string, threadId: string) =>
+      ipcRenderer.invoke('agent:getPendingApproval', projectId, threadId) as Promise<
+        AssistantChatResponse['pendingApproval']
+      >,
+    clearThread: (projectId: string, threadId: string) =>
+      ipcRenderer.invoke('agent:clearThread', projectId, threadId),
+    loadSession: (projectId: string) =>
+      ipcRenderer.invoke('agent:loadSession', projectId) as Promise<AssistantSessionSnapshot | null>,
+    saveSession: (projectId: string, snapshot: AssistantSessionSnapshot) =>
+      ipcRenderer.invoke('agent:saveSession', projectId, snapshot),
+    listSuggestedActions: (projectId: string) =>
+      ipcRenderer.invoke('agent:listSuggestedActions', projectId) as Promise<AssistantSuggestion[]>,
+    onProjectMutated: (listener: () => void) => {
+      const handler = () => listener()
+      ipcRenderer.on('agent:projectMutated', handler)
+      return () => ipcRenderer.removeListener('agent:projectMutated', handler)
+    }
   },
   dify: {
     generateChapter: (options) => ipcRenderer.invoke('dify:generateChapter', options),
