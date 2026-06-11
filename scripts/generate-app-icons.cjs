@@ -15,7 +15,7 @@ async function main() {
   const pngPath = path.join(root, 'resources', 'icon.png')
   await sharp(svg).resize(512, 512).png().toFile(pngPath)
 
-  const icoSizes = [16, 32, 48, 256]
+  const icoSizes = [16, 32, 48, 128, 256]
   const tmpPaths = []
   for (const size of icoSizes) {
     const tmp = path.join(root, 'resources', `.icon-${size}.png`)

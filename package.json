@@ -12,7 +12,7 @@
     "build": "electron-vite build",
     "build:python": "node scripts/build-python-bundle.cjs",
     "pack": "npm run build && npm run build:python && npx electron-builder",
-    "pack:win": "npm run build && npm run build:python && npx electron-builder --win",
+    "pack:win": "npm run icons && npm run build && npm run build:python && node scripts/pack-win.cjs",
     "pack:mac": "npm run build && npm run build:python && npx electron-builder --mac",
     "pack:linux": "npm run build && npm run build:python && npx electron-builder --linux",
     "icons": "node scripts/generate-app-icons.cjs",
@@ -72,6 +72,7 @@
     "electron-builder": "^25.1.8",
     "electron-vite": "^3.1.0",
     "png-to-ico": "^3.0.1",
+    "rcedit": "^5.0.2",
     "sharp": "^0.35.0",
     "typescript": "^5.8.3",
     "vite": "^6.3.5",
@@ -90,6 +91,7 @@
       "package.json"
     ],
     "asar": true,
+    "forceCodeSigning": false,
     "extraResources": [
       {
         "from": "resources/icon.png",
@@ -119,7 +121,10 @@
         "nsis"
       ],
       "icon": "resources/icon.ico",
-      "artifactName": "NovelsCreator-${version}-win-${arch}.${ext}"
+      "artifactName": "NovelsCreator-${version}-win-${arch}.${ext}",
+      "sign": null,
+      "signDlls": false,
+      "signAndEditExecutable": false
     },
     "mac": {
       "target": [
@@ -137,7 +142,10 @@
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": true
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "resources/icon.ico",
+      "uninstallerIcon": "resources/icon.ico",
+      "installerHeaderIcon": "resources/icon.ico"
     }
   }
 }

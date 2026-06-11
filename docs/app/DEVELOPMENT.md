@@ -10,6 +10,7 @@
 | 文档 | 说明 |
 |------|------|
 | **本文档** | 架构、技术选型、数据模型、Dify 协议、开发规划 |
+| **[dev/](./dev/)** | **v1.0 开发文档：技术栈、工具链、14 模块流程（推荐）** |
 | **[MODULES.md](./MODULES.md)** | **12 个功能模块拆分 + 每模块流程实现（时序图 / 伪代码 / IPC）** |
 | **[UI-NAVIGATION.md](./UI-NAVIGATION.md)** | **客户端页面布局、IDE 分区、路由与跳转流程（Welcome / Workspace / 标签 / 面板）** |
 | **[GENERATION-WIZARD.md](../chapter/GENERATION-WIZARD.md)** | **三要素生成选择页、统一 generation_prompt 格式与 Dify 对接** |
